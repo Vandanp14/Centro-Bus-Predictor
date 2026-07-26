@@ -1,190 +1,221 @@
-import requests
-import mysql.connector
-from datetime import datetime
+"""Background collector for optional historical Centro prediction storage.
+
+The web app reads live data through ``app.py``.  This collector is only needed
+when the project wants to retain BusTime prediction snapshots in MySQL.
+"""
+
+from __future__ import annotations
+
+import os
 import time
-from mysql.connector import Error
+from datetime import datetime
+from pathlib import Path
+
+import pymysql
+
+try:
+    from .catalog import OSWEGO_ROUTE_IDS, ROUTE_METADATA
+    from .centro_client import CentroAPIError, CentroClient
+except ImportError:
+    from catalog import OSWEGO_ROUTE_IDS, ROUTE_METADATA
+    from centro_client import CentroAPIError, CentroClient
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+
+def load_local_environment():
+    env_path = PROJECT_ROOT / "backend" / ".env"
+    if not env_path.is_file():
+        return
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip("\"'"))
+
+
+def required_environment(name):
+    value = os.environ.get(name, "").strip()
+    if not value:
+        raise RuntimeError(f"Missing required environment variable: {name}")
+    return value
 
 
 def connect_to_db():
-    try:
-        return mysql.connector.connect(
-            host="pi.cs.oswego.edu",
-            user="CSC380_25S_TeamE",
-            password="Bu$Tr@ck3r1000_?",
-            database="CSC380_25S_TeamE"
-        )
-    except Error as e:
-        print(f"Error connecting to MySQL: {e}")
-        return None
+    return pymysql.connect(
+        host=required_environment("DB_HOST"),
+        user=required_environment("DB_USER"),
+        password=required_environment("DB_PASSWORD"),
+        database=required_environment("DB_NAME"),
+    )
 
 
-def ensure_stops_exist(predictions, cursor, conn):
-    """Ensure all stops exist in the database before processing ETAs"""
-    stop_data = set()
-    for p in predictions:
-        if "stpid" in p and "stpnm" in p:
-            stop_data.add((p["stpid"], p["stpnm"]))
-
-    for stpid, stpnm in stop_data:
+def parse_bustime(value):
+    for pattern in ("%Y%m%d %H:%M:%S", "%Y%m%d %H:%M"):
         try:
-            # First check if stop exists
-            cursor.execute("SELECT 1 FROM Stops WHERE stupid = %s", (stpid,))
-            if not cursor.fetchone():
-                # If not, insert it
-                sql = """
-                    INSERT INTO Stops (stupid, stpnm) 
-                    VALUES (%s, %s)
-                """
-                cursor.execute(sql, (stpid, stpnm))
-                conn.commit()
-                print(f"Inserted new stop: {stpid} - {stpnm}")
-        except Error as e:
-            print(f"Error handling stop {stpid}: {e}")
-            conn.rollback()
+            return datetime.strptime(value, pattern)
+        except (TypeError, ValueError):
+            continue
+    raise ValueError(f"Unsupported Centro timestamp: {value!r}")
 
 
-def fetch_and_insert_predictions(url, cursor, conn):
+def chunks(values, size=10):
+    for index in range(0, len(values), size):
+        yield values[index : index + size]
+
+
+def discover_stops(client, route_id):
+    directions_body = client.directions(route_id)
+    directions = directions_body.get("directions") or []
+    discovered = {}
+
+    for direction in directions:
+        direction_id = direction.get("id") or direction.get("name")
+        if not direction_id:
+            continue
+        stops_body = client.stops(route_id, direction_id)
+        for stop in stops_body.get("stops") or []:
+            stop_id = str(stop.get("stpid") or "")
+            if stop_id:
+                discovered[stop_id] = stop.get("stpnm") or f"Stop {stop_id}"
+
+    return discovered
+
+
+def fetch_route_predictions(client, route_id, stop_ids):
+    predictions = []
+    for stop_batch in chunks(list(stop_ids), 10):
+        body = client.request(
+            "getpredictions",
+            rt=route_id,
+            stpid=",".join(stop_batch),
+        )
+        predictions.extend(body.get("prd") or [])
+    return predictions
+
+
+def store_snapshot(route_id, stops, predictions):
+    if not predictions:
+        return 0
+
+    connection = connect_to_db()
+    inserted = 0
+
     try:
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                INSERT INTO Routes (rt, des)
+                VALUES (%s, %s)
+                ON DUPLICATE KEY UPDATE des = VALUES(des)
+                """,
+                (route_id, ROUTE_METADATA[route_id]["fallbackName"]),
+            )
 
-        if "bustime-response" not in data:
-            print("Unexpected API response format")
-            return 0
-
-        if "error" in data["bustime-response"]:
-            error_msg = data["bustime-response"]["error"][0]["msg"]
-            print(f"API Error: {error_msg}")
-
-        if "prd" not in data["bustime-response"]:
-            print("No predictions available.")
-            return 0
-
-        predictions = data["bustime-response"]["prd"]
-
-        # First ensure all stops exist
-        ensure_stops_exist(predictions, cursor, conn)
-
-        count = 0
-        for p in predictions:
-            if p.get("msg") == "No service scheduled":
-                print(f"Skipping prediction due to message: {p['msg']}")
-                continue
-
-            try:
-                # Convert prediction time to MySQL datetime
-                prdtm = datetime.strptime(p["prdtm"], "%Y%m%d %H:%M")
-                tmpstmp = datetime.strptime(p["tmstmp"], "%Y%m%d %H:%M")
-
-                # Insert route information
-                rt = p.get("rt")
-                des = p.get("des")
-                if rt and des:
-                    sql_routes = """
-                        INSERT INTO Routes (rt, des) 
-                        VALUES (%s, %s)
-                        ON DUPLICATE KEY UPDATE des = VALUES(des)
+            for stop_id, stop_name in stops.items():
+                cursor.execute(
                     """
-                    cursor.execute(sql_routes, (rt, des))
-
-                # Get stop ID
-                stpid = p.get("stpid")
-                if not stpid:
-                    print("Missing stpid in prediction - skipping")
-                    continue
-
-                # Verify stop exists
-                cursor.execute("SELECT 1 FROM Stops WHERE stupid = %s", (stpid,))
-                if not cursor.fetchone():
-                    print(f"Stop {stpid} does not exist - cannot insert ETA")
-                    continue
-
-                # Insert into ETA table
-                sql_eta = """
-                    INSERT INTO ETA (stpid, rt, prdtm, prdctdn, tmstmp, dly, rtdir)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s)
-                """
-                # Handle 'prdctdn' and 0 means 'DUE' and -1 means 'MISSING'
-                prdctdn_raw = p.get("prdctdn", "-1")
-                prdctdn = 0 if prdctdn_raw == "DUE" else -1 if prdctdn_raw == "MISSING" else int(prdctdn_raw)
-
-                values_eta = (
-                    stpid,
-                    rt,
-                    prdtm,
-                    prdctdn,
-                    tmpstmp,
-                    p.get("dly", False),
-                    p.get("rtdir")
+                    INSERT INTO Stops (stupid, stpnm)
+                    VALUES (%s, %s)
+                    ON DUPLICATE KEY UPDATE stpnm = VALUES(stpnm)
+                    """,
+                    (stop_id, stop_name),
                 )
-                cursor.execute(sql_eta, values_eta)
-                count += 1
-                conn.commit()
 
-            except Exception as e:
-                print(f"Error processing prediction: {e}")
-                conn.rollback()
+            seen = set()
+            for prediction in predictions:
+                if prediction.get("msg") == "No service scheduled":
+                    continue
 
-        return count
+                stop_id = str(prediction.get("stpid") or "")
+                if not stop_id:
+                    continue
 
-    except requests.exceptions.RequestException as e:
-        print(f"Request failed: {e}")#displays because of what cause
-        return 0
-    except ValueError as e:
-        print(f"Failed to parse JSON: {e}")
-        return 0
+                identity = (
+                    stop_id,
+                    str(prediction.get("vid") or ""),
+                    str(prediction.get("prdtm") or ""),
+                    str(prediction.get("tmstmp") or ""),
+                )
+                if identity in seen:
+                    continue
+                seen.add(identity)
 
+                raw_countdown = str(prediction.get("prdctdn", "")).upper()
+                if raw_countdown == "DUE":
+                    minutes = 0
+                elif raw_countdown == "MISSING":
+                    minutes = -1
+                else:
+                    minutes = int(raw_countdown)
 
-def process_multiple_urls(urls):
-    conn = connect_to_db()
-    if not conn:
-        return
-    cursor = None
-    try:
-        cursor = conn.cursor()
-        for url in urls:
-            print(f"Processing URL: {url}")
-            count = fetch_and_insert_predictions(url, cursor, conn)
-            print(f"Successfully processed {count} predictions")
+                cursor.execute(
+                    """
+                    INSERT IGNORE INTO ETA
+                        (stpid, rt, prdtm, prdctdn, tmstmp, dly, rtdir)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    """,
+                    (
+                        stop_id,
+                        route_id,
+                        parse_bustime(prediction.get("prdtm")),
+                        minutes,
+                        parse_bustime(prediction.get("tmstmp")),
+                        bool(prediction.get("dly")),
+                        prediction.get("rtdir"),
+                    ),
+                )
+                inserted += cursor.rowcount
 
-    except Exception as e:
-        print(f"Error in process_multiple_urls: {e}")
+        connection.commit()
+        return inserted
+    except Exception:
+        connection.rollback()
+        raise
     finally:
-        if cursor:
-            cursor.close()
-        if conn and conn.is_connected():
-            conn.close()
+        connection.close()
 
-def is_operating_time(): #ensure that it does not run at 11 PM to 5AM
-    current_time = datetime.now().time()
-    start_time = datetime.strptime("05:00:00", "%H:%M:%S").time()
-    end_time = datetime.strptime("23:00:00", "%H:%M:%S").time()
-    return start_time <= current_time <= end_time
+
+def collect_once(client):
+    total = 0
+    for route_id in OSWEGO_ROUTE_IDS:
+        try:
+            stops = discover_stops(client, route_id)
+            predictions = fetch_route_predictions(client, route_id, stops.keys())
+            inserted = store_snapshot(route_id, stops, predictions)
+            total += inserted
+            print(
+                f"{route_id}: {len(stops)} stops, "
+                f"{len(predictions)} live predictions, {inserted} stored"
+            )
+        except CentroAPIError as error:
+            print(f"{route_id}: Centro unavailable ({error})")
+        except Exception as error:
+            print(f"{route_id}: collection failed ({type(error).__name__})")
+    return total
+
+
+def is_operating_time():
+    current = datetime.now().time()
+    start = datetime.strptime("05:00:00", "%H:%M:%S").time()
+    end = datetime.strptime("23:00:00", "%H:%M:%S").time()
+    return start <= current <= end
+
 
 def main():
-
-    # List of URLs
-    url_osw10_1 = "https://bus-time.centro.org/bustime/api/v3/getpredictions?key=PUZXP7CxWkPaWnvDWdacgiS4M&stpid=15521,15527,15529,16164,16168,16169,16170,16182,16183,16184&format=json&rt=OSW10"
-    url_osw10_2 = "https://bus-time.centro.org/bustime/api/v3/getpredictions?key=PUZXP7CxWkPaWnvDWdacgiS4M&stpid=16185,17539,17968,17969,9679,9682&format=json&rt=OSW10"
-    url_osw11_1 = "https://bus-time.centro.org/bustime/api/v3/getpredictions?key=PUZXP7CxWkPaWnvDWdacgiS4M&stpid=15521,15534,16086,16160,17941,18368,9679,9682,9684&format=json&rt=OSW11"
-    url_osw1A_1 = "https://bus-time.centro.org/bustime/api/v3/getpredictions?key=PUZXP7CxWkPaWnvDWdacgiS4M&stpid=16875,3581,9614,9695,9696,9726,9727,9729,9731,9735&format=json&rt=OSW1A"
-    url_osw1A_2 = "https://bus-time.centro.org/bustime/api/v3/getpredictions?key=PUZXP7CxWkPaWnvDWdacgiS4M&stpid=9736,9737&format=json&rt=OSW1A"
-    url_osw2A_1 = "https://bus-time.centro.org/bustime/api/v3/getpredictions?key=PUZXP7CxWkPaWnvDWdacgiS4M&stpid=15521,16023,16025,3505,3548,3553,3563,3569,3581,9679&format=json&rt=OSW2A"
-    url_osw2A_2 = "https://bus-time.centro.org/bustime/api/v3/getpredictions?key=PUZXP7CxWkPaWnvDWdacgiS4M&stpid=9682,9684,9686&format=json&rt=OSW2A"
-
-    urls = [url_osw10_1, url_osw10_2, url_osw11_1, url_osw1A_1, url_osw1A_2, url_osw2A_1, url_osw2A_2]
+    load_local_environment()
+    client = CentroClient(required_environment("CENTRO_API_KEY"))
 
     while True:
         if is_operating_time():
-            process_multiple_urls(urls)
-            current_time=datetime.now().time()
-            print(f"Current time: {current_time}, Waiting for 1 minute...")
+            inserted = collect_once(client)
+            print(f"Snapshot complete: {inserted} predictions stored")
         else:
-            print("Bus does not run between 11 PM and 5 AM. Sleeping until 5 AM...")
-
-        # Sleep for 1 min
+            print("Outside the configured 5 AM–11 PM collection window")
         time.sleep(60)
+
 
 if __name__ == "__main__":
     main()

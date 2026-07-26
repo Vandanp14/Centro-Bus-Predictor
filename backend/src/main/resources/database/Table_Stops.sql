@@ -1,5 +1,4 @@
 CREATE TABLE Stops(
     stupid CHAR(6) PRIMARY KEY NOT NULL COMMENT 'Stop ID',
-	stpnm CHAR(150) NOT NULL COMMENT 'Stop Name',
-    CONSTRAINT stp_UNIQUE UNIQUE (stpid)
+    stpnm VARCHAR(150) NOT NULL COMMENT 'Stop Name'
 );

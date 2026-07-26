@@ -1,421 +1,428 @@
-// src/pages/Home.js
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
-import Navbar from '../components/Navbar';
-import { FaSpinner } from 'react-icons/fa';
-import { busRoutes } from '../Data/busData';
-import { getPrediction, getAvgPrediction } from '../services/apiService';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import {
+  FiArrowRight,
+  FiChevronRight,
+  FiClock,
+  FiMapPin,
+  FiRadio,
+} from 'react-icons/fi';
+import TripContext from '../TripContext';
+import {
+  getDirections,
+  getRoutes,
+  getStops,
+} from '../services/apiService';
+import { ROUTE_CATALOG } from '../Data/routeCatalog';
 
-const HomeContainer = styled.div`
-  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
-  min-height: 100vh;
-  position: relative;
-`;
-const Disclaimer = styled.div`
-  background-color: #f8f9fa;
-  color: #333;
-  padding: 10px;
-  text-align: center;
-  font-size: 0.9rem;
-  border-top: 1px solid #ddd;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 10;
-`;
+const formatClock = (date) =>
+  new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+  }).format(date);
 
-const HeroSection = styled.div`
-  height: 300px;
-  background-image: url('/images/bus-hero.jpg');
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  margin-bottom: 2rem;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(rgba(0, 43, 92, 0.7), rgba(0, 43, 92, 0.5));
-    z-index: 1;
-  }
-`;
-
-const HeroContent = styled.div`
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-  padding: 0 1.5rem;
-`;
-
-const HeroTitle = styled.h1`
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-`;
-
-const HeroSubtitle = styled.p`
-  font-size: 1.2rem;
-  opacity: 0.9;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-`;
-
-const ContentWrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
-
-const RouteGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-
-  @media (max-width: 992px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 576px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const spin = keyframes`
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-`;
-
-const StyledSpinner = styled(FaSpinner)`
-  font-size: 2rem;
-  color: #004b23;
-  animation: ${spin} 1s linear infinite;
-`;
-
-const RouteCard = styled.div`
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 4px;
-    background: ${props =>
-      props.$status === 'on-time'     ? 'linear-gradient(90deg, #28a745, #34ce57)' :
-      props.$status === 'delayed'     ? 'linear-gradient(90deg, #dc3545, #e4606d)' :
-      props.$status === 'approaching' ? 'linear-gradient(90deg, #ffc107, #ffcd39)' :
-                                         '#6c757d'};
-  }
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  }
-`;
-
-const RouteHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-`;
-
-const RouteName = styled.h3`
-  color: #002B5C;
-  font-size: 1.2rem;
-  margin: 0;
-  font-weight: 600;
-`;
-
-const StatusIcon = styled.div`
-  width: 120px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${props =>
-    props.$status === 'on-time'     ? '#d4edda' :
-    props.$status === 'delayed'     ? '#f8d7da' :
-    props.$status === 'approaching' ? '#fff3cd' :
-                                       '#e2e3e5'};
-  color: ${props =>
-    props.$status === 'on-time'     ? '#155724' :
-    props.$status === 'delayed'     ? '#721c24' :
-    props.$status === 'approaching' ? '#856404' :
-                                       '#383d41'};
-  font-size: 0.9rem;
-  font-weight: 600;
-`;
-
-const NextArrival = styled.div`
-  color: #666;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-const TimeIcon = styled.span`
-  color: #002B5C;
-  font-size: 1.1rem;
-`;
-
-const WeatherWidget = styled.div`
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1rem;
-`;
-
-const WeatherIcon = styled.div`
-  font-size: 2.5rem;
-`;
-
-const WeatherInfo = styled.div`
-  flex: 1;
-`;
-
-const WeatherTemp = styled.div`
-  color: #002B5C;
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-`;
-
-const WeatherDesc = styled.div`
-  color: #666;
-  font-size: 1rem;
-`;
-
-const WeatherLocation = styled.div`
-  color: #999;
-  font-size: 0.9rem;
-`;
-
-const FloatingActionButton = styled.button`
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #002B5C;
-  color: white;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-
-  &:hover {
-    transform: scale(1.1);
-    background: #001f42;
-  }
-`;
-
-const Home = () => {
+function Home() {
   const navigate = useNavigate();
-  const [weatherData, setWeatherData]       = useState(null);
-  const [weatherLoading, setWeatherLoading] = useState(true);
-  const [weatherError, setWeatherError]     = useState(null);
-  const [routes, setRoutes]                 = useState([]);
-  const [routesLoading, setRoutesLoading]   = useState(true);
+  const { trip, setTrip } = useContext(TripContext);
+  const [routesPayload, setRoutesPayload] = useState({
+    routes: ROUTE_CATALOG,
+    meta: { live: false },
+  });
+  const [routesLoading, setRoutesLoading] = useState(true);
+  const [routesError, setRoutesError] = useState('');
+  const [now, setNow] = useState(new Date());
+
+  const [selection, setSelection] = useState({
+    route: trip.route || '',
+    direction: trip.direction || '',
+    stop: trip.stop || '',
+  });
+  const [directions, setDirections] = useState([]);
+  const [stops, setStops] = useState([]);
+  const [directionsLoading, setDirectionsLoading] = useState(false);
+  const [stopsLoading, setStopsLoading] = useState(false);
+  const [plannerError, setPlannerError] = useState('');
 
   useEffect(() => {
-    const fetchRoutes = async () => {
-      try {
-        let routesList = busRoutes;
-        if (!routesList || routesList.length === 0) {
-          routesList = [{ routeId:'OSW10', routeName:'10 Blue Route', defaultStopId:'15521' }];
+    const timer = window.setInterval(() => setNow(new Date()), 30_000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    getRoutes({ signal: controller.signal })
+      .then((payload) => {
+        setRoutesPayload(payload);
+        if (!payload.meta?.live && payload.meta?.message) {
+          setRoutesError(payload.meta.message);
         }
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setRoutesError(error.message);
+        }
+      })
+      .finally(() => setRoutesLoading(false));
 
-        const now    = new Date();
-        const hour   = now.getHours();
-        const minute = now.getMinutes();
-        console.log('Calling avgPrediction with:', { hour, minute });
-
-        const fetched = await Promise.all(
-          routesList.map(async route => {
-            try {
-              const stopId = route.defaultStopId || route.stops?.[0]?.stopId || '15521';
-
-              // 1) fetch both real-time + average
-              const [ rawPred, avg ] = await Promise.all([
-                getPrediction(route.routeId, stopId),
-                getAvgPrediction(route.routeId, stopId, hour, minute)
-              ]);
-
-              // 2) normalize to array
-              const arr = Array.isArray(rawPred) ? rawPred : [rawPred];
-
-              let nextArrival = 'Coming Soon';
-              let status      = 'unknown';
-
-              if (arr[0] && arr[0].prdctdn !== null && arr[0].prdctdn !== undefined) {
-              const mins = Number(arr[0].prdctdn);
-              nextArrival = `${mins} min`;
-
-              if (arr[0].dly > 0) status = 'delayed';
-              else if (mins <= 2) status = 'approaching';
-              else status = 'on-time';
-            }
-
-              
-
-              const avgArrival = avg?.avg_prediction || 'Unavailable';
-              return { ...route, status, nextArrival, avgArrival };
-            } catch {
-              return { ...route, status:'unknown', nextArrival:'Coming Soon', avgArrival:'Unavailable' };
-            }
-          })
-        );
-
-        setRoutes(fetched);
-      } catch (err) {
-        console.error('Error fetching routes:', err);
-      } finally {
-        setRoutesLoading(false);
-      }
-    };
-
-    fetchRoutes();
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
-    const fetchWeather = async () => {
-      try {
-        const API_KEY = 'ab385b44b9b33d12cf4397188ca4381b';
-        const city    = 'Oswego,NY,US';
-        const resp    = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`
-        );
-        if (!resp.ok) throw new Error(resp.statusText);
-        const data = await resp.json();
-        setWeatherData(data);
-      } catch (err) {
-        console.error('Error fetching weather:', err);
-        setWeatherError(err.message);
-      } finally {
-        setWeatherLoading(false);
-      }
-    };
-    fetchWeather();
-  }, []);
+    if (!selection.route) {
+      setDirections([]);
+      setStops([]);
+      return undefined;
+    }
 
-  const getStatusIcon = status =>
-    status === 'on-time'     ? 'On-time'  :
-    status === 'delayed'     ? 'Delayed'  :
-    status === 'approaching' ? 'Approaching' : '?';
+    const controller = new AbortController();
+    setDirectionsLoading(true);
+    setPlannerError('');
 
-  const getWeatherIcon = cond =>
-    ({ Clear:'☀️', Clouds:'☁️', Rain:'🌧️', Snow:'🌨️',
-       Thunderstorm:'⛈️', Drizzle:'🌦️', Mist:'🌫️', Fog:'🌫️'
-     }[cond] || '🌤️');
+    getDirections(selection.route, { signal: controller.signal })
+      .then((payload) => {
+        const nextDirections = payload.directions || [];
+        setDirections(nextDirections);
+        setSelection((current) => {
+          const isValid = nextDirections.some(
+            (direction) => direction.id === current.direction
+          );
+          return {
+            ...current,
+            direction: isValid
+              ? current.direction
+              : nextDirections.length === 1
+                ? nextDirections[0].id
+                : '',
+            stop: isValid ? current.stop : '',
+          };
+        });
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setDirections([]);
+          setPlannerError(error.message);
+        }
+      })
+      .finally(() => setDirectionsLoading(false));
+
+    return () => controller.abort();
+  }, [selection.route]);
+
+  useEffect(() => {
+    if (!selection.route || !selection.direction) {
+      setStops([]);
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    setStopsLoading(true);
+    setPlannerError('');
+
+    getStops(selection.route, selection.direction, {
+      signal: controller.signal,
+    })
+      .then((payload) => {
+        const nextStops = payload.stops || [];
+        setStops(nextStops);
+        setSelection((current) => ({
+          ...current,
+          stop: nextStops.some((stop) => stop.id === current.stop)
+            ? current.stop
+            : '',
+        }));
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setStops([]);
+          setPlannerError(error.message);
+        }
+      })
+      .finally(() => setStopsLoading(false));
+
+    return () => controller.abort();
+  }, [selection.route, selection.direction]);
+
+  const routes = routesPayload.routes?.length
+    ? routesPayload.routes
+    : ROUTE_CATALOG;
+  const selectedStop = stops.find((stop) => stop.id === selection.stop);
+  const canSubmit =
+    selection.route && selection.direction && selection.stop && !plannerError;
+
+  const plannerStatus = useMemo(() => {
+    if (!selection.route) return 'Start with a route';
+    if (directionsLoading) return 'Loading route directions';
+    if (!selection.direction) return 'Choose your direction';
+    if (stopsLoading) return 'Loading Centro stops';
+    if (!selection.stop) return 'Choose where you are boarding';
+    return 'Ready for live arrivals';
+  }, [
+    selection.route,
+    selection.direction,
+    selection.stop,
+    directionsLoading,
+    stopsLoading,
+  ]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!canSubmit) return;
+
+    setTrip({
+      route: selection.route,
+      direction: selection.direction,
+      stop: selection.stop,
+      stopName: selectedStop?.name || '',
+    });
+
+    const query = new URLSearchParams({
+      direction: selection.direction,
+      stop: selection.stop,
+    });
+    navigate(`/route/${selection.route}?${query.toString()}`);
+  };
 
   return (
-    <HomeContainer>
-      <Navbar />
+    <main className="page home-page">
+      <section className="home-hero" aria-labelledby="home-title">
+        <motion.div
+          className="home-hero__copy"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        >
+          <p className="eyebrow">
+            <span className="live-dot" aria-hidden="true" />
+            Live in Oswego
+          </p>
+          <h1 id="home-title">
+            Your bus is
+            <span> already moving.</span>
+          </h1>
+          <p className="home-hero__lede">
+            Find real Centro arrivals, route shapes, and bus locations across
+            every current Oswego route.
+          </p>
 
-      <HeroSection>
-        <HeroContent>
-          <HeroTitle>CENTRO BUS PREDICTOR</HeroTitle>
-          <HeroSubtitle>Real-time bus arrival predictions for Oswego, NY</HeroSubtitle>
-        </HeroContent>
-      </HeroSection>
-
-      <ContentWrapper>
-        <RouteGrid>
-          {routesLoading ? (
-            <div style={{ textAlign:'center', gridColumn:'span 2' }}>
-              <StyledSpinner />
-              <p>Loading bus routes...</p>
+          <motion.div
+            className="service-readout"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
+          >
+            <div>
+              <FiClock aria-hidden="true" />
+              <span>
+                Local time
+                <strong>{formatClock(now)}</strong>
+              </span>
             </div>
-          ) : (
-            routes.map(route => (
-              <RouteCard
-                key={route.routeId}
-                onClick={() => navigate(`/route/${route.routeId}`)}
-                $status={route.status}
+            <div>
+              <FiRadio aria-hidden="true" />
+              <span>
+                Data source
+                <strong>
+                  {routesPayload.meta?.live ? 'Centro BusTime' : 'Route catalog'}
+                </strong>
+              </span>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <div className="hero-viz" aria-hidden="true">
+          <div className="hero-viz__scene">
+            <div className="hero-viz__path" />
+            <div className="hero-viz__stop" style={{ left: '20%', top: '30%' }} />
+            <div className="hero-viz__stop" style={{ left: '55%', top: '50%' }} />
+            <div className="hero-viz__stop" style={{ left: '35%', top: '70%' }} />
+            <div className="hero-viz__stop" style={{ left: '75%', top: '25%' }} />
+            <div className="hero-viz__bus" />
+            <div className="hero-viz__bus hero-viz__bus--2" />
+          </div>
+        </div>
+
+        <motion.form
+          className="trip-planner"
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+        >
+          <div className="trip-planner__header">
+            <div>
+              <span className="utility-label">Find my bus</span>
+              <h2>Where are you boarding?</h2>
+            </div>
+            <FiMapPin aria-hidden="true" />
+          </div>
+
+          <div className="field">
+            <label htmlFor="home-route">Route</label>
+            <div className="select-shell">
+              <select
+                id="home-route"
+                value={selection.route}
+                onChange={(event) =>
+                  setSelection({
+                    route: event.target.value,
+                    direction: '',
+                    stop: '',
+                  })
+                }
               >
-                <RouteHeader>
-                  <RouteName>{route.routeName}</RouteName>
-                  <StatusIcon $status={route.status}>
-                    {getStatusIcon(route.status)}
-                  </StatusIcon>
-                </RouteHeader>
+                <option value="">Choose a route</option>
+                {routes.map((route) => (
+                  <option key={route.id} value={route.id}>
+                    {route.id} · {route.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-                <NextArrival>
-                  <TimeIcon />Next arrival: {route.nextArrival}
-                </NextArrival>
+          <div className="field">
+            <label htmlFor="home-direction">Direction</label>
+            <div className="select-shell">
+              <select
+                id="home-direction"
+                value={selection.direction}
+                disabled={!selection.route || directionsLoading}
+                onChange={(event) =>
+                  setSelection((current) => ({
+                    ...current,
+                    direction: event.target.value,
+                    stop: '',
+                  }))
+                }
+              >
+                <option value="">
+                  {directionsLoading ? 'Loading directions…' : 'Choose direction'}
+                </option>
+                {directions.map((direction) => (
+                  <option key={direction.id} value={direction.id}>
+                    {direction.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-                {route.avgArrival && (
-                  <NextArrival>
-                    <TimeIcon />Avg arrival: {route.avgArrival}
-                  </NextArrival>
-                )}
-              </RouteCard>
-            ))
-          )}
-        </RouteGrid>
+          <div className="field">
+            <label htmlFor="home-stop">Stop</label>
+            <div className="select-shell">
+              <select
+                id="home-stop"
+                value={selection.stop}
+                disabled={!selection.direction || stopsLoading}
+                onChange={(event) =>
+                  setSelection((current) => ({
+                    ...current,
+                    stop: event.target.value,
+                  }))
+                }
+              >
+                <option value="">
+                  {stopsLoading ? 'Loading stops…' : 'Choose your stop'}
+                </option>
+                {stops.map((stop) => (
+                  <option key={stop.id} value={stop.id}>
+                    {stop.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-        <WeatherWidget>
-          {weatherLoading ? (
-            <div>Loading weather data...</div>
-          ) : weatherError ? (
-            <div>Weather data unavailable</div>
+          {plannerError ? (
+            <p className="form-message form-message--error">{plannerError}</p>
           ) : (
-            <>
-              <WeatherIcon>{getWeatherIcon(weatherData.weather[0].main)}</WeatherIcon>
-              <WeatherInfo>
-                <WeatherTemp>
-                  {Math.round(weatherData.main.temp)}°F
-                </WeatherTemp>
-                <WeatherDesc>
-                  {weatherData.weather[0].description}
-                </WeatherDesc>
-                <WeatherLocation>Oswego, NY</WeatherLocation>
-              </WeatherInfo>
-            </>
+            <p className="form-message">{plannerStatus}</p>
           )}
-        </WeatherWidget>
-      </ContentWrapper>
 
-      <FloatingActionButton onClick={() => navigate('/tracker')}>
-        🚌
-      </FloatingActionButton>
+          <motion.button
+            className="button button--primary button--full"
+            type="submit"
+            disabled={!canSubmit}
+            whileTap={canSubmit ? { scale: 0.97 } : undefined}
+            transition={{ duration: 0.12, ease: 'easeOut' }}
+          >
+            See live arrivals
+            <FiArrowRight aria-hidden="true" />
+          </motion.button>
+        </motion.form>
+      </section>
 
-      <Disclaimer>
-        Arrival predictions are based on estimates and may vary. Users should account for possible delays.
-      </Disclaimer>
-    </HomeContainer>
+      {routesError && (
+        <motion.div
+          className="status-banner status-banner--warning"
+          role="status"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          Live route verification is unavailable. The current Oswego catalog is
+          still shown below.
+        </motion.div>
+      )}
+
+      <motion.section
+        className="network-section"
+        aria-labelledby="network-title"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
+        <header className="section-heading">
+          <div>
+            <p className="eyebrow">Current network</p>
+            <h2 id="network-title">Oswego routes</h2>
+          </div>
+          <span>
+            {routesLoading ? 'Checking Centro…' : `${routes.length} routes`}
+          </span>
+        </header>
+
+        <div className="route-board">
+          {routesLoading
+            ? Array.from({ length: 4 }, (_, index) => (
+                <div className="route-row route-row--loading" key={index}>
+                  <span className="skeleton skeleton--route" />
+                  <span className="skeleton skeleton--text" />
+                </div>
+              ))
+            : routes.map((route, index) => (
+                <motion.div
+                  key={route.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.06, ease: 'easeOut' }}
+                >
+                  <Link
+                    className="route-row"
+                    to={`/route/${route.id}`}
+                    style={{ '--route-color': route.color }}
+                  >
+                  <span className="route-row__line" aria-hidden="true" />
+                  <span className="route-pill">{route.shortName}</span>
+                  <span className="route-row__copy">
+                    <strong>{route.name}</strong>
+                    <small>{route.category}</small>
+                  </span>
+                  <span className="route-row__action">
+                    Arrivals
+                    <FiChevronRight aria-hidden="true" />
+                  </span>
+                </Link>
+                </motion.div>
+              ))}
+        </div>
+      </motion.section>
+    </main>
   );
-};
+}
 
 export default Home;

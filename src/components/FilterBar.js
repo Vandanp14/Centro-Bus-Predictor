@@ -1,66 +1,43 @@
-// src/components/FilterBar.js
-import React, { useContext, useState } from 'react';
-import styled from 'styled-components';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TripContext from '../TripContext';
-import busData from '../Data/busData';
+import { getDirections, getStops } from '../services/apiService';
+import { busRoutes } from '../Data/busData';
 
-const FilterBarContainer = styled.div`
-  background-color:hsl(39, 96.20%, 69.00%);
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem auto;
-  max-width: 800px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
-`;
-
-const Select = styled.select`
-  padding: 0.5rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  transition: border-color 0.2s ease;
-  &:focus {
-    outline: none;
-    border-color: #004b23;
-  }
-`;
-
-const Button = styled.button`
-  padding: 0.6rem 1.2rem;
-  background-color:rgb(1, 88, 42);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  &:hover {
-    background-color: #003a1a;
-    transform: translateY(-2px);
-  }
-`;
-
-const FilterBar = ({ onSearch }) => {
+function FilterBar({ onSearch }) {
   const navigate = useNavigate();
   const { setTrip } = useContext(TripContext);
 
   const [localTrip, setLocalTrip] = useState({ route: '', direction: '', stop: '' });
+  const [directions, setDirections] = useState([]);
+  const [stops, setStops] = useState([]);
+  const [directionsLoading, setDirectionsLoading] = useState(false);
+  const [stopsLoading, setStopsLoading] = useState(false);
 
-  const selectedRoute = busData.find(r => r.routeId === localTrip.route);
-  const stops = selectedRoute ? selectedRoute.stops : [];
-  const directions = selectedRoute ? selectedRoute.directions : [];
+  useEffect(() => {
+    if (!localTrip.route) {
+      setDirections([]);
+      setStops([]);
+      return;
+    }
+    setDirectionsLoading(true);
+    getDirections(localTrip.route).then(data => {
+      setDirections(data?.directions || []);
+      setDirectionsLoading(false);
+    });
+  }, [localTrip.route]);
+
+  useEffect(() => {
+    if (!localTrip.route || !localTrip.direction) {
+      setStops([]);
+      return;
+    }
+    setStopsLoading(true);
+    getStops(localTrip.route, localTrip.direction).then(data => {
+      setStops(Array.isArray(data) ? data : []);
+      setStopsLoading(false);
+    });
+  }, [localTrip.route, localTrip.direction]);
 
   const handleSearch = () => {
     if (onSearch) {
@@ -72,45 +49,72 @@ const FilterBar = ({ onSearch }) => {
   };
 
   return (
-    <FilterBarContainer>
-      <Select
-        value={localTrip.route}
-        onChange={(e) =>
-          setLocalTrip({ ...localTrip, route: e.target.value, direction: '', stop: '' })
-        }
+    <div className="filter-bar">
+      <div className="filter-bar__fields">
+        <div className="field">
+          <label htmlFor="filter-route">Route</label>
+          <div className="select-shell">
+            <select
+              id="filter-route"
+              value={localTrip.route}
+              onChange={(e) =>
+                setLocalTrip({ ...localTrip, route: e.target.value, direction: '', stop: '' })
+              }
+            >
+              <option value="">Select Route</option>
+              {busRoutes.map((r) => (
+                <option key={r.routeId} value={r.routeId}>{r.routeId}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="field">
+          <label htmlFor="filter-direction">Direction</label>
+          <div className="select-shell">
+            <select
+              id="filter-direction"
+              value={localTrip.direction}
+              disabled={!localTrip.route}
+              onChange={(e) =>
+                setLocalTrip({ ...localTrip, direction: e.target.value, stop: '' })
+              }
+            >
+              <option value="">{directionsLoading ? 'Loading…' : 'Select Direction'}</option>
+              {directions.map((d) => (
+                <option key={d.rtdir} value={d.rtdir}>{d.rtdir}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div className="field">
+          <label htmlFor="filter-stop">Stop</label>
+          <div className="select-shell">
+            <select
+              id="filter-stop"
+              value={localTrip.stop}
+              disabled={!localTrip.direction}
+              onChange={(e) =>
+                setLocalTrip({ ...localTrip, stop: e.target.value })
+              }
+            >
+              <option value="">{stopsLoading ? 'Loading…' : 'Select Stop'}</option>
+              {stops.map((s) => (
+                <option key={s.stopId} value={s.stopId}>{s.stopName}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+      <button
+        className="button button--primary"
+        type="button"
+        onClick={handleSearch}
+        disabled={!localTrip.stop}
       >
-        <option value="">Select Route</option>
-        {busData.map((r) => (
-          <option key={r.routeId} value={r.routeId}>{r.routeId}</option>
-        ))}
-      </Select>
-      <Select
-        value={localTrip.direction}
-        onChange={(e) =>
-          setLocalTrip({ ...localTrip, direction: e.target.value })
-        }
-        disabled={!localTrip.route}
-      >
-        <option value="">Select Direction</option>
-        {directions.map((d) => (
-          <option key={d} value={d}>{d}</option>
-        ))}
-      </Select>
-      <Select
-        value={localTrip.stop}
-        onChange={(e) =>
-          setLocalTrip({ ...localTrip, stop: e.target.value })
-        }
-        disabled={!localTrip.route}
-      >
-        <option value="">Select Stop</option>
-        {stops.map((s) => (
-          <option key={s.stopId} value={s.stopId}>{s.stopName}</option>
-        ))}
-      </Select>
-      <Button onClick={handleSearch}>Search</Button>
-    </FilterBarContainer>
+        Search
+      </button>
+    </div>
   );
-};
+}
 
 export default FilterBar;

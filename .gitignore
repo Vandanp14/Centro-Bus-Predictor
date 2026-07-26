@@ -13,6 +13,10 @@
 
 # misc
 .DS_Store
+.env
+.env.*
+!.env.example
+!backend/.env.example
 .env.local
 .env.development.local
 .env.test.local
@@ -31,3 +35,7 @@ yarn-error.log*
 /frontend/
 /csc380-team-e-s25/
 src/schedule.json
+__pycache__/
+*.py[cod]
+.claude/
+.cursor/

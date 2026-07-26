@@ -1,116 +1,154 @@
-import React, { useState, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useEffect, useMemo } from 'react';
+import {
+  CircleMarker,
+  MapContainer,
+  Marker,
+  Polyline,
+  Popup,
+  TileLayer,
+  useMap,
+} from 'react-leaflet';
+import { Link } from 'react-router-dom';
 import L from 'leaflet';
-import pinIconUrl from '../image/round_pushpin.png';
-import { getPrediction } from '../services/apiService';
+import { FiArrowRight, FiNavigation } from 'react-icons/fi';
 
-// 📍 Custom location pin icon
-const pinIcon = new L.Icon({
-  iconUrl: pinIconUrl,
-  iconSize: [30, 30],
-  iconAnchor: [15, 30],
-  popupAnchor: [0, -30],
-});
+const OSWEGO_CENTER = [43.4553, -76.51];
 
-function BusMap({ buses }) {
-  const [predictions, setPredictions] = useState({});
-  const markerRefs = useRef({});
+function FitMap({ patterns, stops, vehicles }) {
+  const map = useMap();
 
-  //Fetch prediction from the backend
- const fetchPrediction = async (route, stopId) => {
-  console.log("Fetching prediction for", route, stopId);
-  try {
-    const data = await getPrediction(route, stopId);
-    console.log(" Prediction data received:", data);
+  useEffect(() => {
+    const positions = [
+      ...patterns.flatMap((pattern) =>
+        pattern.points.map((point) => [point.lat, point.lng])
+      ),
+      ...stops.map((stop) => [stop.lat, stop.lng]),
+      ...vehicles.map((vehicle) => [vehicle.lat, vehicle.lng]),
+    ].filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
 
-    if (data && typeof data === 'object' && 'prdctdn' in data) {
-      return `${data.prdctdn} min`;
-    } else {
-      return 'No prediction available';
-    }
-  } catch (err) {
-    console.error(' Error fetching prediction:', err);
-    return 'Error fetching prediction';
-  }
-};
-
-
-  //Triggered when a marker is clicked
-  const handleMarkerClick = async (bus) => {
-    console.log("Marker clicked for:", bus.stpnm, "| Stop ID:", bus.stpid);
-
-    // Only fetch if we don't already have it
-    if (!predictions[bus.stpid]) {
-      const pred = await fetchPrediction(bus.route, bus.stpid);
-
-      setPredictions((prev) => {
-        const updated = { ...prev, [bus.stpid]: pred };
-        console.log("Updated predictions state:", updated);
-        return updated;
+    if (positions.length > 1) {
+      map.fitBounds(L.latLngBounds(positions), {
+        padding: [42, 42],
+        maxZoom: 15,
       });
-
-      // Reopen popup to trigger re-render
-      setTimeout(() => {
-        const marker = markerRefs.current[bus.stpid];
-        if (marker && marker._popup) {
-          marker.closePopup();
-          marker.openPopup();
-        }
-      }, 100);
-    } else {
-      console.log(" Using cached prediction for", bus.stpid);
+    } else if (positions.length === 1) {
+      map.setView(positions[0], 15);
     }
-  };
+  }, [map, patterns, stops, vehicles]);
 
-  const defaultPosition = [43.453, -76.540];
-
-  return (
-    <MapContainer
-      center={defaultPosition}
-      zoom={14}
-      style={{ height: '500px', width: '100%', borderRadius: '12px' }}
-    >
-      <TileLayer
-        attribution='&copy; OpenStreetMap contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-
-      {buses.map((bus, i) => (
-        <Marker
-          key={i}
-          position={[bus.lat, bus.lon]}
-          icon={pinIcon}
-          ref={(ref) => {
-            if (ref) markerRefs.current[bus.stpid] = ref;
-          }}
-          eventHandlers={{
-            click: () => handleMarkerClick(bus),
-          }}
-        >
-          <Popup autoPan={true}>
-            <PopupContent bus={bus} prediction={predictions[bus.stpid]} />
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
-  );
+  return null;
 }
 
-//Renders each popup's info
-function PopupContent({ bus, prediction }) {
-  console.log("Rendering popup for:", bus.stpnm, "| Prediction:", prediction);
+const createVehicleIcon = (vehicle, color) =>
+  L.divIcon({
+    className: 'vehicle-marker-shell',
+    html: `
+      <span class="vehicle-marker" style="--vehicle-color:${color};--heading:${Number(
+        vehicle.heading || 0
+      )}deg">
+        <i></i>
+      </span>
+    `,
+    iconSize: [38, 38],
+    iconAnchor: [19, 19],
+    popupAnchor: [0, -20],
+  });
 
-  const isLoaded = typeof prediction === 'string' && prediction.includes('min');
+function BusMap({ route, direction, patterns, stops, vehicles }) {
+  const routeColor = route.color;
+  const vehicleIcons = useMemo(
+    () =>
+      Object.fromEntries(
+        vehicles.map((vehicle) => [
+          vehicle.id,
+          createVehicleIcon(vehicle, routeColor),
+        ])
+      ),
+    [routeColor, vehicles]
+  );
 
   return (
-    <div>
-      <strong>{bus.stpnm}</strong><br />
-      Stop ID: {bus.stpid}<br />
-      <em>
-        {isLoaded
-          ? `Next arrival in: ${prediction}`
-          : prediction || 'Loading...'}
-      </em>
+    <div className="map-canvas" aria-label={`${route.id} live route map`}>
+      <MapContainer
+        center={OSWEGO_CENTER}
+        zoom={13}
+        zoomControl
+        scrollWheelZoom
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        />
+
+        {patterns.map((pattern) => (
+          <Polyline
+            key={pattern.id}
+            positions={pattern.points.map((point) => [point.lat, point.lng])}
+            pathOptions={{
+              color: routeColor,
+              weight: 5,
+              opacity: 0.88,
+              lineCap: 'round',
+              lineJoin: 'round',
+            }}
+          />
+        ))}
+
+        {stops.map((stop) => (
+          <CircleMarker
+            key={stop.id}
+            center={[stop.lat, stop.lng]}
+            radius={6}
+            pathOptions={{
+              color: '#080b0f',
+              weight: 3,
+              fillColor: '#f5f7f8',
+              fillOpacity: 1,
+            }}
+          >
+            <Popup>
+              <div className="map-popup">
+                <span className="utility-label">Stop {stop.id}</span>
+                <strong>{stop.name}</strong>
+                <Link
+                  to={`/route/${route.id}?direction=${encodeURIComponent(
+                    direction
+                  )}&stop=${stop.id}`}
+                >
+                  View arrivals
+                  <FiArrowRight aria-hidden="true" />
+                </Link>
+              </div>
+            </Popup>
+          </CircleMarker>
+        ))}
+
+        {vehicles.map((vehicle) => (
+          <Marker
+            key={vehicle.id}
+            position={[vehicle.lat, vehicle.lng]}
+            icon={vehicleIcons[vehicle.id]}
+            zIndexOffset={1000}
+          >
+            <Popup>
+              <div className="map-popup map-popup--vehicle">
+                <span className="utility-label">
+                  <FiNavigation aria-hidden="true" />
+                  Live bus {vehicle.id}
+                </span>
+                <strong>{vehicle.destination || route.name}</strong>
+                <small>
+                  {vehicle.delayed
+                    ? 'Centro reports this bus delayed'
+                    : 'Moving on route'}
+                </small>
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+
+        <FitMap patterns={patterns} stops={stops} vehicles={vehicles} />
+      </MapContainer>
     </div>
   );
 }

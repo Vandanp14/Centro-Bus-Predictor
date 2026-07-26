@@ -1,57 +1,99 @@
-// src/services/apiService.js
-import { BACKEND_URL } from '../api';
+import { API_BASE_URL } from '../api';
 
-export async function getRoutes() {
-  const response = await fetch(`${BACKEND_URL}/routes`);
-  return await response.json();
-}
-
-export async function getPrediction(route, stop) {
-  try {
-    const response = await fetch(`${BACKEND_URL}/prediction?route=${route}&stop=${stop}`);
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch prediction');
-    }
-    const data = await response.json();
-    console.log("Prediction data:", data);
-    return data;
-  } catch (error) {
-    console.error('Error fetching prediction:', error);
-    return [];
+export class ApiError extends Error {
+  constructor(message, { status = 0, code = 'REQUEST_FAILED', requestId = null } = {}) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = status;
+    this.code = code;
+    this.requestId = requestId;
   }
 }
 
-export async function getSchedule(route) {
-  const response = await fetch(`${BACKEND_URL}/schedule?route=${route}`);
-  return await response.json();
-}
+async function request(path, { signal } = {}) {
+  let response;
 
-export async function getGraphAnalysis(route, direction) {
-  const response = await fetch(`${BACKEND_URL}/graphanalysis?route=${route}&direction=${direction}`);
-  return await response.json();
-}
-// Fetch stops for a given route
-export async function getStops(routeId) {
-  const response = await fetch(`${BACKEND_URL}/stops?route=${routeId}`);
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      signal,
+      headers: { Accept: 'application/json' },
+    });
+  } catch (error) {
+    if (error.name === 'AbortError') throw error;
+    throw new ApiError('The live Centro service could not be reached.', {
+      code: 'NETWORK_ERROR',
+    });
+  }
+
+  let payload;
+  try {
+    payload = await response.json();
+  } catch {
+    throw new ApiError('The server returned an unreadable response.', {
+      status: response.status,
+      code: 'INVALID_RESPONSE',
+    });
+  }
+
   if (!response.ok) {
-    throw new Error('Failed to fetch stops');
+    throw new ApiError(
+      payload?.error?.message || 'The request could not be completed.',
+      {
+        status: response.status,
+        code: payload?.error?.code,
+        requestId: payload?.error?.requestId,
+      }
+    );
   }
-  return await response.json();
-}
-export async function getAvgPrediction(route, stop, hour, minute) {
-  const url = `${BACKEND_URL}/avgPrediction?route=${route}&stop=${stop}&hour=${hour}&minute=${minute}`;
-  console.log("GET:", url);  // <-- Add logging
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error('Failed to fetch average prediction');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Error in getAvgPrediction:', error);
-    throw error;
-  }
+
+  return payload;
 }
 
+const queryString = (params) => {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && value !== '') {
+      query.set(key, value);
+    }
+  });
+  return query.toString();
+};
+
+export const getHealth = (options) => request('/health', options);
+
+export const getRoutes = (options) => request('/routes', options);
+
+export const getDirections = (routeId, options) =>
+  request(`/routes/${encodeURIComponent(routeId)}/directions`, options);
+
+export const getStops = (routeId, direction, options) =>
+  request(
+    `/routes/${encodeURIComponent(routeId)}/stops?${queryString({ direction })}`,
+    options
+  );
+
+export const getPredictions = (routeId, stopId, direction, options) =>
+  request(
+    `/predictions?${queryString({
+      route: routeId,
+      stop: stopId,
+      direction,
+    })}`,
+    options
+  );
+
+export const getVehicles = (routeId, options) =>
+  request(`/routes/${encodeURIComponent(routeId)}/vehicles`, options);
+
+export const getPatterns = (routeId, direction, options) =>
+  request(
+    `/routes/${encodeURIComponent(routeId)}/patterns?${queryString({ direction })}`,
+    options
+  );
+
+// Compatibility exports for any older component that has not yet migrated.
+export const getPrediction = async (routeId, stopId, direction, options) => {
+  const payload = await getPredictions(routeId, stopId, direction, options);
+  return payload.predictions?.[0] || null;
+};
 

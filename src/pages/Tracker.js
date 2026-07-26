@@ -1,80 +1,293 @@
-// src/pages/Tracker.js
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import {
+  FiActivity,
+  FiArrowRight,
+  FiClock,
+  FiMapPin,
+  FiNavigation,
+} from 'react-icons/fi';
 import BusMap from '../components/BusMap';
-import Navbar from '../components/Navbar';
+import {
+  getDirections,
+  getPatterns,
+  getStops,
+  getVehicles,
+} from '../services/apiService';
+import { ROUTE_CATALOG, getRouteMeta } from '../Data/routeCatalog';
 
-const TrackerWrapper = styled.div`
-  max-width: 1000px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-`;
-
-const Header = styled.h2`
-  text-align: center;
-  color: #002B5C;
-`;
-
-const SelectWrapper = styled.div`
-  text-align: center;
-  margin: 1rem 0;
-`;
-
-const Dropdown = styled.select`
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
-  color: #333;
-`;
+const formatUpdate = (value) => {
+  if (!value) return 'Awaiting a bus report';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return 'Awaiting a bus report';
+  return `Updated ${new Intl.DateTimeFormat('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    second: '2-digit',
+  }).format(date)}`;
+};
 
 function Tracker() {
-  const [routeData, setRouteData] = useState({});
-  const [selectedRoute, setSelectedRoute] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialRoute = String(searchParams.get('route') || 'OSW10').toUpperCase();
+  const [routeId, setRouteId] = useState(
+    ROUTE_CATALOG.some((route) => route.id === initialRoute)
+      ? initialRoute
+      : 'OSW10'
+  );
+  const [direction, setDirection] = useState(
+    searchParams.get('direction') || ''
+  );
+  const [directions, setDirections] = useState([]);
   const [stops, setStops] = useState([]);
+  const [patterns, setPatterns] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
+  const [vehicleMeta, setVehicleMeta] = useState(null);
+  const [routeLoading, setRouteLoading] = useState(true);
+  const [mapLoading, setMapLoading] = useState(true);
+  const [mapError, setMapError] = useState('');
+  const [vehicleMessage, setVehicleMessage] = useState('');
+
+  const route = useMemo(() => getRouteMeta(routeId), [routeId]);
 
   useEffect(() => {
-    fetch('/routes_stops.json')
-      .then(res => res.json())
-      .then(data => setRouteData(data))
-      .catch(err => console.error('Failed to load route data:', err));
-  }, []);
+    const controller = new AbortController();
+    setRouteLoading(true);
+    setMapError('');
 
-  const handleRouteChange = (e) => {
-    const route = e.target.value;
-    setSelectedRoute(route);
-  
-    // Inject the route name into each stop object
-    const enrichedStops = (routeData[route] || []).map(stop => ({
-      ...stop,
-      route: route,
-    }));
-  
-    setStops(enrichedStops);
-  };
-  
+    getDirections(routeId, { signal: controller.signal })
+      .then((payload) => {
+        const nextDirections = payload.directions || [];
+        setDirections(nextDirections);
+        setDirection((current) =>
+          nextDirections.some((item) => item.id === current)
+            ? current
+            : nextDirections[0]?.id || ''
+        );
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setDirections([]);
+          setMapError(error.message);
+        }
+      })
+      .finally(() => setRouteLoading(false));
+
+    return () => controller.abort();
+  }, [routeId]);
+
+  useEffect(() => {
+    const params = new URLSearchParams({ route: routeId });
+    if (direction) params.set('direction', direction);
+    setSearchParams(params, { replace: true });
+  }, [direction, routeId, setSearchParams]);
+
+  useEffect(() => {
+    if (!routeId || !direction) {
+      setStops([]);
+      setPatterns([]);
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    setMapLoading(true);
+    setMapError('');
+
+    Promise.all([
+      getStops(routeId, direction, { signal: controller.signal }),
+      getPatterns(routeId, direction, { signal: controller.signal }),
+    ])
+      .then(([stopsPayload, patternsPayload]) => {
+        setStops(stopsPayload.stops || []);
+        setPatterns(patternsPayload.patterns || []);
+      })
+      .catch((error) => {
+        if (error.name !== 'AbortError') {
+          setStops([]);
+          setPatterns([]);
+          setMapError(error.message);
+        }
+      })
+      .finally(() => setMapLoading(false));
+
+    return () => controller.abort();
+  }, [direction, routeId]);
+
+  useEffect(() => {
+    if (!routeId) return undefined;
+    let active = true;
+    let controller;
+
+    const loadVehicles = async () => {
+      controller?.abort();
+      controller = new AbortController();
+      try {
+        const payload = await getVehicles(routeId, {
+          signal: controller.signal,
+        });
+        if (active) {
+          setVehicles(payload.vehicles || []);
+          setVehicleMeta(payload.meta || null);
+          setVehicleMessage(payload.message || '');
+        }
+      } catch (error) {
+        if (active && error.name !== 'AbortError') {
+          setVehicles([]);
+          setVehicleMessage(error.message);
+        }
+      }
+    };
+
+    loadVehicles();
+    const timer = window.setInterval(() => {
+      if (document.visibilityState === 'visible') loadVehicles();
+    }, 15_000);
+
+    return () => {
+      active = false;
+      controller?.abort();
+      window.clearInterval(timer);
+    };
+  }, [routeId]);
+
+  const latestVehicleUpdate = vehicles
+    .map((vehicle) => vehicle.updatedAt)
+    .filter(Boolean)
+    .sort()
+    .at(-1);
 
   return (
-    <>
-      <Navbar />
-      <TrackerWrapper>
-        <Header> 📍🚌 Route Map</Header>
-        <SelectWrapper>
-          <label htmlFor="routeSelect">Choose a route: </label>
-          <Dropdown id="routeSelect" value={selectedRoute} onChange={handleRouteChange}>
-            <option value="">-- Select a Route --</option>
-            {Object.keys(routeData).map(route => (
-              <option key={route} value={route}>{route}</option>
-            ))}
-          </Dropdown>
-        </SelectWrapper>
-        <BusMap route={selectedRoute} buses={stops} />
-      </TrackerWrapper>
-    </>
+    <main className="page map-page">
+      <header className="page-heading page-heading--split">
+        <div>
+          <p className="eyebrow">
+            <FiActivity aria-hidden="true" />
+            Centro BusTime
+          </p>
+          <h1>Live route map</h1>
+          <p>
+            The line, stops, and vehicle markers below come directly from
+            Centro—not a hand-drawn route list.
+          </p>
+        </div>
+        <div className="map-legend" aria-label="Map legend">
+          <span>
+            <i className="legend-dot legend-dot--bus" />
+            Live bus
+          </span>
+          <span>
+            <i className="legend-dot legend-dot--stop" />
+            Centro stop
+          </span>
+        </div>
+      </header>
+
+      <section className="map-toolbar" aria-label="Map controls">
+        <div className="field field--compact">
+          <label htmlFor="map-route">Route</label>
+          <div className="select-shell">
+            <select
+              id="map-route"
+              value={routeId}
+              onChange={(event) => {
+                setRouteId(event.target.value);
+                setDirection('');
+                setVehicles([]);
+              }}
+            >
+              {ROUTE_CATALOG.map((item) => (
+                <option value={item.id} key={item.id}>
+                  {item.id} · {item.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <fieldset className="direction-fieldset direction-fieldset--toolbar">
+          <legend>Direction</legend>
+          <div className="segmented-control">
+            {routeLoading ? (
+              <span className="skeleton skeleton--segment" />
+            ) : (
+              directions.map((item) => (
+                <button
+                  type="button"
+                  key={item.id}
+                  className={direction === item.id ? 'is-active' : ''}
+                  onClick={() => setDirection(item.id)}
+                >
+                  {item.name}
+                </button>
+              ))
+            )}
+          </div>
+        </fieldset>
+      </section>
+
+      {mapError && (
+        <div className="status-banner status-banner--error" role="alert">
+          {mapError}
+        </div>
+      )}
+
+      <section
+        className="map-stage"
+        style={{ '--route-color': route.color }}
+        aria-label={`${route.id} ${direction} map`}
+      >
+        <div className="map-stage__topline">
+          <div className="route-title route-title--compact">
+            <span className="route-pill">{route.shortName}</span>
+            <div>
+              <strong>{route.name}</strong>
+              <span>{direction || 'Choose a direction'}</span>
+            </div>
+          </div>
+          <div className="map-stats">
+            <span>
+              <FiMapPin aria-hidden="true" />
+              <strong>{stops.length}</strong> stops
+            </span>
+            <span>
+              <FiNavigation aria-hidden="true" />
+              <strong>{vehicles.length}</strong>{' '}
+              {vehicles.length === 1 ? 'bus' : 'buses'}
+            </span>
+            <span>
+              <FiClock aria-hidden="true" />
+              {formatUpdate(latestVehicleUpdate || vehicleMeta?.serverTime)}
+            </span>
+          </div>
+        </div>
+
+        {mapLoading ? (
+          <div className="map-placeholder" aria-label="Loading Centro route map">
+            <span className="route-loader" />
+            <p>Drawing {route.id} from Centro…</p>
+          </div>
+        ) : (
+          <BusMap
+            route={route}
+            direction={direction}
+            patterns={patterns}
+            stops={stops}
+            vehicles={vehicles}
+          />
+        )}
+
+        {!mapLoading && vehicles.length === 0 && (
+          <div className="map-service-note" role="status">
+            <span className="live-dot live-dot--muted" aria-hidden="true" />
+            {vehicleMessage || 'No live bus is reporting on this route right now.'}
+            <Link to={`/route/${route.id}?direction=${encodeURIComponent(direction)}`}>
+              Check arrivals
+              <FiArrowRight aria-hidden="true" />
+            </Link>
+          </div>
+        )}
+      </section>
+    </main>
   );
 }
 

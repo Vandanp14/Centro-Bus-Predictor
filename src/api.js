@@ -1,7 +1,12 @@
-// src/api.js
-// http://127.0.0.1:5000
-// http://129.3.20.26:5001
-export const BACKEND_URL = "http://129.3.20.26:5001"; 
+const configuredBase =
+  process.env.REACT_APP_API_BASE_URL ||
+  process.env.REACT_APP_BACKEND_URL ||
+  '';
 
+const normalizedBase = configuredBase.replace(/\/+$/, '');
 
-//http://127.0.0.1:5000
+export const API_BASE_URL = normalizedBase
+  ? normalizedBase.endsWith('/api/v1')
+    ? normalizedBase
+    : `${normalizedBase}/api/v1`
+  : '/api/v1';
