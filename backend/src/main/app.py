@@ -368,6 +368,7 @@ def create_app(*, centro_client=None, testing=False):
         for item in items:
             if item.get("lat") is None or item.get("lon") is None:
                 continue
+            speed = item.get("spd")
             result.append(
                 {
                     "id": str(item.get("vid")),
@@ -377,6 +378,8 @@ def create_app(*, centro_client=None, testing=False):
                     "lat": float(item["lat"]),
                     "lng": float(item["lon"]),
                     "heading": int(item.get("hdg") or 0),
+                    "speed": float(speed) if speed is not None else None,
+                    "patternId": str(item.get("pid")) if item.get("pid") else None,
                     "delayed": bool(item.get("dly")),
                     "updatedAt": _iso_bustime(item.get("tmstmp")),
                 }
@@ -392,6 +395,45 @@ def create_app(*, centro_client=None, testing=False):
                 "meta": _meta(live=True),
             }
         )
+
+    @app.get("/api/v1/vehicles")
+    def all_vehicles():
+        result = []
+        last_error = None
+        for rid in OSWEGO_ROUTE_IDS:
+            try:
+                body = client().vehicles(rid)
+            except CentroAPIError as error:
+                last_error = error
+                continue
+            items = body.get("vehicle") or body.get("vehicles") or []
+            for item in items:
+                if item.get("lat") is None or item.get("lon") is None:
+                    continue
+                speed = item.get("spd")
+                result.append({
+                    "id": str(item.get("vid")),
+                    "routeId": rid,
+                    "shortName": ROUTE_METADATA[rid]["shortName"],
+                    "color": ROUTE_METADATA[rid]["color"],
+                    "destination": item.get("des"),
+                    "direction": item.get("rtdir"),
+                    "lat": float(item["lat"]),
+                    "lng": float(item["lon"]),
+                    "heading": int(item.get("hdg") or 0),
+                    "speed": float(speed) if speed is not None else None,
+                    "patternId": str(item.get("pid")) if item.get("pid") else None,
+                    "delayed": bool(item.get("dly")),
+                    "updatedAt": _iso_bustime(item.get("tmstmp")),
+                })
+        return jsonify({
+            "vehicles": result,
+            "total": len(result),
+            "message": None if result
+                      else str(last_error) if last_error
+                      else "No active buses across Oswego routes.",
+            "meta": _meta(live=bool(result)),
+        })
 
     @app.get("/api/v1/routes/<route_id>/patterns")
     def patterns(route_id):

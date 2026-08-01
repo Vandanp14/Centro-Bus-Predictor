@@ -18,7 +18,7 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <main className="fatal-error">
+        <main className="fatal-error" id="main-content">
           <section>
             <span className="brand__mark" aria-hidden="true">
               <span />

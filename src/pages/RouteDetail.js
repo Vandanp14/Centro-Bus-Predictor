@@ -181,7 +181,7 @@ function RouteDetail() {
     (trip.route === routeId && trip.stop === stopId ? trip.stopName : '');
 
   return (
-    <main className="page route-page">
+    <main className="page route-page" id="main-content">
       <Link className="back-link" to="/">
         <FiArrowLeft aria-hidden="true" />
         All Oswego routes

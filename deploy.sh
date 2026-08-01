@@ -10,17 +10,21 @@ echo ""
 export SSHPASS
 
 TARGET="vpatel4@pi.cs.oswego.edu"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+echo ""
+echo "=== Building frontend ==="
+cd "$SCRIPT_DIR"
+npm run build 2>&1 | tail -5
 
 echo ""
 echo "=== Creating project tarball ==="
-cd "$(dirname "$0")"
 tar czf /tmp/centro-deploy.tar.gz \
   --exclude=node_modules \
   --exclude='__pycache__' \
-  --exclude='build' \
   --exclude='*.pyc' \
   --exclude='.git' \
-  backend/ src/ public/ package.json package-lock.json requirements.txt
+  backend/ build/ src/ public/ package.json package-lock.json requirements.txt
 
 echo "=== Copying files to server ==="
 sshpass -e scp -o StrictHostKeyChecking=no -q \
@@ -28,7 +32,7 @@ sshpass -e scp -o StrictHostKeyChecking=no -q \
   vpatel4@pi.cs.oswego.edu:~/centro-deploy.tar.gz
 
 sshpass -e scp -o StrictHostKeyChecking=no -q \
-  /tmp/deploy-server.sh \
+  "$SCRIPT_DIR/deploy-server.sh" \
   vpatel4@pi.cs.oswego.edu:~/deploy-server.sh
 
 echo "=== Running setup on server ==="
@@ -46,7 +50,6 @@ echo "=== SSH key installed — future logins won't need a password ==="
 echo ""
 echo "Quick commands:"
 echo "  ssh vpatel4@pi.cs.oswego.edu"
-echo "  curl http://pi.cs.oswego.edu:5001/routes"
-echo "  curl http://pi.cs.oswego.edu:3000"
+echo "  curl http://pi.cs.oswego.edu:5001/api/v1/health"
 echo ""
 echo "Done."
