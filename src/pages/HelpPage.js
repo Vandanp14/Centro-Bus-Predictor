@@ -28,7 +28,7 @@ const questions = [
   {
     question: 'How often does the app refresh?',
     answer:
-      'Arrival estimates refresh every 30 seconds. Vehicle positions refresh every 15 seconds while the live map is open and visible.',
+      'Arrival estimates refresh every 30 seconds. Vehicle positions refresh every 5 minutes while the live map is open.',
   },
   {
     question: 'What does “Centro reports a delay” mean?',
@@ -44,7 +44,7 @@ const questions = [
 
 function HelpPage() {
   return (
-    <main className="page help-page">
+    <main className="page help-page" id="main-content">
       <header className="page-heading">
         <p className="eyebrow">
           <FiHelpCircle aria-hidden="true" />

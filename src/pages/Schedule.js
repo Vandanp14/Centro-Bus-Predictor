@@ -32,7 +32,7 @@ function Schedule() {
   const { trip } = useContext(TripContext);
 
   return (
-    <main className="page schedule-page">
+    <main className="page schedule-page" id="main-content">
       <header className="page-heading">
         <p className="eyebrow">
           <FiCalendar aria-hidden="true" />

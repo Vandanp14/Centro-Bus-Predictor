@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import {
+  FiActivity,
   FiClock,
   FiHelpCircle,
   FiMap,
@@ -10,6 +11,7 @@ import {
 const navItems = [
   { to: '/', label: 'Arrivals', icon: FiNavigation, key: 'arrivals' },
   { to: '/tracker', label: 'Live map', icon: FiMap, key: 'map' },
+  { to: '/active', label: 'Active', icon: FiActivity, key: 'active' },
   { to: '/schedule', label: 'Schedules', icon: FiClock, key: 'schedules' },
   { to: '/help', label: 'Help', icon: FiHelpCircle, key: 'help' },
 ];
@@ -20,9 +22,11 @@ function Navbar() {
   const activeKey =
     location.pathname.startsWith('/route/') || location.pathname === '/'
       ? 'arrivals'
-      : location.pathname.startsWith('/tracker')
-        ? 'map'
-        : location.pathname.startsWith('/schedule')
+      : location.pathname.startsWith('/active')
+        ? 'active'
+        : location.pathname.startsWith('/tracker')
+          ? 'map'
+          : location.pathname.startsWith('/schedule')
           ? 'schedules'
           : location.pathname.startsWith('/help')
             ? 'help'
@@ -43,15 +47,18 @@ function Navbar() {
         </Link>
 
         <nav className="main-nav" aria-label="Primary navigation">
-          {navItems.map(({ to, label, key }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={`main-nav__link ${activeKey === key ? 'is-active' : ''}`}
-            >
-              {label}
-            </NavLink>
-          ))}
+          <ul>
+            {navItems.map(({ to, label, key }) => (
+              <li key={to}>
+                <NavLink
+                  to={to}
+                  className={`main-nav__link ${activeKey === key ? 'is-active' : ''}`}
+                >
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </nav>
 
         <div className="live-source">
@@ -61,16 +68,19 @@ function Navbar() {
       </div>
 
       <nav className="mobile-nav" aria-label="Mobile navigation">
-        {navItems.map(({ to, label, icon: Icon, key }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className={`mobile-nav__link ${activeKey === key ? 'is-active' : ''}`}
-          >
-            <Icon aria-hidden="true" />
-            <span>{label}</span>
-          </NavLink>
-        ))}
+        <ul>
+          {navItems.map(({ to, label, icon: Icon, key }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                className={`mobile-nav__link ${activeKey === key ? 'is-active' : ''}`}
+              >
+                <Icon aria-hidden="true" />
+                <span>{label}</span>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </nav>
     </header>
   );

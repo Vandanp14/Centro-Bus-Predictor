@@ -1,9 +1,21 @@
 # Centro Oswego Live
 
+**Live deployment**: [pi.cs.oswego.edu:5001](http://pi.cs.oswego.edu:5001)
+
 A focused live-arrivals and route-map app for Centro service in Oswego, New
 York. The React client uses a Flask proxy so Centro credentials stay on the
 server.
 ### Live Deployment Link: http://pi.cs.oswego.edu:5001/
+
+## Deploying
+
+```bash
+bash deploy.sh
+```
+
+The script builds the frontend, packages everything, copies it to the server,
+installs dependencies, and restarts the Flask server. You'll need the SSH
+password for `vpatel4@pi.cs.oswego.edu`.
 
 ## What the app provides
 

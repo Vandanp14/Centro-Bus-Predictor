@@ -135,8 +135,9 @@ class CentroClient:
             cache_seconds=12,
         )
 
-    def vehicles(self, route_id: str) -> dict[str, Any]:
-        return self.request("getvehicles", rt=route_id, cache_seconds=8)
+    def vehicles(self, route_id: str | None = None) -> dict[str, Any]:
+        kwargs = {"rt": route_id} if route_id else {}
+        return self.request("getvehicles", **kwargs, cache_seconds=60)
 
     def patterns(self, route_id: str) -> dict[str, Any]:
         return self.request("getpatterns", rt=route_id, cache_seconds=3600)

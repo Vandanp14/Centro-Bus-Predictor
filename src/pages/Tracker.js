@@ -16,16 +16,15 @@ import {
 } from '../services/apiService';
 import { ROUTE_CATALOG, getRouteMeta } from '../Data/routeCatalog';
 
-const formatUpdate = (value) => {
-  if (!value) return 'Awaiting a bus report';
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return 'Awaiting a bus report';
-  return `Updated ${new Intl.DateTimeFormat('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-    second: '2-digit',
-  }).format(date)}`;
-};
+function relativeTime(isoString) {
+  if (!isoString) return '';
+  const diff = Date.now() - new Date(isoString).getTime();
+  const seconds = Math.floor(diff / 1000);
+  if (seconds < 5) return 'just now';
+  if (seconds < 60) return `${seconds}s ago`;
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}m ago`;
+}
 
 function Tracker() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -47,8 +46,14 @@ function Tracker() {
   const [mapLoading, setMapLoading] = useState(true);
   const [mapError, setMapError] = useState('');
   const [vehicleMessage, setVehicleMessage] = useState('');
+  const [now, setNow] = useState(Date.now());
 
   const route = useMemo(() => getRouteMeta(routeId), [routeId]);
+
+  useEffect(() => {
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -141,7 +146,7 @@ function Tracker() {
     loadVehicles();
     const timer = window.setInterval(() => {
       if (document.visibilityState === 'visible') loadVehicles();
-    }, 15_000);
+    }, 300_000);
 
     return () => {
       active = false;
@@ -157,7 +162,7 @@ function Tracker() {
     .at(-1);
 
   return (
-    <main className="page map-page">
+    <main className="page map-page" id="main-content">
       <header className="page-heading page-heading--split">
         <div>
           <p className="eyebrow">
@@ -245,6 +250,10 @@ function Tracker() {
             </div>
           </div>
           <div className="map-stats">
+            <span className="map-stats__live">
+              <span className="live-dot" aria-hidden="true" />
+              <strong>LIVE</strong>
+            </span>
             <span>
               <FiMapPin aria-hidden="true" />
               <strong>{stops.length}</strong> stops
@@ -256,7 +265,7 @@ function Tracker() {
             </span>
             <span>
               <FiClock aria-hidden="true" />
-              {formatUpdate(latestVehicleUpdate || vehicleMeta?.serverTime)}
+              {relativeTime(latestVehicleUpdate || vehicleMeta?.serverTime)}
             </span>
           </div>
         </div>
