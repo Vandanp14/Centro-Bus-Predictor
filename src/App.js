@@ -6,13 +6,13 @@ import {
   Routes,
   useLocation,
 } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
 import { FiArrowLeft, FiExternalLink } from 'react-icons/fi';
 import Home from './pages/Home';
 import Tracker from './pages/Tracker';
 import Schedule from './pages/Schedule';
 import RouteDetail from './pages/RouteDetail';
 import HelpPage from './pages/HelpPage';
+import ActivePage from './pages/ActivePage';
 import Navbar from './components/Navbar';
 import TripContext from './TripContext';
 import './App.css';
@@ -31,7 +31,7 @@ function ScrollToTop() {
 
 function NotFound() {
   return (
-    <main className="page page--centered">
+    <main className="page page--centered" id="main-content">
       <section className="not-found">
         <p className="eyebrow">Wrong stop</p>
         <h1>This route ends here.</h1>
@@ -45,23 +45,11 @@ function NotFound() {
   );
 }
 
-const pageTransition = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -8 },
-  transition: { duration: 0.25, ease: 'easeOut' },
-};
-
-function PageTransition({ children }) {
+function SkipLink() {
   return (
-    <motion.div
-      initial={pageTransition.initial}
-      animate={pageTransition.animate}
-      exit={pageTransition.exit}
-      transition={pageTransition.transition}
-    >
-      {children}
-    </motion.div>
+    <a className="skip-link" href="#main-content">
+      Skip to main content
+    </a>
   );
 }
 
@@ -97,28 +85,28 @@ function AppFrame() {
     <TripContext.Provider value={contextValue}>
       <ScrollToTop />
       <div className="app-shell">
+        <SkipLink />
         <Navbar />
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-            <Route path="/tracker" element={<PageTransition><Tracker /></PageTransition>} />
-            <Route path="/schedule" element={<PageTransition><Schedule /></PageTransition>} />
-            <Route path="/route/:routeId" element={<PageTransition><RouteDetail /></PageTransition>} />
-            <Route path="/help" element={<PageTransition><HelpPage /></PageTransition>} />
-            <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
-          </Routes>
-        </AnimatePresence>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tracker" element={<Tracker />} />
+          <Route path="/active" element={<ActivePage />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/route/:routeId" element={<RouteDetail />} />
+          <Route path="/help" element={<HelpPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
         <footer className="site-footer">
           <div>
             <span className="site-footer__brand">Centro Oswego Live</span>
-            <span>Independent student project using Centro BusTime data.</span>
+            <span>Powered by Centro BusTime data.</span>
           </div>
           <a
             href="https://www.centro.org/routes-schedules"
             target="_blank"
             rel="noreferrer"
           >
-            Official Centro service
+            centro.org
             <FiExternalLink aria-hidden="true" />
           </a>
         </footer>
