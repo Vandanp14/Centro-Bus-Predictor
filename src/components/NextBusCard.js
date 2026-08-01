@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   FiAlertCircle,
   FiClock,
@@ -63,11 +62,7 @@ function NextBusCard({
       aria-labelledby="arrival-board-title"
       aria-live="polite"
     >
-      <motion.header
-        className="arrival-board__header"
-        layout
-        transition={{ duration: 0.25, ease: 'easeOut' }}
-      >
+      <header className="arrival-board__header">
         <div>
           <p className="utility-label">Live arrivals</p>
           <h2 id="arrival-board-title">
@@ -75,28 +70,22 @@ function NextBusCard({
           </h2>
           {direction && <span>{direction}</span>}
         </div>
-        <motion.button
+        <button
           className="icon-button"
           type="button"
           onClick={onRefresh}
           disabled={!stopName || loading || refreshing}
           aria-label="Refresh live arrivals"
           title="Refresh live arrivals"
-          whileTap={{ scale: 0.92 }}
-          transition={{ duration: 0.12, ease: 'easeOut' }}
         >
           <FiRefreshCw
             aria-hidden="true"
             className={refreshing ? 'is-spinning' : ''}
           />
-        </motion.button>
-      </motion.header>
+        </button>
+      </header>
 
-      <motion.div
-        className="arrival-board__body"
-        layout
-        transition={{ duration: 0.25, ease: 'easeOut' }}
-      >
+      <div className="arrival-board__body">
         {!stopName ? (
           <EmptyPanel title="Pick where you are boarding">
             Choose a direction and Centro stop to see the next buses.
@@ -119,19 +108,10 @@ function NextBusCard({
         ) : (
           <>
             <article className="next-arrival">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  className="next-arrival__countdown"
-                  key={predictions[0].predictedAt || predictions[0].vehicleId || 'countdown'}
-                  initial={{ opacity: 0, scale: 0.92 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.92 }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
-                >
-                  <strong>{countdownLabel(predictions[0])}</strong>
-                  <span>{formatTime(predictions[0].predictedAt)}</span>
-                </motion.div>
-              </AnimatePresence>
+              <div className="next-arrival__countdown">
+                <strong>{countdownLabel(predictions[0])}</strong>
+                <span>{formatTime(predictions[0].predictedAt)}</span>
+              </div>
               <div className="next-arrival__details">
                 <span className="next-arrival__route">
                   <i
@@ -157,26 +137,12 @@ function NextBusCard({
             </article>
 
             {predictions.length > 1 && (
-              <motion.div
-                className="following-arrivals"
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  visible: { transition: { staggerChildren: 0.06 } },
-                }}
-              >
+              <div className="following-arrivals">
                 <span className="utility-label">Following buses</span>
-                {predictions.slice(1, 4).map((prediction, index) => (
-                  <motion.div
+                {predictions.slice(1, 4).map((prediction) => (
+                  <div
                     className="following-arrival"
-                    key={`${prediction.vehicleId || 'bus'}-${
-                      prediction.predictedAt || index
-                    }`}
-                    variants={{
-                      hidden: { opacity: 0, x: -8 },
-                      visible: { opacity: 1, x: 0 },
-                    }}
-                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                    key={`${prediction.vehicleId || 'bus'}-${prediction.predictedAt || ''}`}
                   >
                     <span className="following-arrival__marker" aria-hidden="true" />
                     <span>
@@ -186,13 +152,13 @@ function NextBusCard({
                     <time dateTime={prediction.predictedAt || undefined}>
                       {formatTime(prediction.predictedAt)}
                     </time>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             )}
           </>
         )}
-      </motion.div>
+      </div>
 
       <footer className="arrival-board__footer">
         <span>

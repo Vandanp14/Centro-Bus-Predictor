@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import {
   FiArrowRight,
   FiChevronRight,
@@ -185,33 +184,19 @@ function Home() {
   };
 
   return (
-    <main className="page home-page">
+    <main className="page home-page" id="main-content">
       <section className="home-hero" aria-labelledby="home-title">
-        <motion.div
-          className="home-hero__copy"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        >
+        <div className="home-hero__header">
           <p className="eyebrow">
             <span className="live-dot" aria-hidden="true" />
-            Live in Oswego
+            Centro BusTime — Oswego
           </p>
-          <h1 id="home-title">
-            Your bus is
-            <span> already moving.</span>
-          </h1>
+          <h1 id="home-title">Live transit tracking</h1>
           <p className="home-hero__lede">
-            Find real Centro arrivals, route shapes, and bus locations across
-            every current Oswego route.
+            Real-time arrivals, route maps, and bus positions across the
+            SUNY Oswego Centro network.
           </p>
-
-          <motion.div
-            className="service-readout"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.25 }}
-          >
+          <div className="service-readout">
             <div>
               <FiClock aria-hidden="true" />
               <span>
@@ -228,27 +213,12 @@ function Home() {
                 </strong>
               </span>
             </div>
-          </motion.div>
-        </motion.div>
-
-        <div className="hero-viz" aria-hidden="true">
-          <div className="hero-viz__scene">
-            <div className="hero-viz__path" />
-            <div className="hero-viz__stop" style={{ left: '20%', top: '30%' }} />
-            <div className="hero-viz__stop" style={{ left: '55%', top: '50%' }} />
-            <div className="hero-viz__stop" style={{ left: '35%', top: '70%' }} />
-            <div className="hero-viz__stop" style={{ left: '75%', top: '25%' }} />
-            <div className="hero-viz__bus" />
-            <div className="hero-viz__bus hero-viz__bus--2" />
           </div>
         </div>
 
-        <motion.form
+        <form
           className="trip-planner"
           onSubmit={handleSubmit}
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
         >
           <div className="trip-planner__header">
             <div>
@@ -341,39 +311,30 @@ function Home() {
             <p className="form-message">{plannerStatus}</p>
           )}
 
-          <motion.button
+          <button
             className="button button--primary button--full"
             type="submit"
             disabled={!canSubmit}
-            whileTap={canSubmit ? { scale: 0.97 } : undefined}
-            transition={{ duration: 0.12, ease: 'easeOut' }}
           >
             See live arrivals
             <FiArrowRight aria-hidden="true" />
-          </motion.button>
-        </motion.form>
+          </button>
+        </form>
       </section>
 
       {routesError && (
-        <motion.div
+        <div
           className="status-banner status-banner--warning"
           role="status"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
         >
           Live route verification is unavailable. The current Oswego catalog is
           still shown below.
-        </motion.div>
+        </div>
       )}
 
-      <motion.section
+      <section
         className="network-section"
         aria-labelledby="network-title"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <header className="section-heading">
           <div>
@@ -393,19 +354,13 @@ function Home() {
                   <span className="skeleton skeleton--text" />
                 </div>
               ))
-            : routes.map((route, index) => (
-                <motion.div
+            : routes.map((route) => (
+                <Link
                   key={route.id}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.06, ease: 'easeOut' }}
+                  className="route-row"
+                  to={`/route/${route.id}`}
+                  style={{ '--route-color': route.color }}
                 >
-                  <Link
-                    className="route-row"
-                    to={`/route/${route.id}`}
-                    style={{ '--route-color': route.color }}
-                  >
                   <span className="route-row__line" aria-hidden="true" />
                   <span className="route-pill">{route.shortName}</span>
                   <span className="route-row__copy">
@@ -417,10 +372,9 @@ function Home() {
                     <FiChevronRight aria-hidden="true" />
                   </span>
                 </Link>
-                </motion.div>
               ))}
         </div>
-      </motion.section>
+      </section>
     </main>
   );
 }
