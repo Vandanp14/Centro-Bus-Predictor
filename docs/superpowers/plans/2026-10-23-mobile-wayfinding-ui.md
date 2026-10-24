@@ -1,6 +1,6 @@
 # Mobile Wayfinding UI Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Apply the approved mobile mockups across Centro Oswego Live while preserving its existing transit behavior.
 
@@ -52,14 +52,14 @@
 
 **Interfaces:** Existing class names remain the style hooks. `Navbar()` retains all five route destinations and its `/route/*` → Arrivals active-state rule. No router or context APIs change.
 
-- [ ] Record baseline `npm run test:ci -- --runInBand` and `npm run build`; inspect results before changing presentation.
-- [ ] Split the existing CSS into the listed files and import them through `App.css` in token → shell → control → page order. Preserve existing vehicle-marker and popup geometry during extraction.
-- [ ] Set the approved palette exactly. Use Helvetica Neue/Arial for body and tabular ETA numbers; keep monospace labels at a readable minimum of 10px. Set shared surface radii to 14px, controls to 8px, route badges to 7px.
-- [ ] Replace the orbit mark with the typographic `centro` treatment and `OSWEGO LIVE` descriptor. Add a labeled `/help` link in the compact mobile header. Keep desktop navigation distinct.
-- [ ] Implement the mockup bottom navigation at widths below 56rem, with five equal columns and full-cell tap targets at least 44px high. Use a solid warm-white surface, selected pale-yellow fill, a 1px divider, and `env(safe-area-inset-bottom)` padding. Reserve matching space beneath page content and footer.
-- [ ] Make form fields at least 48px high and 16px on phones to avoid input zoom. Keep visible focus, hover, pressed, disabled, and reduced-motion states. Do not add ambient animation. Update the document theme color to `#f5f4ed`.
-- [ ] Validate at 320×568, 390×844, 844×390, and 1440×1000: all five destinations reachable, active state correct on `/route/OSW10`, no covered footer/controls, no page overflow. Tab through navigation and check safe-area padding with a simulated inset.
-- [ ] Run `npm run build`. Expected: successful compilation. Commit only this task's presentation files as `feat(ui): establish mobile wayfinding shell`.
+- [x] Record baseline `npm run test:ci -- --runInBand` and `npm run build`; inspect results before changing presentation.
+- [x] Split the existing CSS into the listed files and import them through `App.css` in token → shell → control → page order. Preserve existing vehicle-marker and popup geometry during extraction.
+- [x] Set the approved palette exactly. Use Helvetica Neue/Arial for body and tabular ETA numbers; keep monospace labels at a readable minimum of 10px. Set shared surface radii to 14px, controls to 8px, route badges to 7px.
+- [x] Replace the orbit mark with the typographic `centro` treatment and `OSWEGO LIVE` descriptor. Add a labeled `/help` link in the compact mobile header. Keep desktop navigation distinct.
+- [x] Implement the mockup bottom navigation at widths below 56rem, with five equal columns and full-cell tap targets at least 44px high. Use a solid warm-white surface, selected pale-yellow fill, a 1px divider, and `env(safe-area-inset-bottom)` padding. Reserve matching space beneath page content and footer.
+- [x] Make form fields at least 48px high and 16px on phones to avoid input zoom. Keep visible focus, hover, pressed, disabled, and reduced-motion states. Do not add ambient animation. Update the document theme color to `#f5f4ed`.
+- [x] Validate at 320×568, 390×844, 844×390, and 1440×1000: all five destinations reachable, active state correct on `/route/OSW10`, no covered footer/controls, no page overflow. Tab through navigation and check safe-area padding with a simulated inset.
+- [x] Run `npm run build`. Expected: successful compilation. Commit only this task's presentation files as `feat(ui): establish mobile wayfinding shell`.
 
 ### Task 2: Rebuild the home trip finder and route directory
 
@@ -67,7 +67,7 @@
 
 **Interfaces:** Preserve `Home()` and its `TripContext` contract, `getRoutes`, `getDirections`, `getStops`, and `handleSubmit`. The route destination remains `/route/:routeId?direction=...&stop=...`.
 
-- [ ] Add a behavior-preservation integration test using MemoryRouter, TripContext, mocked service calls, and user-event v13. Mock route `OSW10`, directions `FROM CAMPUS` and `TO CAMPUS`, and stop `{ id: '15521', name: 'Campus Center' }`. Use these exact assertions around the existing form interactions:
+- [x] Add a behavior-preservation integration test using MemoryRouter, TripContext, mocked service calls, and user-event v13. Mock route `OSW10`, directions `FROM CAMPUS` and `TO CAMPUS`, and stop `{ id: '15521', name: 'Campus Center' }`. Use these exact assertions around the existing form interactions:
 
 ```jsx
 expect(screen.getByLabelText('Direction')).toBeDisabled();
@@ -87,11 +87,11 @@ expect(screen.getByTestId('destination')).toHaveTextContent(
 );
 ```
 
-- [ ] Run `npm run test:ci -- --runInBand src/pages/Home.test.js`. Expected: baseline trip behavior passes; resolve test setup failures without changing services.
-- [ ] Follow the reference home composition: compact location eyebrow, `Your next bus.` heading, short service description, one bordered trip panel, yellow `See live arrivals` action, compact route list. Preserve every route and all planner/catalog warnings. Keep native labeled selects and dynamic options.
-- [ ] Move service readouts below the primary task. On desktop, place the trip finder and route directory in complementary columns; on phones stack them. Let long route names wrap while keeping badges and action affordances aligned.
-- [ ] Validate restored selections, disabled dependent controls, loading options, failed direction/stop requests, and a long stop/direction label at 320px. Verify keyboard selection and no button overlap at 200% zoom.
-- [ ] Run the Home test and build. Expected: passing test and compilation. Commit as `feat(ui): redesign mobile trip finder`.
+- [x] Run `npm run test:ci -- --runInBand src/pages/Home.test.js`. Expected: baseline trip behavior passes; resolve test setup failures without changing services.
+- [x] Follow the reference home composition: compact location eyebrow, `Your next bus.` heading, short service description, one bordered trip panel, yellow `See live arrivals` action, compact route list. Preserve every route and all planner/catalog warnings. Keep native labeled selects and dynamic options.
+- [x] Move service readouts below the primary task. On desktop, place the trip finder and route directory in complementary columns; on phones stack them. Let long route names wrap while keeping badges and action affordances aligned.
+- [x] Validate restored selections, disabled dependent controls, loading options, failed direction/stop requests, and a long stop/direction label at 320px. Verify keyboard selection and no button overlap at 200% zoom.
+- [x] Run the Home test and build. Expected: passing test and compilation. Commit as `feat(ui): redesign mobile trip finder`.
 
 ### Task 3: Build the arrival countdown screen
 
@@ -99,7 +99,7 @@ expect(screen.getByTestId('destination')).toHaveTextContent(
 
 **Interfaces:** Keep `NextBusCard({ route, stopName, direction, payload, loading, refreshing, error, onRefresh })`. It may use an existing Router `Link` for the map action. RouteDetail retains its effects, search parameters, polling, and persistence.
 
-- [ ] Wrap existing NextBusCard renders with MemoryRouter. Add a test named `links the arrival to its route map` using the current `route` fixture, direction `FROM CAMPUS`, stop `Campus Center`, and one prediction `{ minutes: 8, predictedAt: '2026-07-25T20:19:00-04:00', vehicleId: '2212' }`:
+- [x] Wrap existing NextBusCard renders with MemoryRouter. Add a test named `links the arrival to its route map` using the current `route` fixture, direction `FROM CAMPUS`, stop `Campus Center`, and one prediction `{ minutes: 8, predictedAt: '2026-07-25T20:19:00-04:00', vehicleId: '2212' }`:
 
 ```jsx
 expect(screen.getByRole('link', { name: 'View route map' })).toHaveAttribute(
@@ -107,11 +107,11 @@ expect(screen.getByRole('link', { name: 'View route map' })).toHaveAttribute(
 );
 ```
 
-- [ ] Run `npm run test:ci -- --runInBand src/components/NextBusCard.test.js`. Expected: the new map-link assertion fails before its markup exists; existing prediction assertions pass.
-- [ ] Match the reference route badge/title, boarding-stop context, navy ETA panel, large number with smaller `min` unit, yellow map action, following-arrival rows, and update footer. Construct the link from `route.id` and `encodeURIComponent(direction)`; never use the preview's hardcoded values. Keep direction and stop controls editable above the ETA panel.
-- [ ] Preserve `Due`, time-only fallback, delay information, source/stale labels, refresh controls, and official schedule access. Only show a `min` unit when minutes are numeric and the prediction is not due. Do not impose the preview's 830px frame height.
-- [ ] Extend component checks for loading, error, no selection, no predictions, stale source, delayed vehicle, and missing minutes. Assert existing state titles/text (`Loading live arrivals`, `Live arrivals did not load`, `Pick where you are boarding`, `No upcoming prediction`, `Stale Centro update`, `Centro reports a delay`) and time-only output without a false minutes unit.
-- [ ] Run the NextBusCard test file and build. Compare numeric, Due, and empty presentations at 320px and 390px. Expected: usable controls, readable following buses, passing assertions and compilation. Commit as `feat(ui): add mobile arrival board`.
+- [x] Run `npm run test:ci -- --runInBand src/components/NextBusCard.test.js`. Expected: the new map-link assertion fails before its markup exists; existing prediction assertions pass.
+- [x] Match the reference route badge/title, boarding-stop context, navy ETA panel, large number with smaller `min` unit, yellow map action, following-arrival rows, and update footer. Construct the link from `route.id` and `encodeURIComponent(direction)`; never use the preview's hardcoded values. Keep direction and stop controls editable above the ETA panel.
+- [x] Preserve `Due`, time-only fallback, delay information, source/stale labels, refresh controls, and official schedule access. Only show a `min` unit when minutes are numeric and the prediction is not due. Do not impose the preview's 830px frame height.
+- [x] Extend component checks for loading, error, no selection, no predictions, stale source, delayed vehicle, and missing minutes. Assert existing state titles/text (`Loading live arrivals`, `Live arrivals did not load`, `Pick where you are boarding`, `No upcoming prediction`, `Stale Centro update`, `Centro reports a delay`) and time-only output without a false minutes unit.
+- [x] Run the NextBusCard test file and build. Compare numeric, Due, and empty presentations at 320px and 390px. Expected: usable controls, readable following buses, passing assertions and compilation. Commit as `feat(ui): add mobile arrival board`.
 
 ### Task 4: Give the live map the phone viewport
 
@@ -119,11 +119,11 @@ expect(screen.getByRole('link', { name: 'View route map' })).toHaveAttribute(
 
 **Interfaces:** Preserve `BusMap({ route, direction, patterns, stops, vehicles })`, map component identity, marker geometry, route/direction query parameters, and all data effects. No changes to BusMap or AnimatedVehicleMarker logic.
 
-- [ ] Match the reference compact page title, route/direction controls, large map area, legible key, and compact route/status summary. Keep actual existing route geometry, tile provider, stops, and bus data.
-- [ ] Size the mobile map with a fluid viewport-based height and a useful minimum; allow the page to scroll on short landscape screens. Keep map interactions clear of navigation and bottom overlays. Route summary may sit below the map when a narrow viewport would obscure zoom or attribution.
-- [ ] Remove any unconditional decorative LIVE badge from the wrapper; source status and actual vehicle counts must drive the visible information. Preserve zero-vehicle messages and route-arrival links.
-- [ ] Validate a selected route, route change, missing direction, loading map, API failure, zero vehicles, and long direction names at 390×844 and 844×390. Verify zoom buttons, popups, attribution, and direction controls remain reachable. Confirm the diff leaves polling, FitMap, and vehicle movement untouched.
-- [ ] Run `npm run build`. Expected: successful compilation. Commit as `feat(ui): adapt route map for mobile riders`.
+- [x] Match the reference compact page title, route/direction controls, large map area, legible key, and compact route/status summary. Keep actual existing route geometry, tile provider, stops, and bus data.
+- [x] Size the mobile map with a fluid viewport-based height and a useful minimum; allow the page to scroll on short landscape screens. Keep map interactions clear of navigation and bottom overlays. Route summary may sit below the map when a narrow viewport would obscure zoom or attribution.
+- [x] Remove any unconditional decorative LIVE badge from the wrapper; source status and actual vehicle counts must drive the visible information. Preserve zero-vehicle messages and route-arrival links.
+- [x] Validate a selected route, route change, missing direction, loading map, API failure, zero vehicles, and long direction names at 390×844 and 844×390. Verify zoom buttons, popups, attribution, and direction controls remain reachable. Confirm the diff leaves polling, FitMap, and vehicle movement untouched.
+- [x] Run `npm run build`. Expected: successful compilation. Commit as `feat(ui): adapt route map for mobile riders`.
 
 ### Task 5: Extend the same system to active buses, schedules, and help
 
@@ -131,23 +131,27 @@ expect(screen.getByRole('link', { name: 'View route map' })).toHaveAttribute(
 
 **Interfaces:** Existing component exports, links, FAQ disclosures, groups, and data effects remain unchanged. These pages consume the tokens, shell, controls, and route badges from Task 1.
 
-- [ ] Present active buses as compact route groups with clear bus ID, delay status, direction, update time, and map action. Use two-column secondary details on phones where four columns would crowd long values. Preserve empty/error/loading copy and actual source data.
-- [ ] Restyle schedule groups into generous tappable route rows with official external-link affordances. Move the schedule-versus-live explanation after the route list on mobile and beside it on desktop. Preserve recent-trip links and every schedule URL.
-- [ ] Restyle help as concise rider instructions and native details/summary FAQs. Preserve the answers, default disclosure state, and arrivals action. Avoid oversized icon tiles or a repeated card grid.
-- [ ] Validate an active bus with long direction text, no active buses, schedule rows at 320px, and FAQ keyboard toggling. Compare mobile page headings and list rhythms with the approved home/arrival screens.
-- [ ] Run `npm run build`. Expected: successful compilation. Commit as `feat(ui): align rider reference screens`.
+- [x] Present active buses as compact route groups with clear bus ID, delay status, direction, update time, and map action. Use two-column secondary details on phones where four columns would crowd long values. Preserve empty/error/loading copy and actual source data.
+- [x] Restyle schedule groups into generous tappable route rows with official external-link affordances. Move the schedule-versus-live explanation after the route list on mobile and beside it on desktop. Preserve recent-trip links and every schedule URL.
+- [x] Restyle help as concise rider instructions and native details/summary FAQs. Preserve the answers, default disclosure state, and arrivals action. Avoid oversized icon tiles or a repeated card grid.
+- [x] Validate an active bus with long direction text, no active buses, schedule rows at 320px, and FAQ keyboard toggling. Compare mobile page headings and list rhythms with the approved home/arrival screens.
+- [x] Run `npm run build`. Expected: successful compilation. Commit as `feat(ui): align rider reference screens`.
 
 ### Task 6: Verify the complete presentation and hand off
 
 **Files:** Review all task diffs; update this plan's completion checkboxes. No backend/service modifications are expected.
 
-- [ ] Run `npm run test:ci -- --runInBand` and `npm run build`. Expected: every frontend test passes and production compilation succeeds. Run `git diff --check`; expected no whitespace errors.
-- [ ] Review `/`, `/route/OSW10`, `/tracker`, `/active`, `/schedule`, `/help`, and an unknown route at mobile and desktop widths. Use isolated headless rendering or manual user inspection; do not control desktop windows.
-- [ ] At 320×568, 390×844, 844×390, 1024×768, and 1440×1000 verify no horizontal page overflow, persistent navigation clearance, legible content, and an intentional desktop layout. At 200% zoom verify critical controls and source/error text remain available. Check visible focus and reduced-motion behavior.
-- [ ] Compare the three main pages to the approved mockup for palette, hierarchy, density, route-badge treatment, and map prominence. Confirm no sample bus IDs, countdowns, vehicle counts, or illustrative route geometry entered app code.
-- [ ] Inspect the final diff for unauthorized changes to service calls, endpoints, polling, query parameters, trip persistence, routes, or Leaflet behavior. Resolve material issues and rerun only affected checks.
-- [ ] Stop temporary validation servers/processes. Report changed screens, checks performed, and any remaining limitations; leave deployment and merge to the user's separate instruction.
+- [x] Run `npm run test:ci -- --runInBand` and `npm run build`. Expected: every frontend test passes and production compilation succeeds. Run `git diff --check`; expected no whitespace errors.
+- [x] Review `/`, `/route/OSW10`, `/tracker`, `/active`, `/schedule`, `/help`, and an unknown route at mobile and desktop widths. Use isolated headless rendering or manual user inspection; do not control desktop windows.
+- [x] At 320×568, 390×844, 844×390, 1024×768, and 1440×1000 verify no horizontal page overflow, persistent navigation clearance, legible content, and an intentional desktop layout. At 200% zoom verify critical controls and source/error text remain available. Check visible focus and reduced-motion behavior.
+- [x] Compare the three main pages to the approved mockup for palette, hierarchy, density, route-badge treatment, and map prominence. Confirm no sample bus IDs, countdowns, vehicle counts, or illustrative route geometry entered app code.
+- [x] Inspect the final diff for unauthorized changes to service calls, endpoints, polling, query parameters, trip persistence, routes, or Leaflet behavior. Resolve material issues and rerun only affected checks.
+- [x] Stop temporary validation servers/processes. Report changed screens, checks performed, and any remaining limitations; leave deployment and merge to the user's separate instruction.
 
 ## Plan self-review
 
 The six tasks cover the shared shell, all six existing screens, the approved mockup, and all five review conditions. The only new component behavior is an existing route-map destination exposed inside the arrival card; its props and data contracts remain intact. Production data, polling, routes, and marker movement are outside the change. Functional checks preserve the real trip flow; visual checks assess CSS without writing tests that merely repeat style declarations.
+
+## Execution results
+
+Implemented on `ui/mobile-wayfinding`. All 19 frontend tests pass; production build passes with three preexisting lint warnings. Headless Chromium passed 35 route/viewport combinations, seven data states, keyboard focus, reduced-motion, simulated safe areas, and 200% equivalent reflow. No backend/service/data/Leaflet logic changes. Independent review found muted-text contrast and a duplicate desktop Help icon; both are corrected. Muted text is slightly darker (`#627078`) to exceed 4.5:1 on paper. Trip editing uses a native disclosure once a stop is selected to keep the ETA visible sooner. Test-only Router mappings accommodate the installed package exports. The unchanged Carto tile provider returns API-key-required tiles; live source availability and physical iOS/screen-reader behavior were not covered by fixture-based browser checks. User subsequently authorized git push and production deployment.

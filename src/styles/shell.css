@@ -13,7 +13,7 @@
 .main-nav__link:hover { color: var(--text); background: var(--surface-2); }
 .main-nav__link.is-active { color: var(--text); background: var(--selected); }
 .live-source { color: var(--text-muted); font: 11px/1.5 var(--mono); }
-.mobile-help, .mobile-nav { display: none; }
+.topbar .mobile-help, .mobile-nav { display: none; }
 .page { width: min(calc(100% - 40px), var(--max-width)); margin-inline: auto; padding-block: 46px 64px; min-height: calc(100svh - 180px); }
 .page--centered { display: grid; place-items: center; }
 .page-heading { margin-bottom: 32px; max-width: 660px; }
