@@ -4,6 +4,7 @@ from ..catalog import OSWEGO_ROUTE_IDS, ROUTE_METADATA, catalog_routes
 from flask import current_app
 
 from ..services.centro_client import CentroAPIError, get_client
+from ..services.pattern_store import refresh
 from ..utils import first_upstream_message, meta, validate_route
 from ..middleware.request_id import json_error
 
@@ -72,10 +73,7 @@ def directions(route_id):
 
 def _order_by_pattern(client, route_id, direction, stops):
     # getstops lists stops alphabetically; patterns carry the riding order.
-    try:
-        patterns = (client.patterns(route_id).get("ptr") or [])
-    except CentroAPIError:
-        return stops, "alphabetical"
+    patterns = refresh(client, route_id)
 
     sequences = [
         [

@@ -1,6 +1,6 @@
 # Centro routes reference
 
-Generated 2026-10-24T10:31:47-04:00 from Centro BusTime v3 by `scripts/export_centro_routes.py`. Rerun the script to refresh it.
+Generated 2026-10-24T10:57:56-04:00 from Centro BusTime v3 by `scripts/export_centro_routes.py`. Rerun the script to refresh it.
 
 Routes marked **in app** are the ones Centro Oswego Live shows, chosen for SUNY Oswego students. Full ordered stop lists for those routes follow the table; `docs/centro-routes.json` has the same data with coordinates.
 
@@ -195,64 +195,64 @@ Official schedule: https://www.centro.org/Route-Time-Tables/osw-11
 
 Official schedule: https://www.centro.org/Route-Time-Tables/osw-17
 
-### EASTBOUND — 24 stops (alphabetical order)
+### EASTBOUND — 24 stops (route order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 9695 | E Bridge & E 2nd St |
-| 2 | 9726 | E Bridge St & E 6th St |
-| 3 | 9727 | E Bridge St & E 7th St |
-| 4 | 9729 | E Bridge St & E 9th St |
-| 5 | 18253 | E Cayuga St & E 3rd St |
-| 6 | 9731 | Route 104 & E 10th St |
-| 7 | 9735 | Route 104 & E 12th St |
-| 8 | 9736 | Route 104 & E 13th St |
-| 9 | 9737 | Route 104 & George St |
-| 10 | 15521 | SUNY OSWEGO CAMPUS CENTER |
-| 11 | 3515 | W Bridge St & John St |
-| 12 | 9686 | W Bridge St & Liberty St |
-| 13 | 3581 | W Bridge St & W 2nd St |
-| 14 | 3563 | W Bridge St & W 4th St |
-| 15 | 3569 | W Bridge St & W 5th St |
-| 16 | 3553 | W Bridge St & W 6th St |
-| 17 | 16025 | W Bridge St & W 7th St |
-| 18 | 3548 | W Bridge St & W 8th St |
-| 19 | 3505 | W Bridge St & W Seneca St |
-| 20 | 9614 | Walmart - Oswego |
-| 21 | 16023 | Washington Blvd & 3rd Ave |
-| 22 | 9679 | Washington Blvd & Baylis St |
-| 23 | 9684 | Washington Blvd & Fifth Ave |
-| 24 | 9682 | Washington Blvd & Sheldon Ave |
+| 1 | 15521 | SUNY OSWEGO CAMPUS CENTER |
+| 2 | 9679 | Washington Blvd & Baylis St |
+| 3 | 9682 | Washington Blvd & Sheldon Ave |
+| 4 | 9684 | Washington Blvd & Fifth Ave |
+| 5 | 16023 | Washington Blvd & 3rd Ave |
+| 6 | 3505 | W Bridge St & W Seneca St |
+| 7 | 3515 | W Bridge St & John St |
+| 8 | 9686 | W Bridge St & Liberty St |
+| 9 | 3548 | W Bridge St & W 8th St |
+| 10 | 16025 | W Bridge St & W 7th St |
+| 11 | 3553 | W Bridge St & W 6th St |
+| 12 | 3569 | W Bridge St & W 5th St |
+| 13 | 3563 | W Bridge St & W 4th St |
+| 14 | 3581 | W Bridge St & W 2nd St |
+| 15 | 9695 | E Bridge & E 2nd St |
+| 16 | 18253 | E Cayuga St & E 3rd St |
+| 17 | 9726 | E Bridge St & E 6th St |
+| 18 | 9727 | E Bridge St & E 7th St |
+| 19 | 9729 | E Bridge St & E 9th St |
+| 20 | 9731 | Route 104 & E 10th St |
+| 21 | 9735 | Route 104 & E 12th St |
+| 22 | 9736 | Route 104 & E 13th St |
+| 23 | 9737 | Route 104 & George St |
+| 24 | 9614 | Walmart - Oswego |
 
-### WESTBOUND — 25 stops (route order)
+### WESTBOUND — 25 stops (alphabetical order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 9614 | Walmart - Oswego |
-| 2 | 15518 | CENTRO GARAGE OSWEGO |
-| 3 | 15515 | OCO MEDICAL CENTER |
-| 4 | 17808 | Route 104 & George St |
-| 5 | 15873 | Rte 104 & E 13th St |
-| 6 | 15874 | Rte 104 & E 12th St |
-| 7 | 15878 | Rte 104 & E 10th St |
-| 8 | 15880 | E Bridge St & E 9th St |
-| 9 | 15882 | E Bridge St & E 7th St |
-| 10 | 15883 | E Bridge St & E 6th St |
-| 11 | 15885 | E Bridge St & E 4th St |
-| 12 | 18253 | E Cayuga St & E 3rd St |
-| 13 | 15888 | E Bridge St & E 1st St |
-| 14 | 3579 | W Bridge St & W 2nd St |
-| 15 | 3561 | W Bridge St & W 5th St |
-| 16 | 3555 | W Bridge St & W 6th St |
-| 17 | 3557 | W Bridge St & W 7th St |
-| 18 | 3550 | W Bridge St & W 8th St |
-| 19 | 3537 | W Bridge St & Liberty St |
-| 20 | 3518 | W Bridge St & John St |
+| 1 | 15518 | CENTRO GARAGE OSWEGO |
+| 2 | 15888 | E Bridge St & E 1st St |
+| 3 | 15885 | E Bridge St & E 4th St |
+| 4 | 15883 | E Bridge St & E 6th St |
+| 5 | 15882 | E Bridge St & E 7th St |
+| 6 | 15880 | E Bridge St & E 9th St |
+| 7 | 18253 | E Cayuga St & E 3rd St |
+| 8 | 15515 | OCO MEDICAL CENTER |
+| 9 | 17808 | Route 104 & George St |
+| 10 | 15878 | Rte 104 & E 10th St |
+| 11 | 15874 | Rte 104 & E 12th St |
+| 12 | 15873 | Rte 104 & E 13th St |
+| 13 | 15521 | SUNY OSWEGO CAMPUS CENTER |
+| 14 | 3518 | W Bridge St & John St |
+| 15 | 3537 | W Bridge St & Liberty St |
+| 16 | 3579 | W Bridge St & W 2nd St |
+| 17 | 3561 | W Bridge St & W 5th St |
+| 18 | 3555 | W Bridge St & W 6th St |
+| 19 | 3557 | W Bridge St & W 7th St |
+| 20 | 3550 | W Bridge St & W 8th St |
 | 21 | 3510 | W Bridge St & W Seneca St |
-| 22 | 16013 | Washington Blvd & 3rd Ave |
-| 23 | 16016 | Washington Blvd & Sheldon Ave |
+| 22 | 9614 | Walmart - Oswego |
+| 23 | 16013 | Washington Blvd & 3rd Ave |
 | 24 | 16019 | Washington Blvd & Baylis St |
-| 25 | 15521 | SUNY OSWEGO CAMPUS CENTER |
+| 25 | 16016 | Washington Blvd & Sheldon Ave |
 
 
 ## OSW18 · Sunrise West
@@ -415,169 +415,169 @@ Official schedule: https://www.centro.org/Route-Time-Tables/osw-19
 
 Official schedule: https://www.centro.org/Route-Time-Tables/osw-46
 
-### FROM OSWEGO — 159 stops (alphabetical order)
+### FROM OSWEGO — 159 stops (route order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 17842 | 715 OLD LIVERPOOL RD |
-| 2 | 17839 | 7239 OSWEGO RD |
-| 3 | 17838 | 7365 OSWEGO RD |
-| 4 | 17836 | 7595 OSWEGO RD |
-| 5 | 17835 | 7613 OSWEGO RD |
-| 6 | 17834 | 7787 OSWEGO RD |
-| 7 | 17833 | 7989 OSWEGO RD |
-| 8 | 17832 | 8223 OSWEGO RD |
-| 9 | 17841 | 913 OLD LIVERPOOL RD |
-| 10 | 17659 | C20 |
-| 11 | 17660 | C21 |
-| 12 | 3462 | COUNTY OFFICE BUILDING |
-| 13 | 18132 | Carling Rd & Laser Dr |
-| 14 | 9673 | Cayuga Community College |
-| 15 | 3243 | Co Route 57 & Co Route 57A |
-| 16 | 16189 | Co Route 57 & Dutch Ridge Rd |
-| 17 | 16188 | Co Route 57 & Highland Dr |
-| 18 | 16190 | Co Rt 57 & Co Rt 45 |
-| 19 | 3250 | County Hwy 57 & Hilton Rd |
-| 20 | 3244 | County Hwy 57 & Hoag Dr |
-| 21 | 3241 | County Hwy 57 & Huntley Rd |
-| 22 | 3234 | County Hwy 57 & N Shore Rd |
-| 23 | 7755 | Destiny USA |
-| 24 | 3621 | E 1st St & E Albany St |
-| 25 | 3609 | E 1st St & E Mohawk St |
-| 26 | 3615 | E 1st St & E Utica St |
-| 27 | 10561 | E Adams St & S McBride St |
-| 28 | 6055 | E Adams St & S Townsend St |
-| 29 | 15885 | E Bridge St & E 4th St |
-| 30 | 15883 | E Bridge St & E 6th St |
-| 31 | 15882 | E Bridge St & E 7th St |
-| 32 | 15880 | E Bridge St & E 9th St |
-| 33 | 3409 | E Broadway St & S 2nd St |
-| 34 | 18253 | E Cayuga St & E 3rd St |
-| 35 | 3617 | E River Rd & Hubbard St |
-| 36 | 15774 | E River Rd & Woodbridge |
-| 37 | 6628 | E Washington St & S State St |
-| 38 | 6604 | E Washington St & S Warren St |
-| 39 | 15539 | FULTON MEDICAL CENTER - URGENT CARE |
-| 40 | 17837 | GLENN CROSSINGS PLAZA |
-| 41 | 15783 | HWY 481 |
-| 42 | 5418 | Harrison St & Montgomery St |
-| 43 | 17994 | Home Depot Plaza Route 31 |
-| 44 | 15778 | Hwy 481 & CR 45 |
-| 45 | 15780 | Hwy 481 & CR 57 |
-| 46 | 15781 | Hwy 481 & Chalone Rd |
-| 47 | 15776 | Hwy 481 & Churchill Rd |
-| 48 | 15777 | Hwy 481 & Dutch Ridge |
-| 49 | 15775 | Hwy 481 & E River Rd |
-| 50 | 15779 | Hwy 481 & March Rd |
-| 51 | 15782 | Hwy 481 & Van Buren Dr |
-| 52 | 9918 | Lemoyne Manor on Old Liverpool Rd |
-| 53 | 17993 | Lowe's Plaza Route 31 |
-| 54 | 3290 | Main St & Bridge St |
-| 55 | 3281 | Main St & Chestnut St |
-| 56 | 3275 | Main St & Church St |
-| 57 | 3247 | Main St & Kay Pat Rd |
-| 58 | 3267 | Main St & Loomis Ter |
-| 59 | 3266 | Main St & Mechanic St |
-| 60 | 3268 | Main St & Pine St |
-| 61 | 3484 | N 2nd St & N 1st St |
-| 62 | 3449 | N 2nd St & Oneida St |
-| 63 | 3474 | N 2nd St & Shaw St |
-| 64 | 7194 | N Franklin St & Erie Blvd W |
-| 65 | 7169 | N Franklin St & Herald Pl |
-| 66 | 7186 | N Franklin St & W Willow St |
-| 67 | 3388 | N South Arterial Hwy & Fay St |
-| 68 | 8735 | Old Liverpool Rd & Electronics Pkw |
-| 69 | 8822 | Old Liverpool Rd & Eynsford Dr |
-| 70 | 17843 | Old Liverpool Rd & Greenpoint Ave |
-| 71 | 8819 | Old Liverpool Rd & Hiram Ave |
-| 72 | 8826 | Old Liverpool Rd & Lakeview Ter |
-| 73 | 10226 | Old Liverpool Rd & Lakeview Ter |
-| 74 | 8816 | Old Liverpool Rd & Railroad St |
-| 75 | 8828 | Old Liverpool Rd & School Rd W |
-| 76 | 8818 | Old Liverpool Rd & Town Garden Dr |
-| 77 | 8820 | Old Liverpool Rd & Woerner Ave |
-| 78 | 9043 | Oswego Rd & 4th St |
-| 79 | 9042 | Oswego Rd & 5th St |
-| 80 | 9041 | Oswego Rd & 6th St |
-| 81 | 9040 | Oswego Rd & 7th St |
-| 82 | 9008 | Oswego Rd & Admiral Dr |
-| 83 | 16203 | Oswego Rd & Anguilla Dr |
-| 84 | 9009 | Oswego Rd & Bel Harbor Dr |
-| 85 | 1950 | Oswego Rd & Calder Ct |
-| 86 | 9032 | Oswego Rd & Elmcrest Rd |
-| 87 | 8703 | Oswego Rd & Gaskin Rd |
-| 88 | 9003 | Oswego Rd & Gettman Rd |
-| 89 | 7798 | Oswego Rd & John Glenn Blvd |
-| 90 | 9039 | Oswego Rd & Liverpool Bypass |
-| 91 | 8977 | Oswego Rd & Maryland Ln |
-| 92 | 16201 | Oswego Rd & Mendenhall Dr |
-| 93 | 9038 | Oswego Rd & Old Cove Rd |
-| 94 | 9004 | Oswego Rd & Poplar Dr |
+| 1 | 15521 | SUNY OSWEGO CAMPUS CENTER |
+| 2 | 9679 | Washington Blvd & Baylis St |
+| 3 | 9682 | Washington Blvd & Sheldon Ave |
+| 4 | 9684 | Washington Blvd & Fifth Ave |
+| 5 | 16023 | Washington Blvd & 3rd Ave |
+| 6 | 3505 | W Bridge St & W Seneca St |
+| 7 | 9686 | W Bridge St & Liberty St |
+| 8 | 3548 | W Bridge St & W 8th St |
+| 9 | 16025 | W Bridge St & W 7th St |
+| 10 | 3553 | W Bridge St & W 6th St |
+| 11 | 3569 | W Bridge St & W 5th St |
+| 12 | 3563 | W Bridge St & W 4th St |
+| 13 | 15885 | E Bridge St & E 4th St |
+| 14 | 18253 | E Cayuga St & E 3rd St |
+| 15 | 3609 | E 1st St & E Mohawk St |
+| 16 | 3615 | E 1st St & E Utica St |
+| 17 | 3621 | E 1st St & E Albany St |
+| 18 | 3617 | E River Rd & Hubbard St |
+| 19 | 15774 | E River Rd & Woodbridge |
+| 20 | 15775 | Hwy 481 & E River Rd |
+| 21 | 16188 | Co Route 57 & Highland Dr |
+| 22 | 16189 | Co Route 57 & Dutch Ridge Rd |
+| 23 | 16190 | Co Rt 57 & Co Rt 45 |
+| 24 | 15778 | Hwy 481 & CR 45 |
+| 25 | 15779 | Hwy 481 & March Rd |
+| 26 | 15780 | Hwy 481 & CR 57 |
+| 27 | 15781 | Hwy 481 & Chalone Rd |
+| 28 | 15782 | Hwy 481 & Van Buren Dr |
+| 29 | 15783 | HWY 481 |
+| 30 | 3484 | N 2nd St & N 1st St |
+| 31 | 3474 | N 2nd St & Shaw St |
+| 32 | 3462 | COUNTY OFFICE BUILDING |
+| 33 | 3449 | N 2nd St & Oneida St |
+| 34 | 15540 | TOWPATH TOWERS - FULTON |
+| 35 | 3426 | S 1st St & Academy St |
+| 36 | 3409 | E Broadway St & S 2nd St |
+| 37 | 3416 | S 2nd St & State St |
+| 38 | 15805 | S 2nd St & Pratt St |
+| 39 | 15806 | S 2nd St & Division St |
+| 40 | 3388 | N South Arterial Hwy & Fay St |
+| 41 | 9829 | Route 481 & Harris St |
+| 42 | 9673 | Cayuga Community College |
+| 43 | 18215 | State Route 264 & Co Route 59 |
+| 44 | 18216 | State Route 264 & Clark Crest Dr |
+| 45 | 18217 | State Route 264 & Maplehurst Dr |
+| 46 | 18218 | Volney St & EJD Middle School |
+| 47 | 18219 | Volney St & Davis St |
+| 48 | 18220 | Volney St & James St |
+| 49 | 18221 | Volney St & Spring St |
+| 50 | 18222 | Volney St & Main St |
+| 51 | 3290 | Main St & Bridge St |
+| 52 | 15557 | Route 57 & Lock St |
+| 53 | 3275 | Main St & Church St |
+| 54 | 3266 | Main St & Mechanic St |
+| 55 | 3268 | Main St & Pine St |
+| 56 | 3281 | Main St & Chestnut St |
+| 57 | 3267 | Main St & Loomis Ter |
+| 58 | 3247 | Main St & Kay Pat Rd |
+| 59 | 3243 | Co Route 57 & Co Route 57A |
+| 60 | 3250 | County Hwy 57 & Hilton Rd |
+| 61 | 3241 | County Hwy 57 & Huntley Rd |
+| 62 | 3244 | County Hwy 57 & Hoag Dr |
+| 63 | 3234 | County Hwy 57 & N Shore Rd |
+| 64 | 3229 | State Route 57 & Maider Rd |
+| 65 | 3239 | State Route 57 & Verplank Rd |
+| 66 | 16193 | State Route 57 & Gaskin Rd |
+| 67 | 16194 | Route 57 & Linda Ln |
+| 68 | 17978 | Route 31 & Willow Stream |
+| 69 | 17993 | Lowe's Plaza Route 31 |
+| 70 | 17072 | Route 31 & Dell Center Dr |
+| 71 | 18132 | Carling Rd & Laser Dr |
+| 72 | 18133 | Runnings |
+| 73 | 18134 | Wegmans Route 31 |
+| 74 | 16219 | Route 31 & Carling Rd |
+| 75 | 16220 | Route 31 & Dell Center Dr |
+| 76 | 17994 | Home Depot Plaza Route 31 |
+| 77 | 17979 | Route 31 & Willow Stream |
+| 78 | 17997 | Route 57 & Route 31 |
+| 79 | 16201 | Oswego Rd & Mendenhall Dr |
+| 80 | 16203 | Oswego Rd & Anguilla Dr |
+| 81 | 8703 | Oswego Rd & Gaskin Rd |
+| 82 | 17832 | 8223 OSWEGO RD |
+| 83 | 1950 | Oswego Rd & Calder Ct |
+| 84 | 8722 | Oswego Rd & Soule Rd |
+| 85 | 17055 | Oswego Rd & Seneca Mall Entrance |
+| 86 | 17833 | 7989 OSWEGO RD |
+| 87 | 9003 | Oswego Rd & Gettman Rd |
+| 88 | 9004 | Oswego Rd & Poplar Dr |
+| 89 | 9005 | Oswego Rd & Wetzel Rd |
+| 90 | 9006 | Oswego Rd & Rosewood  Pl |
+| 91 | 17834 | 7787 OSWEGO RD |
+| 92 | 8977 | Oswego Rd & Maryland Ln |
+| 93 | 9008 | Oswego Rd & Admiral Dr |
+| 94 | 9009 | Oswego Rd & Bel Harbor Dr |
 | 95 | 1963 | Oswego Rd & Rivercrest Rd |
-| 96 | 9006 | Oswego Rd & Rosewood  Pl |
-| 97 | 17055 | Oswego Rd & Seneca Mall Entrance |
-| 98 | 8722 | Oswego Rd & Soule Rd |
-| 99 | 9005 | Oswego Rd & Wetzel Rd |
-| 100 | 16209 | Oswego St & Meyers Rd |
-| 101 | 17840 | Oswego St & Tulip St |
-| 102 | 8814 | Oswego St & Vine St |
-| 103 | 15556 | PUBLIC SAFETY OCJ |
-| 104 | 17996 | Raymour & Flanigan Plaza on Route 31 |
-| 105 | 47 | Regional Transportation Center |
-| 106 | 16219 | Route 31 & Carling Rd |
-| 107 | 17995 | Route 31 & Carling Rd |
-| 108 | 17072 | Route 31 & Dell Center Dr |
-| 109 | 16220 | Route 31 & Dell Center Dr |
-| 110 | 17978 | Route 31 & Willow Stream |
-| 111 | 17979 | Route 31 & Willow Stream |
-| 112 | 9829 | Route 481 & Harris St |
-| 113 | 17998 | Route 57 & Entrance to Wegmans |
-| 114 | 16194 | Route 57 & Linda Ln |
-| 115 | 15557 | Route 57 & Lock St |
-| 116 | 17997 | Route 57 & Route 31 |
-| 117 | 15878 | Rte 104 & E 10th St |
-| 118 | 15874 | Rte 104 & E 12th St |
-| 119 | 15873 | Rte 104 & E 13th St |
-| 120 | 18133 | Runnings |
-| 121 | 3426 | S 1st St & Academy St |
-| 122 | 15806 | S 2nd St & Division St |
-| 123 | 15805 | S 2nd St & Pratt St |
-| 124 | 3416 | S 2nd St & State St |
-| 125 | 6764 | S State St & E Jefferson St |
-| 126 | 5425 | S State St & Harrison St |
-| 127 | 6767 | S State St & Madison St |
-| 128 | 6757 | S State St + E Onondaga St |
-| 129 | 10121 | SARAH LOGUEN BUS SHELTER |
-| 130 | 15521 | SUNY OSWEGO CAMPUS CENTER |
-| 131 | 18216 | State Route 264 & Clark Crest Dr |
-| 132 | 18215 | State Route 264 & Co Route 59 |
-| 133 | 18217 | State Route 264 & Maplehurst Dr |
-| 134 | 16193 | State Route 57 & Gaskin Rd |
-| 135 | 3229 | State Route 57 & Maider Rd |
-| 136 | 3239 | State Route 57 & Verplank Rd |
-| 137 | 15540 | TOWPATH TOWERS - FULTON |
-| 138 | 9671 | TOWPATH TOWERS - FULTON |
-| 139 | 18219 | Volney St & Davis St |
-| 140 | 18218 | Volney St & EJD Middle School |
-| 141 | 18220 | Volney St & James St |
-| 142 | 18222 | Volney St & Main St |
-| 143 | 18221 | Volney St & Spring St |
-| 144 | 9686 | W Bridge St & Liberty St |
-| 145 | 3563 | W Bridge St & W 4th St |
-| 146 | 3569 | W Bridge St & W 5th St |
-| 147 | 3553 | W Bridge St & W 6th St |
-| 148 | 16025 | W Bridge St & W 7th St |
-| 149 | 3548 | W Bridge St & W 8th St |
-| 150 | 3505 | W Bridge St & W Seneca St |
-| 151 | 12669 | W Washington St & S Clinton St |
-| 152 | 9614 | Walmart - Oswego |
-| 153 | 16023 | Washington Blvd & 3rd Ave |
-| 154 | 9679 | Washington Blvd & Baylis St |
-| 155 | 9684 | Washington Blvd & Fifth Ave |
-| 156 | 9682 | Washington Blvd & Sheldon Ave |
-| 157 | 100 | Washington St & S Salina St |
-| 158 | 18134 | Wegmans Route 31 |
-| 159 | 7800 | Wegmans Rt 57 |
+| 96 | 17835 | 7613 OSWEGO RD |
+| 97 | 17836 | 7595 OSWEGO RD |
+| 98 | 9032 | Oswego Rd & Elmcrest Rd |
+| 99 | 7800 | Wegmans Rt 57 |
+| 100 | 17998 | Route 57 & Entrance to Wegmans |
+| 101 | 7798 | Oswego Rd & John Glenn Blvd |
+| 102 | 17837 | GLENN CROSSINGS PLAZA |
+| 103 | 17838 | 7365 OSWEGO RD |
+| 104 | 9038 | Oswego Rd & Old Cove Rd |
+| 105 | 17839 | 7239 OSWEGO RD |
+| 106 | 9039 | Oswego Rd & Liverpool Bypass |
+| 107 | 16209 | Oswego St & Meyers Rd |
+| 108 | 9040 | Oswego Rd & 7th St |
+| 109 | 9041 | Oswego Rd & 6th St |
+| 110 | 9042 | Oswego Rd & 5th St |
+| 111 | 9043 | Oswego Rd & 4th St |
+| 112 | 17840 | Oswego St & Tulip St |
+| 113 | 8814 | Oswego St & Vine St |
+| 114 | 8816 | Old Liverpool Rd & Railroad St |
+| 115 | 8818 | Old Liverpool Rd & Town Garden Dr |
+| 116 | 17841 | 913 OLD LIVERPOOL RD |
+| 117 | 8819 | Old Liverpool Rd & Hiram Ave |
+| 118 | 8820 | Old Liverpool Rd & Woerner Ave |
+| 119 | 17842 | 715 OLD LIVERPOOL RD |
+| 120 | 8735 | Old Liverpool Rd & Electronics Pkw |
+| 121 | 8822 | Old Liverpool Rd & Eynsford Dr |
+| 122 | 9918 | Lemoyne Manor on Old Liverpool Rd |
+| 123 | 8826 | Old Liverpool Rd & Lakeview Ter |
+| 124 | 10226 | Old Liverpool Rd & Lakeview Ter |
+| 125 | 8828 | Old Liverpool Rd & School Rd W |
+| 126 | 17843 | Old Liverpool Rd & Greenpoint Ave |
+| 127 | 47 | Regional Transportation Center |
+| 128 | 7755 | Destiny USA |
+| 129 | 7169 | N Franklin St & Herald Pl |
+| 130 | 7186 | N Franklin St & W Willow St |
+| 131 | 7194 | N Franklin St & Erie Blvd W |
+| 132 | 12669 | W Washington St & S Clinton St |
+| 133 | 100 | Washington St & S Salina St |
+| 134 | 6604 | E Washington St & S Warren St |
+| 135 | 6628 | E Washington St & S State St |
+| 136 | 6757 | S State St + E Onondaga St |
+| 137 | 6764 | S State St & E Jefferson St |
+| 138 | 6767 | S State St & Madison St |
+| 139 | 5425 | S State St & Harrison St |
+| 140 | 5418 | Harrison St & Montgomery St |
+| 141 | 17660 | C21 |
+| 142 | 6055 | E Adams St & S Townsend St |
+| 143 | 10561 | E Adams St & S McBride St |
+| 144 | 10121 | SARAH LOGUEN BUS SHELTER |
+| 145 | 17659 | C20 |
+| 146 | 15883 | E Bridge St & E 6th St |
+| 147 | 15882 | E Bridge St & E 7th St |
+| 148 | 15880 | E Bridge St & E 9th St |
+| 149 | 15539 | FULTON MEDICAL CENTER - URGENT CARE |
+| 150 | 15776 | Hwy 481 & Churchill Rd |
+| 151 | 15777 | Hwy 481 & Dutch Ridge |
+| 152 | 15556 | PUBLIC SAFETY OCJ |
+| 153 | 17996 | Raymour & Flanigan Plaza on Route 31 |
+| 154 | 17995 | Route 31 & Carling Rd |
+| 155 | 15878 | Rte 104 & E 10th St |
+| 156 | 15874 | Rte 104 & E 12th St |
+| 157 | 15873 | Rte 104 & E 13th St |
+| 158 | 9671 | TOWPATH TOWERS - FULTON |
+| 159 | 9614 | Walmart - Oswego |
 
 ### TO OSWEGO — 145 stops (route order)
 
@@ -926,47 +926,47 @@ Official schedule: https://www.centro.org/Route-Time-Tables/mex-3
 
 Official schedule: https://www.centro.org/Route-Time-Tables/ful-4
 
-### FROM TOWPATH — 16 stops (alphabetical order)
+### FROM TOWPATH — 16 stops (route order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 18550 | 2nd and Harrison St |
-| 2 | 17966 | 346 S 12TH ST |
-| 3 | 15581 | E Broadway & S 7th St |
-| 4 | 9806 | E Broadway St & S 4th St |
-| 5 | 9805 | E Broadway St & S 5th St |
-| 6 | 9804 | E Broadway St & S 6th St |
-| 7 | 15538 | EMERY ST + 12TH ST - FULTON |
-| 8 | 15539 | FULTON MEDICAL CENTER - URGENT CARE |
-| 9 | 9799 | Holly Dr & Emery St |
-| 10 | 15569 | N 6TH ST + ERIE ST |
-| 11 | 15571 | N 6TH ST + ONEIDA ST |
-| 12 | 15537 | PATHFINDER COURTS - FULTON |
-| 13 | 3426 | S 1st St & Academy St |
-| 14 | 3437 | S 2nd St. & Oneida St |
+| 1 | 15540 | TOWPATH TOWERS - FULTON |
+| 2 | 3426 | S 1st St & Academy St |
+| 3 | 3437 | S 2nd St. & Oneida St |
+| 4 | 18550 | 2nd and Harrison St |
+| 5 | 15569 | N 6TH ST + ERIE ST |
+| 6 | 15571 | N 6TH ST + ONEIDA ST |
+| 7 | 9799 | Holly Dr & Emery St |
+| 8 | 15537 | PATHFINDER COURTS - FULTON |
+| 9 | 15538 | EMERY ST + 12TH ST - FULTON |
+| 10 | 17966 | 346 S 12TH ST |
+| 11 | 15581 | E Broadway & S 7th St |
+| 12 | 9804 | E Broadway St & S 6th St |
+| 13 | 9805 | E Broadway St & S 5th St |
+| 14 | 9806 | E Broadway St & S 4th St |
 | 15 | 9822 | S 4th St & Pratt St |
-| 16 | 15540 | TOWPATH TOWERS - FULTON |
+| 16 | 15539 | FULTON MEDICAL CENTER - URGENT CARE |
 
-### TO TOWPATH — 17 stops (route order)
+### TO TOWPATH — 17 stops (alphabetical order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 15539 | FULTON MEDICAL CENTER - URGENT CARE |
-| 2 | 9824 | S 4th St & Fay St |
-| 3 | 16229 | S 2nd St & Division St |
-| 4 | 15598 | S 4th St & Pratt St |
-| 5 | 15600 | S 4th St & E Broadway |
-| 6 | 15810 | E Broadway & S 5th St |
-| 7 | 15811 | E Broadway & S 6th St |
-| 8 | 9803 | E Broadway St & S 7th St |
-| 9 | 15541 | 12TH ST + EMERY ST - FULTON |
-| 10 | 15537 | PATHFINDER COURTS - FULTON |
-| 11 | 15620 | Holly Dr & Emery St |
-| 12 | 15628 | ONEIDA ST + N 6TH ST |
-| 13 | 15630 | N 6TH ST + ERIE ST |
-| 14 | 3466 | N 2nd St & Harrison St |
-| 15 | 3449 | N 2nd St & Oneida St |
-| 16 | 3411 | E Broadway St & S 1st St |
+| 1 | 15541 | 12TH ST + EMERY ST - FULTON |
+| 2 | 15810 | E Broadway & S 5th St |
+| 3 | 15811 | E Broadway & S 6th St |
+| 4 | 3411 | E Broadway St & S 1st St |
+| 5 | 9803 | E Broadway St & S 7th St |
+| 6 | 15539 | FULTON MEDICAL CENTER - URGENT CARE |
+| 7 | 15620 | Holly Dr & Emery St |
+| 8 | 3466 | N 2nd St & Harrison St |
+| 9 | 3449 | N 2nd St & Oneida St |
+| 10 | 15630 | N 6TH ST + ERIE ST |
+| 11 | 15628 | ONEIDA ST + N 6TH ST |
+| 12 | 15537 | PATHFINDER COURTS - FULTON |
+| 13 | 16229 | S 2nd St & Division St |
+| 14 | 15600 | S 4th St & E Broadway |
+| 15 | 9824 | S 4th St & Fay St |
+| 16 | 15598 | S 4th St & Pratt St |
 | 17 | 9671 | TOWPATH TOWERS - FULTON |
 
 
@@ -974,45 +974,45 @@ Official schedule: https://www.centro.org/Route-Time-Tables/ful-4
 
 Official schedule: https://www.centro.org/Route-Time-Tables/ful-5
 
-### FROM TOWPATH — 16 stops (alphabetical order)
+### FROM TOWPATH — 16 stops (route order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 18049 | Bullhead Point Pavilion |
-| 2 | 15721 | CHATEAU WEST APARTMENTS |
-| 3 | 15544 | Fulton Commons |
-| 4 | 15547 | Fulton Mills Apts & W 1st St S |
-| 5 | 17112 | Oneida St & W 1st St |
-| 6 | 15542 | PRICE CHOPPER - FULTON |
-| 7 | 9671 | TOWPATH TOWERS - FULTON |
-| 8 | 15722 | W 11TH ST + HANNIBAL ST |
-| 9 | 15743 | W 1ST ST S + KELLOGG ST |
-| 10 | 15771 | W 1st St S & Hart St |
-| 11 | 15772 | W 1st St S & Phillips St |
-| 12 | 15646 | W BROADWAY + LAKEVIEW AVE |
-| 13 | 15642 | W BROADWAY + W 5TH ST S |
-| 14 | 15644 | W BROADWAY + W 6TH ST S |
-| 15 | 18551 | W Broadway and W 2nd |
+| 1 | 9671 | TOWPATH TOWERS - FULTON |
+| 2 | 17112 | Oneida St & W 1st St |
+| 3 | 15542 | PRICE CHOPPER - FULTON |
+| 4 | 15771 | W 1st St S & Hart St |
+| 5 | 15772 | W 1st St S & Phillips St |
+| 6 | 15743 | W 1ST ST S + KELLOGG ST |
+| 7 | 18551 | W Broadway and W 2nd |
+| 8 | 15547 | Fulton Mills Apts & W 1st St S |
+| 9 | 15642 | W BROADWAY + W 5TH ST S |
+| 10 | 15644 | W BROADWAY + W 6TH ST S |
+| 11 | 15646 | W BROADWAY + LAKEVIEW AVE |
+| 12 | 18049 | Bullhead Point Pavilion |
+| 13 | 15544 | Fulton Commons |
+| 14 | 15721 | CHATEAU WEST APARTMENTS |
+| 15 | 15722 | W 11TH ST + HANNIBAL ST |
 | 16 | 16307 | Walmart - Fulton |
 
-### TO TOWPATH — 14 stops (route order)
+### TO TOWPATH — 14 stops (alphabetical order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 16307 | Walmart - Fulton |
-| 2 | 15708 | CHATEAU WEST APARTMENTS |
-| 3 | 15544 | Fulton Commons |
-| 4 | 15647 | W BROADWAY + PHILLIPS ST |
-| 5 | 18050 | Bullhead Point Pavilion |
-| 6 | 15714 | W BROADWAY + W 6TH ST S |
-| 7 | 15716 | W BROADWAY + W 4TH ST S |
-| 8 | 18552 | Broadway and 2nd |
-| 9 | 15547 | Fulton Mills Apts & W 1st St S |
-| 10 | 15683 | W 1ST ST S + AUSTIN AVE |
-| 11 | 15770 | W 1st St S & Schuyler St |
-| 12 | 17967 | PRICE CHOPPER-FULTON |
-| 13 | 15695 | GANSVOORT ST + W 1ST ST S |
-| 14 | 15540 | TOWPATH TOWERS - FULTON |
+| 1 | 18552 | Broadway and 2nd |
+| 2 | 18050 | Bullhead Point Pavilion |
+| 3 | 15708 | CHATEAU WEST APARTMENTS |
+| 4 | 15544 | Fulton Commons |
+| 5 | 15547 | Fulton Mills Apts & W 1st St S |
+| 6 | 15695 | GANSVOORT ST + W 1ST ST S |
+| 7 | 17967 | PRICE CHOPPER-FULTON |
+| 8 | 15540 | TOWPATH TOWERS - FULTON |
+| 9 | 15683 | W 1ST ST S + AUSTIN AVE |
+| 10 | 15770 | W 1st St S & Schuyler St |
+| 11 | 15647 | W BROADWAY + PHILLIPS ST |
+| 12 | 15716 | W BROADWAY + W 4TH ST S |
+| 13 | 15714 | W BROADWAY + W 6TH ST S |
+| 14 | 16307 | Walmart - Fulton |
 
 
 ## SY46 · Liverpool - Route 57

@@ -62,6 +62,21 @@ class TestRoutes:
         assert [stop["id"] for stop in payload["stops"]] == ["3", "1", "2"]
         assert payload["stopOrder"] == "route"
 
+    def test_stop_order_uses_pattern_seen_earlier(self, client, centro):
+        centro.stops_body = {"stops": [
+            {"stpid": "1", "stpnm": "Alpha"},
+            {"stpid": "2", "stpnm": "Bravo"},
+        ]}
+        centro.patterns_body = {"ptr": [{"pid": 1, "rtdir": "FROM CAMPUS", "pt": [
+            {"seq": 1, "lat": 1, "lon": 1, "typ": "S", "stpid": "2"},
+            {"seq": 2, "lat": 1, "lon": 1, "typ": "S", "stpid": "1"},
+        ]}]}
+        client.get("/api/v1/routes/OSW10/stops?direction=FROM%20CAMPUS")
+        centro.patterns_body = {"ptr": []}
+        payload = client.get("/api/v1/routes/OSW10/stops?direction=FROM%20CAMPUS").get_json()
+        assert payload["stopOrder"] == "route"
+        assert [stop["id"] for stop in payload["stops"]] == ["2", "1"]
+
     def test_stops_keep_upstream_order_without_pattern(self, client, centro):
         centro.stops_body = {"stops": [
             {"stpid": "1", "stpnm": "Alpha"},

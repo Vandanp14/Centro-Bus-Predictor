@@ -56,6 +56,11 @@ def create_app(*, testing=False):
         LOGGER.exception("Unhandled request %s", getattr(g, "request_id", None), exc_info=error)
         return json_error("INTERNAL_ERROR", "The server could not complete this request.", 500)
 
+    if not testing:
+        from .config import PROJECT_ROOT
+        from .services.pattern_store import get_store
+        get_store().seed_from_reference(PROJECT_ROOT / "docs" / "centro-routes.json")
+
     app.register_blueprint(health.blueprint)
     app.register_blueprint(routes.blueprint)
     app.register_blueprint(predictions.blueprint)

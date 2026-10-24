@@ -94,6 +94,14 @@ class FakeCentroClient:
         return self.pattern_bodies.get(str(pattern_id), {"ptr": []})
 
 
+@pytest.fixture(autouse=True)
+def fresh_pattern_store():
+    from api.src.services.pattern_store import reset_store
+    reset_store()
+    yield
+    reset_store()
+
+
 @pytest.fixture
 def centro():
     return FakeCentroClient()

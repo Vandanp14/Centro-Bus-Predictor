@@ -96,8 +96,17 @@ def main() -> None:
             "inApp": in_app,
             "scheduleUrl": ROUTE_METADATA.get(route_id, {}).get("scheduleUrl"),
             "directions": [],
+            "patterns": None,
         }
         patterns = get("getpatterns", rt=route_id).get("ptr", [])
+        if in_app:
+            # getpatterns only lists currently-active patterns; add the ones
+            # live buses are on so both directions are captured.
+            known = {str(p["pid"]) for p in patterns}
+            for vehicle in get("getvehicles", rt=route_id).get("vehicle", []):
+                if vehicle.get("pid") and str(vehicle["pid"]) not in known:
+                    patterns += get("getpatterns", pid=vehicle["pid"]).get("ptr", [])
+                    known.add(str(vehicle["pid"]))
         for direction in get("getdirections", rt=route_id).get("directions", []):
             direction_id = direction.get("id") or direction.get("name")
             stops = [
@@ -116,12 +125,44 @@ def main() -> None:
                 "stopOrder": order,
                 "stops": stops if in_app else None,
             })
+        if in_app:
+            entry["patterns"] = [
+                {
+                    "pid": p.get("pid"),
+                    "rtdir": p.get("rtdir"),
+                    "ln": p.get("ln"),
+                    "pt": [
+                        {k: pt.get(k) for k in ("seq", "typ", "stpid", "stpnm", "pdist", "lat", "lon")}
+                        for pt in p.get("pt") or []
+                    ],
+                }
+                for p in patterns
+            ]
         export["routes"].append(entry)
         print(f"{route_id}: {len(entry['directions'])} directions", file=sys.stderr)
 
     docs = ROOT / "docs"
+    merge_previous_patterns(export, docs / "centro-routes.json")
     (docs / "centro-routes.json").write_text(json.dumps(export, indent=2) + "\n", encoding="utf-8")
     (docs / "centro-routes.md").write_text(render_markdown(export), encoding="utf-8")
+
+
+def merge_previous_patterns(export: dict, previous_path: Path) -> None:
+    """Keep patterns from earlier runs that Centro no longer lists as active.
+
+    getpatterns only returns currently-active patterns, so a run at one hour
+    may see one direction and a run at another hour the other.
+    """
+    try:
+        previous = json.loads(previous_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+    old_by_route = {r["id"]: r.get("patterns") or [] for r in previous.get("routes", [])}
+    for route in export["routes"]:
+        if route["patterns"] is None:
+            continue
+        seen = {str(p["pid"]) for p in route["patterns"]}
+        route["patterns"] += [p for p in old_by_route.get(route["id"], []) if str(p["pid"]) not in seen]
 
 
 def render_markdown(export: dict) -> str:
