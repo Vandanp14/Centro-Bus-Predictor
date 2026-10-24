@@ -13,11 +13,10 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #F7F8FA;
-  color: #18191C;
+  background: #f5f4ed;
+  color: #132e43;
   font-family:
-    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-    "Avenir Next", Avenir, system-ui, sans-serif;
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,12 +44,12 @@ button {
 }
 
 ::selection {
-  background: rgba(31, 111, 235, 0.18);
-  color: #18191C;
+  background: #f2ce46;
+  color: #132e43;
 }
 
 :focus-visible {
-  outline: 2px solid #1F6FEB;
+  outline: 3px solid #267596;
   outline-offset: 3px;
 }
 
