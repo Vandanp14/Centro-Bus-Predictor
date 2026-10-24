@@ -230,9 +230,7 @@ function RouteDetail() {
       <div className="route-workspace">
         <section className="stop-selector" aria-labelledby="stop-selector-title">
           <header>
-            <span className="stop-selector__index">01</span>
             <div>
-              <p className="utility-label">Trip setup</p>
               <h2 id="stop-selector-title">Choose your stop</h2>
             </div>
           </header>
@@ -250,6 +248,7 @@ function RouteDetail() {
                   <button
                     key={item.id}
                     type="button"
+                    aria-pressed={direction === item.id}
                     className={direction === item.id ? 'is-active' : ''}
                     onClick={() => {
                       setDirection(item.id);

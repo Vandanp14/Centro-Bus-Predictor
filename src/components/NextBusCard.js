@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   FiAlertCircle,
   FiClock,
   FiRefreshCw,
   FiRadio,
+  FiArrowRight,
 } from 'react-icons/fi';
 
 const formatTime = (value) => {
@@ -55,6 +57,9 @@ function NextBusCard({
   onRefresh,
 }) {
   const predictions = payload?.predictions || [];
+  const next = predictions[0];
+  const due = Boolean(next && (next.due || next.minutes === 0));
+  const hasMinutes = typeof next?.minutes === 'number' && Number.isFinite(next.minutes);
 
   return (
     <section
@@ -64,7 +69,7 @@ function NextBusCard({
     >
       <header className="arrival-board__header">
         <div>
-          <p className="utility-label">Live arrivals</p>
+          <p className="utility-label">Boarding at</p>
           <h2 id="arrival-board-title">
             {stopName || 'Choose a stop'}
           </h2>
@@ -108,9 +113,13 @@ function NextBusCard({
         ) : (
           <>
             <article className="next-arrival">
-              <div className="next-arrival__countdown">
-                <strong>{countdownLabel(predictions[0])}</strong>
-                <span>{formatTime(predictions[0].predictedAt)}</span>
+              <div className="next-arrival__heading">
+                <span>Next bus</span>
+                <span>{payload?.meta?.stale ? 'Stale estimate' : 'Centro estimate'}</span>
+              </div>
+              <div className={`next-arrival__countdown ${!due && !hasMinutes ? 'next-arrival__countdown--time' : ''}`} role="group" aria-label="Next bus arrival">
+                <strong>{due ? 'Due' : hasMinutes ? next.minutes : formatTime(next.predictedAt)}</strong>
+                {!due && hasMinutes && <span>min</span>}
               </div>
               <div className="next-arrival__details">
                 <span className="next-arrival__route">
@@ -121,11 +130,9 @@ function NextBusCard({
                   {route.id} to {predictions[0].destination || 'destination'}
                 </span>
                 <h3>
-                  {predictions[0].due
+                  {due
                     ? 'Move to the stop now'
-                    : `Expected in ${predictions[0].minutes} ${
-                        predictions[0].minutes === 1 ? 'minute' : 'minutes'
-                      }`}
+                    : hasMinutes ? `Expected at ${formatTime(next.predictedAt)}` : 'Expected arrival time'}
                 </h3>
                 <p>
                   Bus {predictions[0].vehicleId || 'assignment pending'}
@@ -134,6 +141,10 @@ function NextBusCard({
                   )}
                 </p>
               </div>
+              <Link className="button button--primary button--full" to={`/tracker?route=${route.id}&direction=${encodeURIComponent(direction || '')}`}>
+                View route map
+                <FiArrowRight aria-hidden="true" />
+              </Link>
             </article>
 
             {predictions.length > 1 && (
