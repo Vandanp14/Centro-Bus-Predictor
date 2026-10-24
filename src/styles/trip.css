@@ -2,7 +2,7 @@
 
 .trip-sheet { display: grid; gap: 14px; padding: 16px 18px 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
 .trip-sheet__handle { display: none; }
-.trip-sheet__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.trip-sheet__header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .trip-sheet__header h2 { margin: 6px 0 0; font-size: 18px; letter-spacing: -.01em; }
 .trip-sheet__header .utility-label { display: flex; align-items: center; gap: 8px; margin: 0; }
 .trip-sheet__header .route-pill { width: 28px; height: 28px; font-size: 14px; border-radius: 6px; }
@@ -32,7 +32,7 @@
 .trip-stops__stop.is-passed::before { background: var(--line-strong); }
 .trip-stops__stop.is-boarding { background: var(--selected); font-weight: 700; }
 .trip-stops__stop.is-boarding::before { width: 13px; height: 13px; left: -25px; top: 10px; border-color: var(--accent); background: var(--accent); }
-.trip-stops__tag { margin-left: 8px; padding: 1px 7px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 700; }
+.trip-stops__tag { display: inline-block; white-space: nowrap; margin-left: 8px; padding: 1px 7px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 700; }
 .trip-stops__bus { position: relative; display: flex; align-items: center; gap: 8px; padding: 6px 8px; color: var(--success); font-size: 13px; font-weight: 700; }
 .trip-stops__bus small { display: block; color: var(--text-soft); font-weight: 500; }
 .trip-stops__bus-dot { position: absolute; left: -27px; width: 17px; height: 17px; border: 3px solid var(--surface); border-radius: 50%; background: var(--route-color, var(--success)); box-shadow: 0 0 0 1px var(--line-strong); }
@@ -53,12 +53,16 @@
 .route-workspace--trip { grid-template-columns: 1fr; gap: 16px; }
 .route-workspace--trip .stop-selector:not([open]) { padding-block: 12px; }
 .trip-view { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(320px, .95fr); align-items: start; gap: 20px; }
-.trip-map { height: min(72vh, 640px); min-height: 360px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); }
+.map-canvas.trip-map { height: min(72vh, 640px); min-height: 360px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); }
 .trip-view .trip-sheet { position: sticky; top: calc(var(--header-height) + 16px); max-height: calc(100vh - var(--header-height) - 32px); overflow-y: auto; }
 
 @media (max-width: 55.999rem) {
   .trip-view { grid-template-columns: 1fr; gap: 0; }
-  .trip-map { height: 46dvh; min-height: 260px; border-radius: var(--radius) var(--radius) 0 0; }
+  /* The sheet's "Change stop" opens the picker, so its closed summary would
+     only push the countdown below the fold. */
+  .route-workspace--trip .stop-selector:not([open]) { display: none; }
+  .route-workspace--trip { gap: 0; padding-top: 14px; }
+  .map-canvas.trip-map { height: 32dvh; min-height: 220px; border-radius: var(--radius) var(--radius) 0 0; }
   /* The sheet pulls up over the bottom of the map, above Leaflet's panes. */
   .trip-view .trip-sheet { position: relative; top: auto; z-index: 500; margin-top: -26px; max-height: none; overflow: visible; }
 }

@@ -64,7 +64,9 @@ test('collapsed shows countdown, stops away, bus and arrival time', () => {
   const summary = screen.getByRole('group', { name: 'Next bus arrival' });
   expect(within(summary).getByText('21')).toBeInTheDocument();
   expect(within(summary).getByText('min')).toBeInTheDocument();
-  expect(screen.getByText('12 stops away')).toBeInTheDocument();
+  const away = screen.getByRole('group', { name: '12 stops away' });
+  expect(within(away).getByText('12')).toBeInTheDocument();
+  expect(within(away).getByText('stops away')).toBeInTheDocument();
   expect(screen.getByText('Bus 2213')).toBeInTheDocument();
   expect(screen.getByText(/^Arrives /)).toBeInTheDocument();
   expectNoPlaceholders();
@@ -72,7 +74,7 @@ test('collapsed shows countdown, stops away, bus and arrival time', () => {
 
 test('one stop away is singular', () => {
   render({ trip: liveTrip({}, { minutes: 1, stopsAway: 1 }) });
-  expect(screen.getByText('1 stop away')).toBeInTheDocument();
+  expect(within(screen.getByRole('group', { name: '1 stop away' })).getByText('stop away')).toBeInTheDocument();
 });
 
 test('due bus reads Due', () => {
@@ -154,6 +156,11 @@ test('stale and delay labels', () => {
   render({ trip: liveTrip({ meta: { stale: true } }, { delayed: true }) });
   expect(screen.getByText('Stale Centro update')).toBeInTheDocument();
   expect(screen.getByText('Centro reports a delay')).toBeInTheDocument();
+});
+
+test('sheet does not repeat the route name heading', () => {
+  render({ trip: liveTrip() });
+  expect(screen.queryByRole('heading', { name: 'Bridge Street' })).not.toBeInTheDocument();
 });
 
 test('change stop control', () => {

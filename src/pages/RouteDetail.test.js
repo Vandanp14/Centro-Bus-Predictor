@@ -43,7 +43,7 @@ function showRoute(query) {
 
 test('selected stop shows the trip view with countdown and stops away', async () => {
   showRoute('?direction=FROM+CAMPUS&stop=15521');
-  expect(await screen.findByText('12 stops away')).toBeInTheDocument();
+  expect(await screen.findByRole('group', { name: '12 stops away' })).toBeInTheDocument();
   expect(screen.getByText('Trip map')).toBeInTheDocument();
   expect(screen.getByText('21')).toBeInTheDocument();
   expect(getTrip).toHaveBeenCalledWith('OSW10', '15521', 'FROM CAMPUS', expect.anything());
@@ -51,7 +51,7 @@ test('selected stop shows the trip view with countdown and stops away', async ()
 
 test('change stop opens the picker', async () => {
   showRoute('?direction=FROM+CAMPUS&stop=15521');
-  await screen.findByText('12 stops away');
+  await screen.findByRole('group', { name: '12 stops away' });
   const picker = screen.getByLabelText('Boarding stop').closest('details');
   expect(picker).not.toHaveAttribute('open');
   userEvent.click(screen.getByRole('button', { name: 'Change stop' }));
@@ -80,11 +80,11 @@ test('ignores a trip response for a previous stop', async () => {
 
   userEvent.click(screen.getByRole('button', { name: 'Change stop' }));
   userEvent.selectOptions(screen.getByLabelText('Boarding stop'), '9679');
-  expect(await screen.findByText('2 stops away')).toBeInTheDocument();
+  expect(await screen.findByRole('group', { name: '2 stops away' })).toBeInTheDocument();
 
   await act(async () => {
     resolveFirst(tripFor('15521', 21, 12));
   });
-  expect(screen.queryByText('12 stops away')).not.toBeInTheDocument();
-  expect(screen.getByText('2 stops away')).toBeInTheDocument();
+  expect(screen.queryByRole('group', { name: '12 stops away' })).not.toBeInTheDocument();
+  expect(screen.getByRole('group', { name: '2 stops away' })).toBeInTheDocument();
 });

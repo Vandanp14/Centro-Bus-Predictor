@@ -61,9 +61,9 @@ function Countdown({ bus }) {
         {!bus.due && hasMinutes && <span>min</span>}
       </div>
       {typeof bus.stopsAway === 'number' && (
-        <div className="trip-countdown__away">
+        <div className="trip-countdown__away" role="group" aria-label={stopsAwayLabel(bus.stopsAway)}>
           <strong>{bus.stopsAway}</strong>
-          <span>{stopsAwayLabel(bus.stopsAway)}</span>
+          <span>{bus.stopsAway === 1 ? 'stop away' : 'stops away'}</span>
         </div>
       )}
     </div>
@@ -197,15 +197,12 @@ function TripSheet({
       </button>
 
       <header className="trip-sheet__header">
-        <div>
-          <p className="utility-label">
-            <span className="route-pill" data-long={route.shortName?.length > 2 || undefined}>
-              {route.shortName}
-            </span>
-            {trip?.direction}
-          </p>
-          <h2 id="trip-sheet-title">{route.name}</h2>
-        </div>
+        <p className="utility-label" id="trip-sheet-title">
+          <span className="route-pill" data-long={route.shortName?.length > 2 || undefined}>
+            {route.shortName}
+          </span>
+          {trip?.direction || route.name}
+        </p>
         <button className="button button--ghost" type="button" onClick={onChangeStop}>
           Change stop
         </button>
