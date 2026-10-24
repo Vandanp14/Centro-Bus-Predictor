@@ -24,7 +24,9 @@ tar czf /tmp/centro-deploy.tar.gz \
   --exclude='__pycache__' \
   --exclude='*.pyc' \
   --exclude='.git' \
-  backend/ build/ src/ public/ package.json package-lock.json requirements.txt
+  --exclude='api/.env' \
+  api/ backend/ build/ src/ public/ docs/centro-routes.json \
+  package.json package-lock.json requirements.txt
 
 echo "=== Copying files to server ==="
 sshpass -e scp -o StrictHostKeyChecking=no -q \

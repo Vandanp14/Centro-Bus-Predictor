@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 from .config import allowed_cors_origins, load_local_environment
 from .middleware.request_id import assign_request_id, json_error
-from .routes import health, predictions, routes, vehicles, patterns, spa
+from .routes import health, predictions, routes, vehicles, patterns, spa, trip
 
 LOGGER = logging.getLogger(__name__)
 
@@ -56,11 +56,17 @@ def create_app(*, testing=False):
         LOGGER.exception("Unhandled request %s", getattr(g, "request_id", None), exc_info=error)
         return json_error("INTERNAL_ERROR", "The server could not complete this request.", 500)
 
+    if not testing:
+        from .config import PROJECT_ROOT
+        from .services.pattern_store import get_store
+        get_store().seed_from_reference(PROJECT_ROOT / "docs" / "centro-routes.json")
+
     app.register_blueprint(health.blueprint)
     app.register_blueprint(routes.blueprint)
     app.register_blueprint(predictions.blueprint)
     app.register_blueprint(vehicles.blueprint)
     app.register_blueprint(patterns.blueprint)
+    app.register_blueprint(trip.blueprint)
     app.register_blueprint(spa.blueprint)
 
     return app

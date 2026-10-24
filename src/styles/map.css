@@ -199,3 +199,5 @@
   .map-service-note { order: 2; border-top: 0; padding-block: 8px; }
   .map-stats { width: 100%; border-top: 1px solid var(--line); padding-top: 12px; }
 }
+
+.vehicle-icon--muted { opacity: .45; }

@@ -3,23 +3,25 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-PROJECT_ROOT = Path(__file__).resolve().parents[3]
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
 BUILD_DIR = PROJECT_ROOT / "build"
 
 
 def load_local_environment() -> None:
-    env_path = PROJECT_ROOT / "api" / ".env"
-    if not env_path.is_file():
-        return
-    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
+    # api/.env first, then backend/.env (where the deployed server keeps the
+    # Centro key). Process environment and earlier files win.
+    for env_path in (PROJECT_ROOT / "api" / ".env", PROJECT_ROOT / "backend" / ".env"):
+        if not env_path.is_file():
             continue
-        key, value = line.split("=", 1)
-        key = key.strip()
-        value = value.strip().strip("\"'")
-        if key:
-            os.environ.setdefault(key, value)
+        for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip("\"'")
+            if key:
+                os.environ.setdefault(key, value)
 
 
 def allowed_cors_origins() -> list[str]:

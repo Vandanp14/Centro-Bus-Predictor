@@ -25,11 +25,11 @@ function relativeTime(isoString) {
   return `${minutes}m ago`;
 }
 
-function createVehicleIcon(vehicle, color) {
+function createVehicleIcon(vehicle, color, { muted = false } = {}) {
   const heading = Number(vehicle.heading || 0);
   const isDelayed = vehicle.delayed;
   return L.divIcon({
-    className: 'vehicle-marker-shell',
+    className: `vehicle-marker-shell${muted ? ' vehicle-icon--muted' : ''}`,
     html: `
       <span class="vehicle-marker ${isDelayed ? 'vehicle-marker--delayed' : ''}" 
             style="--vehicle-color:${color};--heading:${heading}deg">

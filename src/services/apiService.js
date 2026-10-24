@@ -82,6 +82,16 @@ export const getPredictions = (routeId, stopId, direction, options) =>
     options
   );
 
+export const getTrip = (routeId, stopId, direction, options) =>
+  request(
+    `/trip?${queryString({
+      route: routeId,
+      stop: stopId,
+      direction,
+    })}`,
+    options
+  );
+
 export const getVehicles = (routeId, options) =>
   request(`/routes/${encodeURIComponent(routeId)}/vehicles`, options);
 

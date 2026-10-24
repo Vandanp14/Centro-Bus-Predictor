@@ -55,6 +55,38 @@ export const ROUTE_CATALOG = [
     category: 'Regional service',
     scheduleUrl: 'https://www.centro.org/Route-Time-Tables/osw-46',
   },
+  {
+    id: 'MEX16',
+    shortName: '16',
+    name: 'Mexico – Fulton',
+    color: '#8FB8DE',
+    category: 'Oswego County',
+    scheduleUrl: 'https://www.centro.org/Route-Time-Tables/mex-3',
+  },
+  {
+    id: 'FUL14',
+    shortName: '14',
+    name: 'Fulton – East',
+    color: '#9CC9A8',
+    category: 'Fulton',
+    scheduleUrl: 'https://www.centro.org/Route-Time-Tables/ful-4',
+  },
+  {
+    id: 'FUL15',
+    shortName: '15',
+    name: 'Fulton – West',
+    color: '#D4A5C9',
+    category: 'Fulton',
+    scheduleUrl: 'https://www.centro.org/Route-Time-Tables/ful-5',
+  },
+  {
+    id: 'SY46',
+    shortName: 'SY46',
+    name: 'Liverpool – Route 57',
+    color: '#CC9999',
+    category: 'Syracuse connection',
+    scheduleUrl: 'https://www.centro.org/Route-Time-Tables/sy-46',
+  },
 ];
 
 export const ROUTE_BY_ID = Object.fromEntries(
@@ -64,7 +96,7 @@ export const ROUTE_BY_ID = Object.fromEntries(
 export const getRouteMeta = (routeId) =>
   ROUTE_BY_ID[String(routeId || '').toUpperCase()] || {
     id: String(routeId || '').toUpperCase(),
-    shortName: String(routeId || '').replace(/^OSW/i, ''),
+    shortName: String(routeId || '').replace(/^[A-Z]+/i, ''),
     name: 'Centro route',
     color: '#78C7F0',
     category: 'Oswego service',

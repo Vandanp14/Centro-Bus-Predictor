@@ -4,6 +4,7 @@ from ..catalog import OSWEGO_ROUTE_IDS, ROUTE_METADATA, catalog_routes
 from flask import current_app
 
 from ..services.centro_client import CentroAPIError, get_client
+from ..services.pattern_store import refresh
 from ..utils import first_upstream_message, meta, validate_route
 from ..middleware.request_id import json_error
 
@@ -70,6 +71,35 @@ def directions(route_id):
     })
 
 
+def _order_by_pattern(client, route_id, direction, stops):
+    # getstops lists stops alphabetically; patterns carry the riding order.
+    patterns = refresh(client, route_id)
+
+    sequences = [
+        [
+            str(point["stpid"])
+            for point in sorted(pattern.get("pt") or [], key=lambda p: int(p.get("seq") or 0))
+            if point.get("typ") == "S" and point.get("stpid")
+        ]
+        for pattern in patterns
+        if str(pattern.get("rtdir") or "") == direction
+    ]
+    rank = {}
+    for sequence in sorted(sequences, key=len, reverse=True):
+        for stop_id in sequence:
+            rank.setdefault(stop_id, len(rank))
+    if not rank:
+        return stops, "alphabetical"
+
+    # Stops served only by trip variants without a pattern keep their
+    # upstream order after the patterned ones.
+    ordered = sorted(
+        enumerate(stops),
+        key=lambda pair: (pair[1]["id"] not in rank, rank.get(pair[1]["id"], 0), pair[0]),
+    )
+    return [stop for _, stop in ordered], "route"
+
+
 @blueprint.get("/api/v1/routes/<route_id>/stops")
 def stops(route_id):
     route_id = validate_route(route_id)
@@ -83,7 +113,7 @@ def stops(route_id):
     client = _resolve_client()
     body = client.stops(route_id, direction)
     items = body.get("stops") or body.get("stop") or []
-    result = [
+    stops = [
         {
             "id": str(item.get("stpid")),
             "name": item.get("stpnm") or f"Stop {item.get('stpid')}",
@@ -93,10 +123,12 @@ def stops(route_id):
         for item in items
         if item.get("stpid")
     ]
+    result, stop_order = _order_by_pattern(client, route_id, direction, stops)
     return jsonify({
         "routeId": route_id,
         "direction": direction,
         "stops": result,
+        "stopOrder": stop_order,
         "message": None if result else first_upstream_message(body, "No stops are available."),
         "meta": meta(live=True),
     })

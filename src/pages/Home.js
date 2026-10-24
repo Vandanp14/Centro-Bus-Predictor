@@ -345,7 +345,7 @@ function Home() {
                   to={`/route/${route.id}`}
                   style={{ '--route-color': route.color }}
                 >
-                  <span className="route-pill">{route.shortName}</span>
+                  <span className="route-pill" data-long={route.shortName.length > 2 || undefined}>{route.shortName}</span>
                   <span className="route-row__copy">
                     <strong>{route.name}</strong>
                     <small>{route.category}</small>

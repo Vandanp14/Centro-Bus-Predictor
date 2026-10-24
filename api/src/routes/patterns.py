@@ -1,7 +1,8 @@
 from flask import Blueprint, current_app, jsonify, request
 
 from ..services.centro_client import get_client
-from ..utils import first_upstream_message, meta, validate_route
+from ..services.pattern_store import refresh
+from ..utils import meta, validate_route
 from ..middleware.request_id import json_error
 
 blueprint = Blueprint("patterns", __name__)
@@ -22,8 +23,7 @@ def patterns(route_id):
 
     requested_direction = (request.args.get("direction") or "").strip()
     client = _resolve_client()
-    body = client.patterns(route_id)
-    items = body.get("ptr") or body.get("patterns") or []
+    items = refresh(client, route_id)
     result = []
 
     for pattern in items:
@@ -53,6 +53,6 @@ def patterns(route_id):
         "routeId": route_id,
         "direction": requested_direction or None,
         "patterns": result,
-        "message": None if result else first_upstream_message(body, "No route shape is available."),
+        "message": None if result else "No route shape is available.",
         "meta": meta(live=True),
     })

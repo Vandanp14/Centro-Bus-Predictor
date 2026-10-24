@@ -4,9 +4,9 @@ from flask import Blueprint, jsonify, request
 
 from flask import current_app
 
-from ..services.centro_client import get_client
+from ..arrival_status import classify_empty, count_vehicles
+from ..services.centro_client import CentroAPIError, get_client
 from ..utils import (
-    first_upstream_message,
     meta,
     parse_bustime,
     SERVICE_TZ,
@@ -15,6 +15,7 @@ from ..utils import (
 from ..middleware.request_id import json_error
 
 blueprint = Blueprint("predictions", __name__)
+
 
 
 def _resolve_client():
@@ -82,12 +83,24 @@ def predictions():
     )
     stale = bool(newest_observation and now - newest_observation > timedelta(minutes=3))
 
+    active_vehicles = None
+    if result:
+        status, message = "live", None
+    else:
+        try:
+            active_vehicles = count_vehicles(client.vehicles(route_id))
+        except CentroAPIError:
+            active_vehicles = None
+        status, message = classify_empty(active_vehicles, body)
+
     return jsonify({
         "routeId": route_id,
         "stopId": stop_id,
         "direction": direction,
         "predictions": result,
-        "message": None if result else first_upstream_message(body, "No upcoming predictions."),
+        "status": status,
+        "activeVehicles": active_vehicles,
+        "message": message,
         "meta": meta(
             live=True,
             stale=stale,
