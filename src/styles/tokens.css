@@ -1,0 +1,31 @@
+:root {
+  --bg: #f5f4ed;
+  --bg-soft: #e7e9e3;
+  --surface: #fffefa;
+  --surface-2: #eeeee6;
+  --surface-raised: #e4e7df;
+  --text: #132e43;
+  --text-soft: #425965;
+  --text-muted: #627078;
+  --line: #dddFD9;
+  --line-strong: #bcc8c8;
+  --accent: #132e43;
+  --accent-strong: #244c65;
+  --accent-ink: #fffefa;
+  --action: #f2ce46;
+  --action-hover: #e7bf2d;
+  --selected: #f3eac1;
+  --success: #257659;
+  --warning: #8c5a0c;
+  --danger: #ad3529;
+  --max-width: 1180px;
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 14px;
+  --header-height: 70px;
+  --nav-height: calc(78px + env(safe-area-inset-bottom, 0px));
+  --shadow: 0 3px 10px rgb(19 46 67 / 6%);
+  --mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --t-fast: 160ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

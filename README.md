@@ -5,7 +5,6 @@
 A focused live-arrivals and route-map app for Centro service in Oswego, New
 York. The React client uses a Flask proxy so Centro credentials stay on the
 server.
-### Live Deployment Link: http://pi.cs.oswego.edu:5001/
 
 ## Deploying
 

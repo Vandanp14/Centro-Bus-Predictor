@@ -169,10 +169,9 @@ function Tracker() {
             <FiActivity aria-hidden="true" />
             Centro BusTime
           </p>
-          <h1>Live route map</h1>
+          <h1>Live map</h1>
           <p>
-            The line, stops, and vehicle markers below come directly from
-            Centro—not a hand-drawn route list.
+            Centro routes, stops, and reporting buses.
           </p>
         </div>
         <div className="map-legend" aria-label="Map legend">
@@ -219,6 +218,7 @@ function Tracker() {
                 <button
                   type="button"
                   key={item.id}
+                  aria-pressed={direction === item.id}
                   className={direction === item.id ? 'is-active' : ''}
                   onClick={() => setDirection(item.id)}
                 >
@@ -250,10 +250,6 @@ function Tracker() {
             </div>
           </div>
           <div className="map-stats">
-            <span className="map-stats__live">
-              <span className="live-dot" aria-hidden="true" />
-              <strong>LIVE</strong>
-            </span>
             <span>
               <FiMapPin aria-hidden="true" />
               <strong>{stops.length}</strong> stops

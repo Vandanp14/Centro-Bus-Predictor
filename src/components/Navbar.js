@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   FiActivity,
   FiClock,
@@ -36,10 +36,6 @@ function Navbar() {
     <header className="topbar">
       <div className="topbar__inner">
         <Link className="brand" to="/" aria-label="Centro Oswego Live home">
-          <span className="brand__mark" aria-hidden="true">
-            <span />
-            <span />
-          </span>
           <span className="brand__copy">
             <strong>Centro</strong>
             <small>Oswego live</small>
@@ -50,34 +46,38 @@ function Navbar() {
           <ul>
             {navItems.map(({ to, label, key }) => (
               <li key={to}>
-                <NavLink
+                <Link
                   to={to}
+                  aria-current={activeKey === key ? 'page' : undefined}
                   className={`main-nav__link ${activeKey === key ? 'is-active' : ''}`}
                 >
                   {label}
-                </NavLink>
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
 
         <div className="live-source">
-          <span className="live-dot" aria-hidden="true" />
-          Centro BusTime
+          Oswego, New York
         </div>
+        <Link className="icon-button mobile-help" to="/help" aria-label="Rider help">
+          <FiHelpCircle aria-hidden="true" />
+        </Link>
       </div>
 
       <nav className="mobile-nav" aria-label="Mobile navigation">
         <ul>
           {navItems.map(({ to, label, icon: Icon, key }) => (
             <li key={to}>
-              <NavLink
+              <Link
                 to={to}
+                aria-current={activeKey === key ? 'page' : undefined}
                 className={`mobile-nav__link ${activeKey === key ? 'is-active' : ''}`}
               >
                 <Icon aria-hidden="true" />
                 <span>{label}</span>
-              </NavLink>
+              </Link>
             </li>
           ))}
         </ul>

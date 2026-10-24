@@ -11,6 +11,7 @@ import {
   FiClock,
   FiMap,
   FiMapPin,
+  FiChevronDown,
 } from 'react-icons/fi';
 import TripContext from '../TripContext';
 import NextBusCard from '../components/NextBusCard';
@@ -228,14 +229,11 @@ function RouteDetail() {
       )}
 
       <div className="route-workspace">
-        <section className="stop-selector" aria-labelledby="stop-selector-title">
-          <header>
-            <span className="stop-selector__index">01</span>
-            <div>
-              <p className="utility-label">Trip setup</p>
-              <h2 id="stop-selector-title">Choose your stop</h2>
-            </div>
-          </header>
+        <details className="stop-selector" open={!stopId}>
+          <summary>
+            <span>{stopId ? 'Change direction or stop' : 'Choose your stop'}</span>
+            <FiChevronDown aria-hidden="true" />
+          </summary>
 
           <fieldset className="direction-fieldset">
             <legend>Direction</legend>
@@ -250,6 +248,7 @@ function RouteDetail() {
                   <button
                     key={item.id}
                     type="button"
+                    aria-pressed={direction === item.id}
                     className={direction === item.id ? 'is-active' : ''}
                     onClick={() => {
                       setDirection(item.id);
@@ -289,7 +288,7 @@ function RouteDetail() {
             <span className="live-dot" aria-hidden="true" />
             Arrivals refresh every 30 seconds while this page is open.
           </div>
-        </section>
+        </details>
 
         <NextBusCard
           route={route}

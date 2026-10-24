@@ -9,6 +9,19 @@ are already useful and must remain intact.
 
 ## Design direction
 
+Approved visual reference: [mobile mockups](../mockups/mobile-wayfinding.html).
+The user approved these three screens on 2026-10-23 and requested an
+implementation plan. Their layout and styling supersede earlier speculative
+design descriptions. The preview uses sample arrivals and illustrative map
+geometry; production must continue using existing Centro data and Leaflet maps.
+
+Palette from the approved mockups: ink `#132e43`, muted text `#66747c`, paper
+`#f5f4ed`, white surface `#fffefa`, divider `#dddFD9`, service yellow `#f2ce46`,
+positive status `#257659`. Keep existing route colors from `routeCatalog.js`.
+Use Helvetica Neue/Arial for interface type and the existing system monospace
+stack for small utility labels. The reference phone frames are 830px tall;
+the real app must flow naturally rather than impose a fixed screen height.
+
 Use a mobile-first wayfinding language: warm paper surfaces, deep navy for
 primary text and navigation, restrained service yellow for key actions, and
 existing route colors where they identify a route. Use clear native sans-serif

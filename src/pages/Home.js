@@ -4,7 +4,6 @@ import {
   FiArrowRight,
   FiChevronRight,
   FiClock,
-  FiMapPin,
   FiRadio,
 } from 'react-icons/fi';
 import TripContext from '../TripContext';
@@ -188,44 +187,26 @@ function Home() {
       <section className="home-hero" aria-labelledby="home-title">
         <div className="home-hero__header">
           <p className="eyebrow">
-            <span className="live-dot" aria-hidden="true" />
-            Centro BusTime — Oswego
+            Oswego, New York
           </p>
-          <h1 id="home-title">Live transit tracking</h1>
+          <h1 id="home-title">Your next bus.</h1>
           <p className="home-hero__lede">
-            Real-time arrivals, route maps, and bus positions across the
-            SUNY Oswego Centro network.
+            Live arrivals for campus, the city, and beyond.
           </p>
-          <div className="service-readout">
-            <div>
-              <FiClock aria-hidden="true" />
-              <span>
-                Local time
-                <strong>{formatClock(now)}</strong>
-              </span>
-            </div>
-            <div>
-              <FiRadio aria-hidden="true" />
-              <span>
-                Data source
-                <strong>
-                  {routesPayload.meta?.live ? 'Centro BusTime' : 'Route catalog'}
-                </strong>
-              </span>
-            </div>
-          </div>
         </div>
-
+      </section>
+      <div className="home-workspace">
+        <div className="home-planner-column">
         <form
           className="trip-planner"
           onSubmit={handleSubmit}
         >
           <div className="trip-planner__header">
-            <div>
-              <span className="utility-label">Find my bus</span>
-              <h2>Where are you boarding?</h2>
-            </div>
-            <FiMapPin aria-hidden="true" />
+            <h2>Where are you boarding?</h2>
+            <span className="planner-source">
+              <span className={`live-dot ${routesPayload.meta?.live ? '' : 'live-dot--muted'}`} aria-hidden="true" />
+              {routesPayload.meta?.live ? 'BusTime' : 'Catalog'}
+            </span>
           </div>
 
           <div className="field">
@@ -280,7 +261,7 @@ function Home() {
           </div>
 
           <div className="field">
-            <label htmlFor="home-stop">Stop</label>
+            <label htmlFor="home-stop">Boarding stop</label>
             <div className="select-shell">
               <select
                 id="home-stop"
@@ -320,8 +301,12 @@ function Home() {
             <FiArrowRight aria-hidden="true" />
           </button>
         </form>
-      </section>
-
+        <div className="service-readout">
+          <span><FiClock aria-hidden="true" /> {formatClock(now)} local time</span>
+          <span><FiRadio aria-hidden="true" /> {routesPayload.meta?.live ? 'Centro BusTime' : 'Route catalog'}</span>
+        </div>
+        </div>
+        <div className="home-network">
       {routesError && (
         <div
           className="status-banner status-banner--warning"
@@ -338,7 +323,6 @@ function Home() {
       >
         <header className="section-heading">
           <div>
-            <p className="eyebrow">Current network</p>
             <h2 id="network-title">Oswego routes</h2>
           </div>
           <span>
@@ -361,7 +345,6 @@ function Home() {
                   to={`/route/${route.id}`}
                   style={{ '--route-color': route.color }}
                 >
-                  <span className="route-row__line" aria-hidden="true" />
                   <span className="route-pill">{route.shortName}</span>
                   <span className="route-row__copy">
                     <strong>{route.name}</strong>
@@ -375,6 +358,8 @@ function Home() {
               ))}
         </div>
       </section>
+        </div>
+      </div>
     </main>
   );
 }
