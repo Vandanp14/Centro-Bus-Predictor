@@ -1,7 +1,7 @@
 # Where's my bus — design
 
 Date: 2026-10-24
-Status: draft, awaiting approval (builder check done)
+Status: approved 2026-10-24
 
 ## Intent
 
@@ -271,6 +271,10 @@ animation.
 - Stops-away across a turnaround is shown only when Centro confirms the bus's
   next trip is in the student's direction; otherwise no count.
 - Today's fixes are committed on a branch first; this plan builds on them.
+- Production switches from the legacy `backend/src/main/app.py` to `api/`
+  (found during planning: `deploy-server.sh` started the legacy server, so
+  `api/` changes never shipped). `backend/` stays in the repo, no longer
+  started.
 
 ## Builder's calls (proposed by Claude, not yet confirmed)
 
