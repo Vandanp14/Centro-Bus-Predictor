@@ -109,7 +109,30 @@ function Summary({ route, trip, loading, error }) {
         {bus.predictedAt && <span className="chip">{`Arrives ${formatTime(bus.predictedAt)}`}</span>}
         {bus.delayed && <span className="delay-label">Centro reports a delay</span>}
       </div>
+      <Following items={trip.following} />
     </>
+  );
+}
+
+function Following({ items }) {
+  if (!items?.length) return null;
+  return (
+    <div className="trip-following">
+      <span className="utility-label" id="trip-following-title">Following buses</span>
+      <ul aria-labelledby="trip-following-title">
+        {items.map((item, index) => (
+          <li key={`${item.vehicleId || 'bus'}-${item.predictedAt || index}`}>
+            <strong>
+              {item.due ? 'Due' : typeof item.minutes === 'number' ? `${item.minutes} min` : formatTime(item.predictedAt)}
+            </strong>
+            {item.destination && <small>{item.destination}</small>}
+            {item.predictedAt && (
+              <time dateTime={item.predictedAt}>{formatTime(item.predictedAt)}</time>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

@@ -18,6 +18,13 @@
 .trip-sheet__chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .chip { display: inline-flex; align-items: center; min-height: 26px; padding: 3px 10px; border-radius: 999px; background: var(--surface-2); color: var(--text-soft); font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
 
+.trip-following { display: grid; gap: 6px; padding-top: 10px; border-top: 1px solid var(--line); }
+.trip-following ul { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; }
+.trip-following li { display: grid; grid-template-columns: auto 1fr auto; align-items: baseline; gap: 10px; font-size: 14px; }
+.trip-following strong { font-variant-numeric: tabular-nums; }
+.trip-following small { overflow: hidden; color: var(--text-soft); text-overflow: ellipsis; white-space: nowrap; }
+.trip-following time { color: var(--text-muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+
 .trip-sheet__message { display: flex; gap: 12px; align-items: flex-start; }
 .trip-sheet__message h3 { margin: 2px 0 6px; font-size: 17px; }
 .trip-sheet__message p { margin: 0 0 8px; color: var(--text-soft); font-size: 14px; line-height: 1.45; }

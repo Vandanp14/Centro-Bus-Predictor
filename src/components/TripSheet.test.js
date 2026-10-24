@@ -125,6 +125,22 @@ test('no bus row when its position on the route is unknown', () => {
   expect(screen.queryByText(/is here/)).not.toBeInTheDocument();
 });
 
+test('lists following buses', () => {
+  render({ trip: liveTrip({ following: [
+    { minutes: 50, due: false, predictedAt: '2026-10-24T11:13:00-04:00', vehicleId: '2216', destination: '17 Bridge St to Campus' },
+    { minutes: null, due: false, predictedAt: '2026-10-24T11:40:00-04:00', vehicleId: null, destination: null },
+  ] }) });
+  const following = screen.getByRole('list', { name: 'Following buses' });
+  expect(within(following).getAllByRole('listitem')).toHaveLength(2);
+  expect(within(following).getByText('50 min')).toBeInTheDocument();
+  expectNoPlaceholders();
+});
+
+test('no following section when there are none', () => {
+  render({ trip: liveTrip() });
+  expect(screen.queryByRole('list', { name: 'Following buses' })).not.toBeInTheDocument();
+});
+
 test('beyond window with count', () => {
   render({
     trip: liveTrip(
