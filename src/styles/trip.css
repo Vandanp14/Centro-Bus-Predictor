@@ -48,3 +48,17 @@
   .trip-sheet.is-expanded .trip-stops { max-height: 52dvh; overflow-y: auto; overscroll-behavior: contain; }
   .trip-countdown__time strong { font-size: 52px; }
 }
+
+/* Arrivals page with a chosen stop: map + sheet. */
+.route-workspace--trip { grid-template-columns: 1fr; gap: 16px; }
+.route-workspace--trip .stop-selector:not([open]) { padding-block: 12px; }
+.trip-view { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(320px, .95fr); align-items: start; gap: 20px; }
+.trip-map { height: min(72vh, 640px); min-height: 360px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); }
+.trip-view .trip-sheet { position: sticky; top: calc(var(--header-height) + 16px); max-height: calc(100vh - var(--header-height) - 32px); overflow-y: auto; }
+
+@media (max-width: 55.999rem) {
+  .trip-view { grid-template-columns: 1fr; gap: 0; }
+  .trip-map { height: 46dvh; min-height: 260px; border-radius: var(--radius) var(--radius) 0 0; }
+  /* The sheet pulls up over the bottom of the map, above Leaflet's panes. */
+  .trip-view .trip-sheet { position: relative; top: auto; z-index: 500; margin-top: -26px; max-height: none; overflow: visible; }
+}

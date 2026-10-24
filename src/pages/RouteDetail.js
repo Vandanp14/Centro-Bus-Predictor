@@ -14,10 +14,11 @@ import {
   FiChevronDown,
 } from 'react-icons/fi';
 import TripContext from '../TripContext';
-import NextBusCard from '../components/NextBusCard';
+import TripMap from '../components/TripMap';
+import TripSheet from '../components/TripSheet';
 import {
   getDirections,
-  getPredictions,
+  getTrip,
   getStops,
 } from '../services/apiService';
 import { getRouteMeta } from '../Data/routeCatalog';
@@ -44,7 +45,9 @@ function RouteDetail() {
   const [stopsLoading, setStopsLoading] = useState(false);
   const [selectionError, setSelectionError] = useState('');
 
-  const [predictionState, setPredictionState] = useState({
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [tripState, setTripState] = useState({
     payload: null,
     loading: false,
     refreshing: false,
@@ -119,7 +122,7 @@ function RouteDetail() {
 
   useEffect(() => {
     if (!routeId || !direction || !stopId) {
-      setPredictionState({
+      setTripState({
         payload: null,
         loading: false,
         refreshing: false,
@@ -131,22 +134,31 @@ function RouteDetail() {
     let active = true;
     let controller;
 
+    const isCurrent = (payload) =>
+      payload &&
+      String(payload.stopId) === String(stopId) &&
+      payload.direction === direction;
+
     const load = async (quiet = false) => {
       controller?.abort();
       controller = new AbortController();
-      setPredictionState((current) => ({
-        ...current,
-        loading: !quiet && !current.payload,
-        refreshing: quiet || Boolean(current.payload),
-        error: '',
-      }));
+      setTripState((current) => {
+        const payload = isCurrent(current.payload) ? current.payload : null;
+        return {
+          payload,
+          loading: !quiet && !payload,
+          refreshing: Boolean(payload),
+          error: '',
+        };
+      });
 
       try {
-        const payload = await getPredictions(routeId, stopId, direction, {
+        const payload = await getTrip(routeId, stopId, direction, {
           signal: controller.signal,
         });
-        if (active) {
-          setPredictionState({
+        // A late answer for a stop the student already left must not render.
+        if (active && isCurrent(payload)) {
+          setTripState({
             payload,
             loading: false,
             refreshing: false,
@@ -155,7 +167,7 @@ function RouteDetail() {
         }
       } catch (error) {
         if (active && error.name !== 'AbortError') {
-          setPredictionState((current) => ({
+          setTripState((current) => ({
             ...current,
             loading: false,
             refreshing: false,
@@ -228,8 +240,12 @@ function RouteDetail() {
         </div>
       )}
 
-      <div className="route-workspace">
-        <details className="stop-selector" open={!stopId}>
+      <div className={`route-workspace ${stopId ? 'route-workspace--trip' : ''}`}>
+        <details
+          className="stop-selector"
+          open={!stopId || pickerOpen}
+          onToggle={(event) => setPickerOpen(event.currentTarget.open)}
+        >
           <summary>
             <span>{stopId ? 'Change direction or stop' : 'Choose your stop'}</span>
             <FiChevronDown aria-hidden="true" />
@@ -270,7 +286,10 @@ function RouteDetail() {
                 id="route-stop"
                 value={stopId}
                 disabled={!direction || stopsLoading}
-                onChange={(event) => setStopId(event.target.value)}
+                onChange={(event) => {
+                  setStopId(event.target.value);
+                  setPickerOpen(false);
+                }}
               >
                 <option value="">
                   {stopsLoading ? 'Loading Centro stops…' : 'Choose a stop'}
@@ -290,16 +309,22 @@ function RouteDetail() {
           </div>
         </details>
 
-        <NextBusCard
-          route={route}
-          stopName={stopName}
-          direction={direction}
-          payload={predictionState.payload}
-          loading={predictionState.loading}
-          refreshing={predictionState.refreshing}
-          error={predictionState.error}
-          onRefresh={() => setRefreshNonce((value) => value + 1)}
-        />
+        {stopId && (
+          <section className="trip-view" aria-label={`Live trip to ${stopName || 'your stop'}`}>
+            <TripMap route={route} trip={tripState.payload} />
+            <TripSheet
+              route={route}
+              trip={tripState.payload}
+              loading={tripState.loading}
+              refreshing={tripState.refreshing}
+              error={tripState.error}
+              expanded={expanded}
+              onToggle={() => setExpanded((value) => !value)}
+              onChangeStop={() => setPickerOpen(true)}
+              onRefresh={() => setRefreshNonce((value) => value + 1)}
+            />
+          </section>
+        )}
       </div>
     </main>
   );
