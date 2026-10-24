@@ -11,7 +11,7 @@ echo "=== Extracting application ==="
 tar xzf "$HOME/centro-deploy.tar.gz" -C "$APP_DIR"
 
 echo "=== Installing Python dependencies ==="
-pip3 install --user -r requirements.txt 2>&1 | tail -5
+pip3 install --user -r api/requirements.txt 2>&1 | tail -5
 
 echo "=== Installing Node dependencies ==="
 npm ci 2>&1 | tail -5
@@ -20,12 +20,12 @@ echo "=== Building frontend ==="
 npm run build 2>&1 | tail -10
 
 echo "=== Stopping existing Flask process ==="
-pkill -f "python.*app.py" || true
+pkill -f "python3? .*(backend/src/main/app.py|app.py|-m api.src.app)" || true
 sleep 2
 
 echo "=== Starting Flask server ==="
-cd "$APP_DIR/backend/src/main"
-nohup python3 app.py > "$APP_DIR/server.log" 2>&1 &
+cd "$APP_DIR"
+nohup python3 -m api.src.app > "$APP_DIR/server.log" 2>&1 &
 FLASK_PID=$!
 echo "Flask PID: $FLASK_PID"
 

@@ -16,6 +16,11 @@ The script builds the frontend, packages everything, copies it to the server,
 installs dependencies, and restarts the Flask server. You'll need the SSH
 password for `vpatel4@pi.cs.oswego.edu`.
 
+The server runs the Flask app in `api/` (`python3 -m api.src.app` from the
+project root, port 5001). It reads `CENTRO_API_KEY` from the environment,
+`api/.env`, or `backend/.env`, in that order. `backend/src/main/app.py` is the
+legacy server and is no longer started.
+
 ## What the app provides
 
 - The current Oswego route catalog from Centro BusTime
