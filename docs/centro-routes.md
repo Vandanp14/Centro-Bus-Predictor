@@ -1,6 +1,6 @@
 # Centro routes reference
 
-Generated 2026-10-24T10:57:56-04:00 from Centro BusTime v3 by `scripts/export_centro_routes.py`. Rerun the script to refresh it.
+Generated 2026-10-24T11:22:44-04:00 from Centro BusTime v3 by `scripts/export_centro_routes.py`. Rerun the script to refresh it.
 
 Routes marked **in app** are the ones Centro Oswego Live shows, chosen for SUNY Oswego students. Full ordered stop lists for those routes follow the table; `docs/centro-routes.json` has the same data with coordinates.
 
@@ -195,64 +195,64 @@ Official schedule: https://www.centro.org/Route-Time-Tables/osw-11
 
 Official schedule: https://www.centro.org/Route-Time-Tables/osw-17
 
-### EASTBOUND — 24 stops (route order)
+### EASTBOUND — 24 stops (alphabetical order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 15521 | SUNY OSWEGO CAMPUS CENTER |
-| 2 | 9679 | Washington Blvd & Baylis St |
-| 3 | 9682 | Washington Blvd & Sheldon Ave |
-| 4 | 9684 | Washington Blvd & Fifth Ave |
-| 5 | 16023 | Washington Blvd & 3rd Ave |
-| 6 | 3505 | W Bridge St & W Seneca St |
-| 7 | 3515 | W Bridge St & John St |
-| 8 | 9686 | W Bridge St & Liberty St |
-| 9 | 3548 | W Bridge St & W 8th St |
-| 10 | 16025 | W Bridge St & W 7th St |
-| 11 | 3553 | W Bridge St & W 6th St |
-| 12 | 3569 | W Bridge St & W 5th St |
-| 13 | 3563 | W Bridge St & W 4th St |
-| 14 | 3581 | W Bridge St & W 2nd St |
-| 15 | 9695 | E Bridge & E 2nd St |
-| 16 | 18253 | E Cayuga St & E 3rd St |
-| 17 | 9726 | E Bridge St & E 6th St |
-| 18 | 9727 | E Bridge St & E 7th St |
-| 19 | 9729 | E Bridge St & E 9th St |
-| 20 | 9731 | Route 104 & E 10th St |
-| 21 | 9735 | Route 104 & E 12th St |
-| 22 | 9736 | Route 104 & E 13th St |
-| 23 | 9737 | Route 104 & George St |
-| 24 | 9614 | Walmart - Oswego |
+| 1 | 9695 | E Bridge & E 2nd St |
+| 2 | 9726 | E Bridge St & E 6th St |
+| 3 | 9727 | E Bridge St & E 7th St |
+| 4 | 9729 | E Bridge St & E 9th St |
+| 5 | 18253 | E Cayuga St & E 3rd St |
+| 6 | 9731 | Route 104 & E 10th St |
+| 7 | 9735 | Route 104 & E 12th St |
+| 8 | 9736 | Route 104 & E 13th St |
+| 9 | 9737 | Route 104 & George St |
+| 10 | 15521 | SUNY OSWEGO CAMPUS CENTER |
+| 11 | 3515 | W Bridge St & John St |
+| 12 | 9686 | W Bridge St & Liberty St |
+| 13 | 3581 | W Bridge St & W 2nd St |
+| 14 | 3563 | W Bridge St & W 4th St |
+| 15 | 3569 | W Bridge St & W 5th St |
+| 16 | 3553 | W Bridge St & W 6th St |
+| 17 | 16025 | W Bridge St & W 7th St |
+| 18 | 3548 | W Bridge St & W 8th St |
+| 19 | 3505 | W Bridge St & W Seneca St |
+| 20 | 9614 | Walmart - Oswego |
+| 21 | 16023 | Washington Blvd & 3rd Ave |
+| 22 | 9679 | Washington Blvd & Baylis St |
+| 23 | 9684 | Washington Blvd & Fifth Ave |
+| 24 | 9682 | Washington Blvd & Sheldon Ave |
 
-### WESTBOUND — 25 stops (alphabetical order)
+### WESTBOUND — 25 stops (route order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 15518 | CENTRO GARAGE OSWEGO |
-| 2 | 15888 | E Bridge St & E 1st St |
-| 3 | 15885 | E Bridge St & E 4th St |
-| 4 | 15883 | E Bridge St & E 6th St |
-| 5 | 15882 | E Bridge St & E 7th St |
+| 1 | 9614 | Walmart - Oswego |
+| 2 | 17808 | Route 104 & George St |
+| 3 | 15873 | Rte 104 & E 13th St |
+| 4 | 15874 | Rte 104 & E 12th St |
+| 5 | 15878 | Rte 104 & E 10th St |
 | 6 | 15880 | E Bridge St & E 9th St |
-| 7 | 18253 | E Cayuga St & E 3rd St |
-| 8 | 15515 | OCO MEDICAL CENTER |
-| 9 | 17808 | Route 104 & George St |
-| 10 | 15878 | Rte 104 & E 10th St |
-| 11 | 15874 | Rte 104 & E 12th St |
-| 12 | 15873 | Rte 104 & E 13th St |
-| 13 | 15521 | SUNY OSWEGO CAMPUS CENTER |
-| 14 | 3518 | W Bridge St & John St |
-| 15 | 3537 | W Bridge St & Liberty St |
-| 16 | 3579 | W Bridge St & W 2nd St |
-| 17 | 3561 | W Bridge St & W 5th St |
-| 18 | 3555 | W Bridge St & W 6th St |
-| 19 | 3557 | W Bridge St & W 7th St |
-| 20 | 3550 | W Bridge St & W 8th St |
-| 21 | 3510 | W Bridge St & W Seneca St |
-| 22 | 9614 | Walmart - Oswego |
-| 23 | 16013 | Washington Blvd & 3rd Ave |
-| 24 | 16019 | Washington Blvd & Baylis St |
-| 25 | 16016 | Washington Blvd & Sheldon Ave |
+| 7 | 15882 | E Bridge St & E 7th St |
+| 8 | 15883 | E Bridge St & E 6th St |
+| 9 | 15885 | E Bridge St & E 4th St |
+| 10 | 18253 | E Cayuga St & E 3rd St |
+| 11 | 15888 | E Bridge St & E 1st St |
+| 12 | 3579 | W Bridge St & W 2nd St |
+| 13 | 3561 | W Bridge St & W 5th St |
+| 14 | 3555 | W Bridge St & W 6th St |
+| 15 | 3557 | W Bridge St & W 7th St |
+| 16 | 3550 | W Bridge St & W 8th St |
+| 17 | 3537 | W Bridge St & Liberty St |
+| 18 | 3518 | W Bridge St & John St |
+| 19 | 3510 | W Bridge St & W Seneca St |
+| 20 | 16013 | Washington Blvd & 3rd Ave |
+| 21 | 16016 | Washington Blvd & Sheldon Ave |
+| 22 | 16019 | Washington Blvd & Baylis St |
+| 23 | 15521 | SUNY OSWEGO CAMPUS CENTER |
+| 24 | 15518 | CENTRO GARAGE OSWEGO |
+| 25 | 15515 | OCO MEDICAL CENTER |
 
 
 ## OSW18 · Sunrise West
@@ -331,84 +331,84 @@ Official schedule: https://www.centro.org/Route-Time-Tables/osw-18
 
 Official schedule: https://www.centro.org/Route-Time-Tables/osw-19
 
-### FROM DOWNTOWN — 33 stops (route order)
-
-| # | Stop ID | Stop |
-| --- | --- | --- |
-| 1 | 18253 | E Cayuga St & E 3rd St |
-| 2 | 9696 | E Bridge St & E 4th St |
-| 3 | 9697 | E 4th St & E Oneida St |
-| 4 | 9698 | E 4th St & E Mohawk St |
-| 5 | 9699 | E 4th St & E Utica St |
-| 6 | 9700 | E Utica St & E 5th St |
-| 7 | 9701 | E Utica St & E 6th St |
-| 8 | 9702 | E Utica St & E 7th St |
-| 9 | 9703 | E 7th St & E Albany St |
-| 10 | 9704 | E 7th St & Lawrence St |
-| 11 | 9705 | E 7th St & Church St |
-| 12 | 9706 | E 7th St & Hamilton St |
-| 13 | 9707 | E 7th St & Bunner St |
-| 14 | 9708 | Bunner St & E 8th St |
-| 15 | 9709 | Bunner St & E 9th St |
-| 16 | 9710 | Bunner St & Robinson St |
-| 17 | 9712 | Bunner St & Cherry St |
-| 18 | 9612 | OSWEGO COUNTY OFFICE COMPLEX |
-| 19 | 15893 | Bunner St & Walnut St |
-| 20 | 9713 | Bunner St & Maple St |
-| 21 | 15987 | East Ave & Magnolia Rd |
-| 22 | 15988 | East Ave & Christopher Circle |
-| 23 | 15989 | East Ave & Talisman Ter |
-| 24 | 15990 | East Ave & City Line Rd |
-| 25 | 15991 | City Line Rd & Skyline Dr |
-| 26 | 15992 | City Line Rd & Birch Ln |
-| 27 | 16004 | Beech Dr & Birch Ln |
-| 28 | 15520 | BRANDONWOOD APARTMENTS OSWEGO |
-| 29 | 18357 | City Line Rd & Butternut Dr |
-| 30 | 18358 | City Line Rd & Carson Dr |
-| 31 | 18360 | City Line Rd & Champlain Commons |
-| 32 | 18359 | City Line Rd & Route 104 |
-| 33 | 9614 | Walmart - Oswego |
-
-### TO DOWNTOWN — 36 stops (alphabetical order)
+### FROM DOWNTOWN — 33 stops (alphabetical order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
 | 1 | 15520 | BRANDONWOOD APARTMENTS OSWEGO |
 | 2 | 16004 | Beech Dr & Birch Ln |
-| 3 | 16005 | Birch Ln & City Line Rd |
-| 4 | 15910 | Bunner St & E 7th St |
-| 5 | 15909 | Bunner St & E 8th St |
-| 6 | 15908 | Bunner St & E 9th St |
-| 7 | 15907 | Bunner St & Robinson St |
-| 8 | 16012 | Bunner St & Walnut St |
-| 9 | 15518 | CENTRO GARAGE OSWEGO |
-| 10 | 18363 | City Line Rd & Butternut Dr |
-| 11 | 18362 | City Line Rd & Carson Dr |
-| 12 | 18361 | City Line Rd & Champlain Commons |
+| 3 | 9712 | Bunner St & Cherry St |
+| 4 | 9708 | Bunner St & E 8th St |
+| 5 | 9709 | Bunner St & E 9th St |
+| 6 | 9713 | Bunner St & Maple St |
+| 7 | 9710 | Bunner St & Robinson St |
+| 8 | 15893 | Bunner St & Walnut St |
+| 9 | 15992 | City Line Rd & Birch Ln |
+| 10 | 18357 | City Line Rd & Butternut Dr |
+| 11 | 18358 | City Line Rd & Carson Dr |
+| 12 | 18360 | City Line Rd & Champlain Commons |
+| 13 | 18359 | City Line Rd & Route 104 |
+| 14 | 15991 | City Line Rd & Skyline Dr |
+| 15 | 9698 | E 4th St & E Mohawk St |
+| 16 | 9697 | E 4th St & E Oneida St |
+| 17 | 9699 | E 4th St & E Utica St |
+| 18 | 9707 | E 7th St & Bunner St |
+| 19 | 9705 | E 7th St & Church St |
+| 20 | 9703 | E 7th St & E Albany St |
+| 21 | 9706 | E 7th St & Hamilton St |
+| 22 | 9704 | E 7th St & Lawrence St |
+| 23 | 9696 | E Bridge St & E 4th St |
+| 24 | 18253 | E Cayuga St & E 3rd St |
+| 25 | 9700 | E Utica St & E 5th St |
+| 26 | 9701 | E Utica St & E 6th St |
+| 27 | 9702 | E Utica St & E 7th St |
+| 28 | 15988 | East Ave & Christopher Circle |
+| 29 | 15990 | East Ave & City Line Rd |
+| 30 | 15987 | East Ave & Magnolia Rd |
+| 31 | 15989 | East Ave & Talisman Ter |
+| 32 | 9612 | OSWEGO COUNTY OFFICE COMPLEX |
+| 33 | 9614 | Walmart - Oswego |
+
+### TO DOWNTOWN — 36 stops (route order)
+
+| # | Stop ID | Stop |
+| --- | --- | --- |
+| 1 | 9614 | Walmart - Oswego |
+| 2 | 15518 | CENTRO GARAGE OSWEGO |
+| 3 | 15515 | OCO MEDICAL CENTER |
+| 4 | 9737 | Route 104 & George St |
+| 5 | 9739 | Route 104 & City Line Rd |
+| 6 | 18361 | City Line Rd & Champlain Commons |
+| 7 | 18362 | City Line Rd & Carson Dr |
+| 8 | 18363 | City Line Rd & Butternut Dr |
+| 9 | 16004 | Beech Dr & Birch Ln |
+| 10 | 15520 | BRANDONWOOD APARTMENTS OSWEGO |
+| 11 | 16005 | Birch Ln & City Line Rd |
+| 12 | 16006 | City Line Rd & Skyline Dr |
 | 13 | 16007 | City Line Rd & East Ave |
-| 14 | 16006 | City Line Rd & Skyline Dr |
-| 15 | 15921 | E 4th St & E Bridge St |
-| 16 | 15919 | E 4th St & E Mohawk St |
-| 17 | 15920 | E 4th St & E Oneida St |
-| 18 | 15912 | E 7th St & Church St |
-| 19 | 15914 | E 7th St & E Albany St |
-| 20 | 15915 | E 7th St & E Utica St |
-| 21 | 15911 | E 7th St & Hamilton St |
-| 22 | 15913 | E 7th St & Lawrence St |
-| 23 | 18253 | E Cayuga St & E 3rd St |
-| 24 | 15918 | E Utica St & E 4th St |
-| 25 | 15917 | E Utica St & E 5th St |
-| 26 | 15916 | E Utica St & E 6th St |
-| 27 | 16009 | East Ave & Christopher Cir |
-| 28 | 16010 | East Ave & Magnolia Rd |
-| 29 | 16008 | East Ave & Talisman Ter |
-| 30 | 15905 | HAMILTON HOMES |
-| 31 | 17962 | Maple St & Bunner St |
-| 32 | 15515 | OCO MEDICAL CENTER |
-| 33 | 9612 | OSWEGO COUNTY OFFICE COMPLEX |
-| 34 | 9739 | Route 104 & City Line Rd |
-| 35 | 9737 | Route 104 & George St |
-| 36 | 9614 | Walmart - Oswego |
+| 14 | 16008 | East Ave & Talisman Ter |
+| 15 | 16009 | East Ave & Christopher Cir |
+| 16 | 16010 | East Ave & Magnolia Rd |
+| 17 | 17962 | Maple St & Bunner St |
+| 18 | 16012 | Bunner St & Walnut St |
+| 19 | 15905 | HAMILTON HOMES |
+| 20 | 9612 | OSWEGO COUNTY OFFICE COMPLEX |
+| 21 | 15907 | Bunner St & Robinson St |
+| 22 | 15908 | Bunner St & E 9th St |
+| 23 | 15909 | Bunner St & E 8th St |
+| 24 | 15910 | Bunner St & E 7th St |
+| 25 | 15911 | E 7th St & Hamilton St |
+| 26 | 15912 | E 7th St & Church St |
+| 27 | 15913 | E 7th St & Lawrence St |
+| 28 | 15914 | E 7th St & E Albany St |
+| 29 | 15915 | E 7th St & E Utica St |
+| 30 | 15916 | E Utica St & E 6th St |
+| 31 | 15917 | E Utica St & E 5th St |
+| 32 | 15918 | E Utica St & E 4th St |
+| 33 | 15919 | E 4th St & E Mohawk St |
+| 34 | 15920 | E 4th St & E Oneida St |
+| 35 | 15921 | E 4th St & E Bridge St |
+| 36 | 18253 | E Cayuga St & E 3rd St |
 
 
 ## OSW46 · Oswego - Syracuse
@@ -974,45 +974,45 @@ Official schedule: https://www.centro.org/Route-Time-Tables/ful-4
 
 Official schedule: https://www.centro.org/Route-Time-Tables/ful-5
 
-### FROM TOWPATH — 16 stops (route order)
+### FROM TOWPATH — 16 stops (alphabetical order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 9671 | TOWPATH TOWERS - FULTON |
-| 2 | 17112 | Oneida St & W 1st St |
-| 3 | 15542 | PRICE CHOPPER - FULTON |
-| 4 | 15771 | W 1st St S & Hart St |
-| 5 | 15772 | W 1st St S & Phillips St |
-| 6 | 15743 | W 1ST ST S + KELLOGG ST |
-| 7 | 18551 | W Broadway and W 2nd |
-| 8 | 15547 | Fulton Mills Apts & W 1st St S |
-| 9 | 15642 | W BROADWAY + W 5TH ST S |
-| 10 | 15644 | W BROADWAY + W 6TH ST S |
-| 11 | 15646 | W BROADWAY + LAKEVIEW AVE |
-| 12 | 18049 | Bullhead Point Pavilion |
-| 13 | 15544 | Fulton Commons |
-| 14 | 15721 | CHATEAU WEST APARTMENTS |
-| 15 | 15722 | W 11TH ST + HANNIBAL ST |
+| 1 | 18049 | Bullhead Point Pavilion |
+| 2 | 15721 | CHATEAU WEST APARTMENTS |
+| 3 | 15544 | Fulton Commons |
+| 4 | 15547 | Fulton Mills Apts & W 1st St S |
+| 5 | 17112 | Oneida St & W 1st St |
+| 6 | 15542 | PRICE CHOPPER - FULTON |
+| 7 | 9671 | TOWPATH TOWERS - FULTON |
+| 8 | 15722 | W 11TH ST + HANNIBAL ST |
+| 9 | 15743 | W 1ST ST S + KELLOGG ST |
+| 10 | 15771 | W 1st St S & Hart St |
+| 11 | 15772 | W 1st St S & Phillips St |
+| 12 | 15646 | W BROADWAY + LAKEVIEW AVE |
+| 13 | 15642 | W BROADWAY + W 5TH ST S |
+| 14 | 15644 | W BROADWAY + W 6TH ST S |
+| 15 | 18551 | W Broadway and W 2nd |
 | 16 | 16307 | Walmart - Fulton |
 
-### TO TOWPATH — 14 stops (alphabetical order)
+### TO TOWPATH — 14 stops (route order)
 
 | # | Stop ID | Stop |
 | --- | --- | --- |
-| 1 | 18552 | Broadway and 2nd |
-| 2 | 18050 | Bullhead Point Pavilion |
-| 3 | 15708 | CHATEAU WEST APARTMENTS |
-| 4 | 15544 | Fulton Commons |
-| 5 | 15547 | Fulton Mills Apts & W 1st St S |
-| 6 | 15695 | GANSVOORT ST + W 1ST ST S |
-| 7 | 17967 | PRICE CHOPPER-FULTON |
-| 8 | 15540 | TOWPATH TOWERS - FULTON |
-| 9 | 15683 | W 1ST ST S + AUSTIN AVE |
-| 10 | 15770 | W 1st St S & Schuyler St |
-| 11 | 15647 | W BROADWAY + PHILLIPS ST |
-| 12 | 15716 | W BROADWAY + W 4TH ST S |
-| 13 | 15714 | W BROADWAY + W 6TH ST S |
-| 14 | 16307 | Walmart - Fulton |
+| 1 | 16307 | Walmart - Fulton |
+| 2 | 15708 | CHATEAU WEST APARTMENTS |
+| 3 | 15544 | Fulton Commons |
+| 4 | 15647 | W BROADWAY + PHILLIPS ST |
+| 5 | 18050 | Bullhead Point Pavilion |
+| 6 | 15714 | W BROADWAY + W 6TH ST S |
+| 7 | 15716 | W BROADWAY + W 4TH ST S |
+| 8 | 18552 | Broadway and 2nd |
+| 9 | 15547 | Fulton Mills Apts & W 1st St S |
+| 10 | 15683 | W 1ST ST S + AUSTIN AVE |
+| 11 | 15770 | W 1st St S & Schuyler St |
+| 12 | 17967 | PRICE CHOPPER-FULTON |
+| 13 | 15695 | GANSVOORT ST + W 1ST ST S |
+| 14 | 15540 | TOWPATH TOWERS - FULTON |
 
 
 ## SY46 · Liverpool - Route 57

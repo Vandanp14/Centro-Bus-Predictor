@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T10:57:56-04:00",
+  "generatedAt": "2026-10-24T11:22:44-04:00",
   "routes": [
     {
       "id": "AUB1",
@@ -81,13 +81,13 @@
         {
           "id": "FROM AUBURN",
           "stopCount": 152,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         },
         {
           "id": "TO AUBURN",
           "stopCount": 139,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         }
       ],
@@ -1469,13 +1469,31 @@
         {
           "id": "FROM TOWPATH",
           "stopCount": 16,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": [
             {
-              "id": "9671",
-              "name": "TOWPATH TOWERS - FULTON",
-              "lat": 43.322297,
-              "lng": -76.416873000001
+              "id": "18049",
+              "name": "Bullhead Point Pavilion",
+              "lat": 43.314855,
+              "lng": -76.429057
+            },
+            {
+              "id": "15721",
+              "name": "CHATEAU WEST APARTMENTS",
+              "lat": 43.323323000001,
+              "lng": -76.436805
+            },
+            {
+              "id": "15544",
+              "name": "Fulton Commons",
+              "lat": 43.320415999999,
+              "lng": -76.435973000001
+            },
+            {
+              "id": "15547",
+              "name": "Fulton Mills Apts & W 1st St S",
+              "lat": 43.317018000001,
+              "lng": -76.418854999998
             },
             {
               "id": "17112",
@@ -1490,6 +1508,24 @@
               "lng": -76.424184999998
             },
             {
+              "id": "9671",
+              "name": "TOWPATH TOWERS - FULTON",
+              "lat": 43.322297,
+              "lng": -76.416873000001
+            },
+            {
+              "id": "15722",
+              "name": "W 11TH ST + HANNIBAL ST",
+              "lat": 43.325944999999,
+              "lng": -76.436947999999
+            },
+            {
+              "id": "15743",
+              "name": "W 1ST ST S + KELLOGG ST",
+              "lat": 43.319801999999,
+              "lng": -76.420537000002
+            },
+            {
               "id": "15771",
               "name": "W 1st St S & Hart St",
               "lat": 43.322090000001,
@@ -1502,22 +1538,10 @@
               "lng": -76.421308000002
             },
             {
-              "id": "15743",
-              "name": "W 1ST ST S + KELLOGG ST",
-              "lat": 43.319801999999,
-              "lng": -76.420537000002
-            },
-            {
-              "id": "18551",
-              "name": "W Broadway and W 2nd",
-              "lat": 43.315682999999,
-              "lng": -76.419570000002
-            },
-            {
-              "id": "15547",
-              "name": "Fulton Mills Apts & W 1st St S",
-              "lat": 43.317018000001,
-              "lng": -76.418854999998
+              "id": "15646",
+              "name": "W BROADWAY + LAKEVIEW AVE",
+              "lat": 43.313968,
+              "lng": -76.426235000002
             },
             {
               "id": "15642",
@@ -1532,34 +1556,10 @@
               "lng": -76.424097000002
             },
             {
-              "id": "15646",
-              "name": "W BROADWAY + LAKEVIEW AVE",
-              "lat": 43.313968,
-              "lng": -76.426235000002
-            },
-            {
-              "id": "18049",
-              "name": "Bullhead Point Pavilion",
-              "lat": 43.314855,
-              "lng": -76.429057
-            },
-            {
-              "id": "15544",
-              "name": "Fulton Commons",
-              "lat": 43.320415999999,
-              "lng": -76.435973000001
-            },
-            {
-              "id": "15721",
-              "name": "CHATEAU WEST APARTMENTS",
-              "lat": 43.323323000001,
-              "lng": -76.436805
-            },
-            {
-              "id": "15722",
-              "name": "W 11TH ST + HANNIBAL ST",
-              "lat": 43.325944999999,
-              "lng": -76.436947999999
+              "id": "18551",
+              "name": "W Broadway and W 2nd",
+              "lat": 43.315682999999,
+              "lng": -76.419570000002
             },
             {
               "id": "16307",
@@ -1572,19 +1572,13 @@
         {
           "id": "TO TOWPATH",
           "stopCount": 14,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": [
             {
-              "id": "18552",
-              "name": "Broadway and 2nd",
-              "lat": 43.315691999999,
-              "lng": -76.419582000001
-            },
-            {
-              "id": "18050",
-              "name": "Bullhead Point Pavilion",
-              "lat": 43.314792,
-              "lng": -76.429105999998
+              "id": "16307",
+              "name": "Walmart - Fulton",
+              "lat": 43.323810999999,
+              "lng": -76.447925999999
             },
             {
               "id": "15708",
@@ -1599,28 +1593,40 @@
               "lng": -76.435973000001
             },
             {
+              "id": "15647",
+              "name": "W BROADWAY + PHILLIPS ST",
+              "lat": 43.317577,
+              "lng": -76.434270000001
+            },
+            {
+              "id": "18050",
+              "name": "Bullhead Point Pavilion",
+              "lat": 43.314792,
+              "lng": -76.429105999998
+            },
+            {
+              "id": "15714",
+              "name": "W BROADWAY + W 6TH ST S",
+              "lat": 43.314142999999,
+              "lng": -76.424351999998
+            },
+            {
+              "id": "15716",
+              "name": "W BROADWAY + W 4TH ST S",
+              "lat": 43.31493,
+              "lng": -76.42192
+            },
+            {
+              "id": "18552",
+              "name": "Broadway and 2nd",
+              "lat": 43.315691999999,
+              "lng": -76.419582000001
+            },
+            {
               "id": "15547",
               "name": "Fulton Mills Apts & W 1st St S",
               "lat": 43.317018000001,
               "lng": -76.418854999998
-            },
-            {
-              "id": "15695",
-              "name": "GANSVOORT ST + W 1ST ST S",
-              "lat": 43.32438,
-              "lng": -76.423533
-            },
-            {
-              "id": "17967",
-              "name": "PRICE CHOPPER-FULTON",
-              "lat": 43.323263000001,
-              "lng": -76.423999999998
-            },
-            {
-              "id": "15540",
-              "name": "TOWPATH TOWERS - FULTON",
-              "lat": 43.322345,
-              "lng": -76.416922
             },
             {
               "id": "15683",
@@ -1635,33 +1641,808 @@
               "lng": -76.422636000001
             },
             {
-              "id": "15647",
-              "name": "W BROADWAY + PHILLIPS ST",
-              "lat": 43.317577,
-              "lng": -76.434270000001
+              "id": "17967",
+              "name": "PRICE CHOPPER-FULTON",
+              "lat": 43.323263000001,
+              "lng": -76.423999999998
             },
             {
-              "id": "15716",
-              "name": "W BROADWAY + W 4TH ST S",
-              "lat": 43.31493,
-              "lng": -76.42192
+              "id": "15695",
+              "name": "GANSVOORT ST + W 1ST ST S",
+              "lat": 43.32438,
+              "lng": -76.423533
             },
             {
-              "id": "15714",
-              "name": "W BROADWAY + W 6TH ST S",
-              "lat": 43.314142999999,
-              "lng": -76.424351999998
-            },
-            {
-              "id": "16307",
-              "name": "Walmart - Fulton",
-              "lat": 43.323810999999,
-              "lng": -76.447925999999
+              "id": "15540",
+              "name": "TOWPATH TOWERS - FULTON",
+              "lat": 43.322345,
+              "lng": -76.416922
             }
           ]
         }
       ],
       "patterns": [
+        {
+          "pid": 9754,
+          "rtdir": "TO TOWPATH",
+          "ln": 19970.0,
+          "pt": [
+            {
+              "seq": 1,
+              "typ": "S",
+              "stpid": "16307",
+              "stpnm": "Walmart - Fulton",
+              "pdist": 0.0,
+              "lat": 43.323810999999,
+              "lon": -76.447925999999
+            },
+            {
+              "seq": 2,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32378,
+              "lon": -76.44786
+            },
+            {
+              "seq": 3,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32277,
+              "lon": -76.4478
+            },
+            {
+              "seq": 4,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3228,
+              "lon": -76.44624
+            },
+            {
+              "seq": 5,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32286,
+              "lon": -76.44588
+            },
+            {
+              "seq": 6,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32288,
+              "lon": -76.44588
+            },
+            {
+              "seq": 7,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32289,
+              "lon": -76.44587
+            },
+            {
+              "seq": 8,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32376,
+              "lon": -76.4459
+            },
+            {
+              "seq": 9,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32375,
+              "lon": -76.44557
+            },
+            {
+              "seq": 10,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32379,
+              "lon": -76.44519
+            },
+            {
+              "seq": 11,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32386,
+              "lon": -76.44494
+            },
+            {
+              "seq": 12,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32398,
+              "lon": -76.4447
+            },
+            {
+              "seq": 13,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3245,
+              "lon": -76.44404
+            },
+            {
+              "seq": 14,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3259,
+              "lon": -76.44598
+            },
+            {
+              "seq": 15,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32596,
+              "lon": -76.44562
+            },
+            {
+              "seq": 16,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32584,
+              "lon": -76.44445
+            },
+            {
+              "seq": 17,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.326,
+              "lon": -76.437
+            },
+            {
+              "seq": 18,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3233,
+              "lon": -76.43685
+            },
+            {
+              "seq": 19,
+              "typ": "S",
+              "stpid": "15708",
+              "stpnm": "CHATEAU WEST APARTMENTS",
+              "pdist": 5920.0,
+              "lat": 43.323299,
+              "lon": -76.43691
+            },
+            {
+              "seq": 20,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3233,
+              "lon": -76.43685
+            },
+            {
+              "seq": 21,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32251,
+              "lon": -76.4368
+            },
+            {
+              "seq": 22,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32173,
+              "lon": -76.43683
+            },
+            {
+              "seq": 23,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32145,
+              "lon": -76.43687
+            },
+            {
+              "seq": 24,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32132,
+              "lon": -76.43694
+            },
+            {
+              "seq": 25,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32119,
+              "lon": -76.43711
+            },
+            {
+              "seq": 26,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32048,
+              "lon": -76.436105
+            },
+            {
+              "seq": 27,
+              "typ": "S",
+              "stpid": "15544",
+              "stpnm": "Fulton Commons",
+              "pdist": 7129.0,
+              "lat": 43.320415999999,
+              "lon": -76.435973000001
+            },
+            {
+              "seq": 28,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3204,
+              "lon": -76.43599
+            },
+            {
+              "seq": 29,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32011,
+              "lon": -76.4356
+            },
+            {
+              "seq": 30,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32012,
+              "lon": -76.43564
+            },
+            {
+              "seq": 31,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32007,
+              "lon": -76.43563
+            },
+            {
+              "seq": 32,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32007,
+              "lon": -76.43564
+            },
+            {
+              "seq": 33,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31923,
+              "lon": -76.4367
+            },
+            {
+              "seq": 34,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31754,
+              "lon": -76.43431
+            },
+            {
+              "seq": 35,
+              "typ": "S",
+              "stpid": "15647",
+              "stpnm": "W BROADWAY + PHILLIPS ST",
+              "pdist": 8607.0,
+              "lat": 43.317577,
+              "lon": -76.434270000001
+            },
+            {
+              "seq": 36,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31754,
+              "lon": -76.43431
+            },
+            {
+              "seq": 37,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31718,
+              "lon": -76.4338
+            },
+            {
+              "seq": 38,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31657,
+              "lon": -76.43271
+            },
+            {
+              "seq": 39,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31483,
+              "lon": -76.42907
+            },
+            {
+              "seq": 40,
+              "typ": "S",
+              "stpid": "18050",
+              "stpnm": "Bullhead Point Pavilion",
+              "pdist": 10321.0,
+              "lat": 43.314792,
+              "lon": -76.429105999998
+            },
+            {
+              "seq": 41,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31483,
+              "lon": -76.42907
+            },
+            {
+              "seq": 42,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31429,
+              "lon": -76.42792
+            },
+            {
+              "seq": 43,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31408,
+              "lon": -76.42731
+            },
+            {
+              "seq": 44,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31399,
+              "lon": -76.42688
+            },
+            {
+              "seq": 45,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31398,
+              "lon": -76.42688
+            },
+            {
+              "seq": 46,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31392,
+              "lon": -76.42642
+            },
+            {
+              "seq": 47,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3139,
+              "lon": -76.42572
+            },
+            {
+              "seq": 48,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31402,
+              "lon": -76.42484
+            },
+            {
+              "seq": 49,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31415,
+              "lon": -76.42436
+            },
+            {
+              "seq": 50,
+              "typ": "S",
+              "stpid": "15714",
+              "stpnm": "W BROADWAY + W 6TH ST S",
+              "pdist": 11670.0,
+              "lat": 43.314142999999,
+              "lon": -76.424351999998
+            },
+            {
+              "seq": 51,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31415,
+              "lon": -76.42436
+            },
+            {
+              "seq": 52,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31494,
+              "lon": -76.42193
+            },
+            {
+              "seq": 53,
+              "typ": "S",
+              "stpid": "15716",
+              "stpnm": "W BROADWAY + W 4TH ST S",
+              "pdist": 12372.0,
+              "lat": 43.31493,
+              "lon": -76.42192
+            },
+            {
+              "seq": 54,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31494,
+              "lon": -76.42193
+            },
+            {
+              "seq": 55,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31571,
+              "lon": -76.41959
+            },
+            {
+              "seq": 56,
+              "typ": "S",
+              "stpid": "18552",
+              "stpnm": "Broadway and 2nd",
+              "pdist": 13053.0,
+              "lat": 43.315691999999,
+              "lon": -76.419582000001
+            },
+            {
+              "seq": 57,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31571,
+              "lon": -76.41959
+            },
+            {
+              "seq": 58,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.3159,
+              "lon": -76.41901
+            },
+            {
+              "seq": 59,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31593,
+              "lon": -76.41877
+            },
+            {
+              "seq": 60,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31607,
+              "lon": -76.41832
+            },
+            {
+              "seq": 61,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31701,
+              "lon": -76.41889
+            },
+            {
+              "seq": 62,
+              "typ": "S",
+              "stpid": "15547",
+              "stpnm": "Fulton Mills Apts & W 1st St S",
+              "pdist": 13786.0,
+              "lat": 43.317018000001,
+              "lon": -76.418854999998
+            },
+            {
+              "seq": 63,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.31701,
+              "lon": -76.41889
+            },
+            {
+              "seq": 64,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32076,
+              "lon": -76.42116
+            },
+            {
+              "seq": 65,
+              "typ": "S",
+              "stpid": "15683",
+              "stpnm": "W 1ST ST S + AUSTIN AVE",
+              "pdist": 15286.0,
+              "lat": 43.320786000001,
+              "lon": -76.421101999999
+            },
+            {
+              "seq": 66,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32076,
+              "lon": -76.42116
+            },
+            {
+              "seq": 67,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32216,
+              "lon": -76.42202
+            },
+            {
+              "seq": 68,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.323055,
+              "lon": -76.422501
+            },
+            {
+              "seq": 69,
+              "typ": "S",
+              "stpid": "15770",
+              "stpnm": "W 1st St S & Schuyler St",
+              "pdist": 16240.0,
+              "lat": 43.323131,
+              "lon": -76.422636000001
+            },
+            {
+              "seq": 70,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32313,
+              "lon": -76.42264
+            },
+            {
+              "seq": 71,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32302,
+              "lon": -76.42257
+            },
+            {
+              "seq": 72,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32297,
+              "lon": -76.42407
+            },
+            {
+              "seq": 73,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.323229,
+              "lon": -76.424093
+            },
+            {
+              "seq": 74,
+              "typ": "S",
+              "stpid": "17967",
+              "stpnm": "PRICE CHOPPER-FULTON",
+              "pdist": 16803.0,
+              "lat": 43.323263000001,
+              "lon": -76.423999999998
+            },
+            {
+              "seq": 75,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.323263,
+              "lon": -76.424094
+            },
+            {
+              "seq": 76,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.324328,
+              "lon": -76.424207
+            },
+            {
+              "seq": 77,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.324292,
+              "lon": -76.423789
+            },
+            {
+              "seq": 78,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.324316,
+              "lon": -76.423596
+            },
+            {
+              "seq": 79,
+              "typ": "S",
+              "stpid": "15695",
+              "stpnm": "GANSVOORT ST + W 1ST ST S",
+              "pdist": 17410.0,
+              "lat": 43.32438,
+              "lon": -76.423533
+            },
+            {
+              "seq": 80,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.324347,
+              "lon": -76.423467
+            },
+            {
+              "seq": 81,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32466,
+              "lon": -76.42238
+            },
+            {
+              "seq": 82,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32477,
+              "lon": -76.42179
+            },
+            {
+              "seq": 83,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32498,
+              "lon": -76.41768
+            },
+            {
+              "seq": 84,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32423,
+              "lon": -76.41775
+            },
+            {
+              "seq": 85,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.32237,
+              "lon": -76.41695
+            },
+            {
+              "seq": 86,
+              "typ": "S",
+              "stpid": "15540",
+              "stpnm": "TOWPATH TOWERS - FULTON",
+              "pdist": 19970.0,
+              "lat": 43.322345,
+              "lon": -76.416922
+            }
+          ]
+        },
         {
           "pid": 9772,
           "rtdir": "FROM TOWPATH",
@@ -13833,103 +14614,13 @@
         {
           "id": "EASTBOUND",
           "stopCount": 24,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": [
-            {
-              "id": "15521",
-              "name": "SUNY OSWEGO CAMPUS CENTER",
-              "lat": 43.453952,
-              "lng": -76.540263
-            },
-            {
-              "id": "9679",
-              "name": "Washington Blvd & Baylis St",
-              "lat": 43.453507,
-              "lng": -76.53787
-            },
-            {
-              "id": "9682",
-              "name": "Washington Blvd & Sheldon Ave",
-              "lat": 43.453640000001,
-              "lng": -76.534900999999
-            },
-            {
-              "id": "9684",
-              "name": "Washington Blvd & Fifth Ave",
-              "lat": 43.45373,
-              "lng": -76.532673
-            },
-            {
-              "id": "16023",
-              "name": "Washington Blvd & 3rd Ave",
-              "lat": 43.453807999999,
-              "lng": -76.530282000001
-            },
-            {
-              "id": "3505",
-              "name": "W Bridge St & W Seneca St",
-              "lat": 43.453848000001,
-              "lng": -76.527133000001
-            },
-            {
-              "id": "3515",
-              "name": "W Bridge St & John St",
-              "lat": 43.453945,
-              "lng": -76.524257000001
-            },
-            {
-              "id": "9686",
-              "name": "W Bridge St & Liberty St",
-              "lat": 43.453991999999,
-              "lng": -76.522738
-            },
-            {
-              "id": "3548",
-              "name": "W Bridge St & W 8th St",
-              "lat": 43.454333,
-              "lng": -76.518692999999
-            },
-            {
-              "id": "16025",
-              "name": "W Bridge St & W 7th St",
-              "lat": 43.454643,
-              "lng": -76.517653000001
-            },
-            {
-              "id": "3553",
-              "name": "W Bridge St & W 6th St",
-              "lat": 43.454962000001,
-              "lng": -76.516620000001
-            },
-            {
-              "id": "3569",
-              "name": "W Bridge St & W 5th St",
-              "lat": 43.455272,
-              "lng": -76.515563000001
-            },
-            {
-              "id": "3563",
-              "name": "W Bridge St & W 4th St",
-              "lat": 43.455573,
-              "lng": -76.514537000001
-            },
-            {
-              "id": "3581",
-              "name": "W Bridge St & W 2nd St",
-              "lat": 43.456214,
-              "lng": -76.512293999999
-            },
             {
               "id": "9695",
               "name": "E Bridge & E 2nd St",
               "lat": 43.457807000001,
               "lng": -76.506820000001
-            },
-            {
-              "id": "18253",
-              "name": "E Cayuga St & E 3rd St",
-              "lat": 43.459164999999,
-              "lng": -76.506098000001
             },
             {
               "id": "9726",
@@ -13948,6 +14639,12 @@
               "name": "E Bridge St & E 9th St",
               "lat": 43.460008,
               "lng": -76.499452999999
+            },
+            {
+              "id": "18253",
+              "name": "E Cayuga St & E 3rd St",
+              "lat": 43.459164999999,
+              "lng": -76.506098000001
             },
             {
               "id": "9731",
@@ -13974,65 +14671,107 @@
               "lng": -76.484702
             },
             {
+              "id": "15521",
+              "name": "SUNY OSWEGO CAMPUS CENTER",
+              "lat": 43.453952,
+              "lng": -76.540263
+            },
+            {
+              "id": "3515",
+              "name": "W Bridge St & John St",
+              "lat": 43.453945,
+              "lng": -76.524257000001
+            },
+            {
+              "id": "9686",
+              "name": "W Bridge St & Liberty St",
+              "lat": 43.453991999999,
+              "lng": -76.522738
+            },
+            {
+              "id": "3581",
+              "name": "W Bridge St & W 2nd St",
+              "lat": 43.456214,
+              "lng": -76.512293999999
+            },
+            {
+              "id": "3563",
+              "name": "W Bridge St & W 4th St",
+              "lat": 43.455573,
+              "lng": -76.514537000001
+            },
+            {
+              "id": "3569",
+              "name": "W Bridge St & W 5th St",
+              "lat": 43.455272,
+              "lng": -76.515563000001
+            },
+            {
+              "id": "3553",
+              "name": "W Bridge St & W 6th St",
+              "lat": 43.454962000001,
+              "lng": -76.516620000001
+            },
+            {
+              "id": "16025",
+              "name": "W Bridge St & W 7th St",
+              "lat": 43.454643,
+              "lng": -76.517653000001
+            },
+            {
+              "id": "3548",
+              "name": "W Bridge St & W 8th St",
+              "lat": 43.454333,
+              "lng": -76.518692999999
+            },
+            {
+              "id": "3505",
+              "name": "W Bridge St & W Seneca St",
+              "lat": 43.453848000001,
+              "lng": -76.527133000001
+            },
+            {
               "id": "9614",
               "name": "Walmart - Oswego",
               "lat": 43.464189000001,
               "lng": -76.477947
+            },
+            {
+              "id": "16023",
+              "name": "Washington Blvd & 3rd Ave",
+              "lat": 43.453807999999,
+              "lng": -76.530282000001
+            },
+            {
+              "id": "9679",
+              "name": "Washington Blvd & Baylis St",
+              "lat": 43.453507,
+              "lng": -76.53787
+            },
+            {
+              "id": "9684",
+              "name": "Washington Blvd & Fifth Ave",
+              "lat": 43.45373,
+              "lng": -76.532673
+            },
+            {
+              "id": "9682",
+              "name": "Washington Blvd & Sheldon Ave",
+              "lat": 43.453640000001,
+              "lng": -76.534900999999
             }
           ]
         },
         {
           "id": "WESTBOUND",
           "stopCount": 25,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": [
             {
-              "id": "15518",
-              "name": "CENTRO GARAGE OSWEGO",
-              "lat": 43.467787999999,
-              "lng": -76.483184999999
-            },
-            {
-              "id": "15888",
-              "name": "E Bridge St & E 1st St",
-              "lat": 43.457603000001,
-              "lng": -76.507756000001
-            },
-            {
-              "id": "15885",
-              "name": "E Bridge St & E 4th St",
-              "lat": 43.458673,
-              "lng": -76.504460000001
-            },
-            {
-              "id": "15883",
-              "name": "E Bridge St & E 6th St",
-              "lat": 43.459292999999,
-              "lng": -76.502347000001
-            },
-            {
-              "id": "15882",
-              "name": "E Bridge St & E 7th St",
-              "lat": 43.459594999999,
-              "lng": -76.501321999999
-            },
-            {
-              "id": "15880",
-              "name": "E Bridge St & E 9th St",
-              "lat": 43.460189999999,
-              "lng": -76.499207000001
-            },
-            {
-              "id": "18253",
-              "name": "E Cayuga St & E 3rd St",
-              "lat": 43.459164999999,
-              "lng": -76.506098000001
-            },
-            {
-              "id": "15515",
-              "name": "OCO MEDICAL CENTER",
-              "lat": 43.466722999999,
-              "lng": -76.485076999999
+              "id": "9614",
+              "name": "Walmart - Oswego",
+              "lat": 43.464189000001,
+              "lng": -76.477947
             },
             {
               "id": "17808",
@@ -14041,10 +14780,10 @@
               "lng": -76.485037
             },
             {
-              "id": "15878",
-              "name": "Rte 104 & E 10th St",
-              "lat": 43.460463000001,
-              "lng": -76.497076999999
+              "id": "15873",
+              "name": "Rte 104 & E 13th St",
+              "lat": 43.460675,
+              "lng": -76.489583000001
             },
             {
               "id": "15874",
@@ -14053,28 +14792,46 @@
               "lng": -76.492095000001
             },
             {
-              "id": "15873",
-              "name": "Rte 104 & E 13th St",
-              "lat": 43.460675,
-              "lng": -76.489583000001
+              "id": "15878",
+              "name": "Rte 104 & E 10th St",
+              "lat": 43.460463000001,
+              "lng": -76.497076999999
             },
             {
-              "id": "15521",
-              "name": "SUNY OSWEGO CAMPUS CENTER",
-              "lat": 43.453952,
-              "lng": -76.540263
+              "id": "15880",
+              "name": "E Bridge St & E 9th St",
+              "lat": 43.460189999999,
+              "lng": -76.499207000001
             },
             {
-              "id": "3518",
-              "name": "W Bridge St & John St",
-              "lat": 43.454094999999,
-              "lng": -76.524067
+              "id": "15882",
+              "name": "E Bridge St & E 7th St",
+              "lat": 43.459594999999,
+              "lng": -76.501321999999
             },
             {
-              "id": "3537",
-              "name": "W Bridge St & Liberty St",
-              "lat": 43.454070000001,
-              "lng": -76.522539000002
+              "id": "15883",
+              "name": "E Bridge St & E 6th St",
+              "lat": 43.459292999999,
+              "lng": -76.502347000001
+            },
+            {
+              "id": "15885",
+              "name": "E Bridge St & E 4th St",
+              "lat": 43.458673,
+              "lng": -76.504460000001
+            },
+            {
+              "id": "18253",
+              "name": "E Cayuga St & E 3rd St",
+              "lat": 43.459164999999,
+              "lng": -76.506098000001
+            },
+            {
+              "id": "15888",
+              "name": "E Bridge St & E 1st St",
+              "lat": 43.457603000001,
+              "lng": -76.507756000001
             },
             {
               "id": "3579",
@@ -14107,16 +14864,22 @@
               "lng": -76.51844
             },
             {
+              "id": "3537",
+              "name": "W Bridge St & Liberty St",
+              "lat": 43.454070000001,
+              "lng": -76.522539000002
+            },
+            {
+              "id": "3518",
+              "name": "W Bridge St & John St",
+              "lat": 43.454094999999,
+              "lng": -76.524067
+            },
+            {
               "id": "3510",
               "name": "W Bridge St & W Seneca St",
               "lat": 43.454015,
               "lng": -76.526474999999
-            },
-            {
-              "id": "9614",
-              "name": "Walmart - Oswego",
-              "lat": 43.464189000001,
-              "lng": -76.477947
             },
             {
               "id": "16013",
@@ -14125,21 +14888,982 @@
               "lng": -76.529962999999
             },
             {
+              "id": "16016",
+              "name": "Washington Blvd & Sheldon Ave",
+              "lat": 43.453668000001,
+              "lng": -76.534751999999
+            },
+            {
               "id": "16019",
               "name": "Washington Blvd & Baylis St",
               "lat": 43.453642000001,
               "lng": -76.537593000001
             },
             {
-              "id": "16016",
-              "name": "Washington Blvd & Sheldon Ave",
-              "lat": 43.453668000001,
-              "lng": -76.534751999999
+              "id": "15521",
+              "name": "SUNY OSWEGO CAMPUS CENTER",
+              "lat": 43.453952,
+              "lng": -76.540263
+            },
+            {
+              "id": "15518",
+              "name": "CENTRO GARAGE OSWEGO",
+              "lat": 43.467787999999,
+              "lng": -76.483184999999
+            },
+            {
+              "id": "15515",
+              "name": "OCO MEDICAL CENTER",
+              "lat": 43.466722999999,
+              "lng": -76.485076999999
             }
           ]
         }
       ],
       "patterns": [
+        {
+          "pid": 9757,
+          "rtdir": "WESTBOUND",
+          "ln": 19036.0,
+          "pt": [
+            {
+              "seq": 1,
+              "typ": "S",
+              "stpid": "9614",
+              "stpnm": "Walmart - Oswego",
+              "pdist": 0.0,
+              "lat": 43.464189000001,
+              "lon": -76.477947
+            },
+            {
+              "seq": 2,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46416,
+              "lon": -76.47793
+            },
+            {
+              "seq": 3,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.463513,
+              "lon": -76.479507
+            },
+            {
+              "seq": 4,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.462778,
+              "lon": -76.478959
+            },
+            {
+              "seq": 5,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.462696,
+              "lon": -76.47904
+            },
+            {
+              "seq": 6,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46247,
+              "lon": -76.47964
+            },
+            {
+              "seq": 7,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46181,
+              "lon": -76.4792
+            },
+            {
+              "seq": 8,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46094,
+              "lon": -76.48503
+            },
+            {
+              "seq": 9,
+              "typ": "S",
+              "stpid": "17808",
+              "stpnm": "Route 104 & George St",
+              "pdist": 2847.0,
+              "lat": 43.460925,
+              "lon": -76.485037
+            },
+            {
+              "seq": 10,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46094,
+              "lon": -76.48503
+            },
+            {
+              "seq": 11,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46081,
+              "lon": -76.48697
+            },
+            {
+              "seq": 12,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46082,
+              "lon": -76.48715
+            },
+            {
+              "seq": 13,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46065,
+              "lon": -76.48958
+            },
+            {
+              "seq": 14,
+              "typ": "S",
+              "stpid": "15873",
+              "stpnm": "Rte 104 & E 13th St",
+              "pdist": 4058.0,
+              "lat": 43.460675,
+              "lon": -76.489583000001
+            },
+            {
+              "seq": 15,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46065,
+              "lon": -76.48958
+            },
+            {
+              "seq": 16,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46056,
+              "lon": -76.49188
+            },
+            {
+              "seq": 17,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46056,
+              "lon": -76.4921
+            },
+            {
+              "seq": 18,
+              "typ": "S",
+              "stpid": "15874",
+              "stpnm": "Rte 104 & E 12th St",
+              "pdist": 4728.0,
+              "lat": 43.460572000001,
+              "lon": -76.492095000001
+            },
+            {
+              "seq": 19,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46056,
+              "lon": -76.4921
+            },
+            {
+              "seq": 20,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46056,
+              "lon": -76.4924
+            },
+            {
+              "seq": 21,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46052,
+              "lon": -76.49249
+            },
+            {
+              "seq": 22,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46051,
+              "lon": -76.49302
+            },
+            {
+              "seq": 23,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46051,
+              "lon": -76.49352
+            },
+            {
+              "seq": 24,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4605,
+              "lon": -76.49361
+            },
+            {
+              "seq": 25,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4605,
+              "lon": -76.49466
+            },
+            {
+              "seq": 26,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46048,
+              "lon": -76.49589
+            },
+            {
+              "seq": 27,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46048,
+              "lon": -76.49639
+            },
+            {
+              "seq": 28,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46047,
+              "lon": -76.49664
+            },
+            {
+              "seq": 29,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46047,
+              "lon": -76.49709
+            },
+            {
+              "seq": 30,
+              "typ": "S",
+              "stpid": "15878",
+              "stpnm": "Rte 104 & E 10th St",
+              "pdist": 6055.0,
+              "lat": 43.460463000001,
+              "lon": -76.497076999999
+            },
+            {
+              "seq": 31,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46047,
+              "lon": -76.49709
+            },
+            {
+              "seq": 32,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46046,
+              "lon": -76.4975
+            },
+            {
+              "seq": 33,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46046,
+              "lon": -76.49772
+            },
+            {
+              "seq": 34,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4604,
+              "lon": -76.49829
+            },
+            {
+              "seq": 35,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46014,
+              "lon": -76.49918
+            },
+            {
+              "seq": 36,
+              "typ": "S",
+              "stpid": "15880",
+              "stpnm": "E Bridge St & E 9th St",
+              "pdist": 6627.0,
+              "lat": 43.460189999999,
+              "lon": -76.499207000001
+            },
+            {
+              "seq": 37,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46014,
+              "lon": -76.49918
+            },
+            {
+              "seq": 38,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45952,
+              "lon": -76.50128
+            },
+            {
+              "seq": 39,
+              "typ": "S",
+              "stpid": "15882",
+              "stpnm": "E Bridge St & E 7th St",
+              "pdist": 7229.0,
+              "lat": 43.459594999999,
+              "lon": -76.501321999999
+            },
+            {
+              "seq": 40,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45952,
+              "lon": -76.50128
+            },
+            {
+              "seq": 41,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45922,
+              "lon": -76.5023
+            },
+            {
+              "seq": 42,
+              "typ": "S",
+              "stpid": "15883",
+              "stpnm": "E Bridge St & E 6th St",
+              "pdist": 7522.0,
+              "lat": 43.459292999999,
+              "lon": -76.502347000001
+            },
+            {
+              "seq": 43,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45922,
+              "lon": -76.5023
+            },
+            {
+              "seq": 44,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45859,
+              "lon": -76.50441
+            },
+            {
+              "seq": 45,
+              "typ": "S",
+              "stpid": "15885",
+              "stpnm": "E Bridge St & E 4th St",
+              "pdist": 8125.0,
+              "lat": 43.458673,
+              "lon": -76.504460000001
+            },
+            {
+              "seq": 46,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45859,
+              "lon": -76.50441
+            },
+            {
+              "seq": 47,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45854,
+              "lon": -76.50457
+            },
+            {
+              "seq": 48,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45978,
+              "lon": -76.50527
+            },
+            {
+              "seq": 49,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4595,
+              "lon": -76.50627
+            },
+            {
+              "seq": 50,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45917,
+              "lon": -76.50608
+            },
+            {
+              "seq": 51,
+              "typ": "S",
+              "stpid": "18253",
+              "stpnm": "E Cayuga St & E 3rd St",
+              "pdist": 9073.0,
+              "lat": 43.459164999999,
+              "lon": -76.506098000001
+            },
+            {
+              "seq": 52,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45917,
+              "lon": -76.50608
+            },
+            {
+              "seq": 53,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45826,
+              "lon": -76.50557
+            },
+            {
+              "seq": 54,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45763,
+              "lon": -76.50767
+            },
+            {
+              "seq": 55,
+              "typ": "S",
+              "stpid": "15888",
+              "stpnm": "E Bridge St & E 1st St",
+              "pdist": 10054.0,
+              "lat": 43.457603000001,
+              "lon": -76.507756000001
+            },
+            {
+              "seq": 56,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45626,
+              "lon": -76.51229
+            },
+            {
+              "seq": 57,
+              "typ": "S",
+              "stpid": "3579",
+              "stpnm": "W Bridge St & W 2nd St",
+              "pdist": 11352.0,
+              "lat": 43.45625,
+              "lon": -76.512280999999
+            },
+            {
+              "seq": 58,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45626,
+              "lon": -76.51229
+            },
+            {
+              "seq": 59,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45534,
+              "lon": -76.5154
+            },
+            {
+              "seq": 60,
+              "typ": "S",
+              "stpid": "3561",
+              "stpnm": "W Bridge St & W 5th St",
+              "pdist": 12248.0,
+              "lat": 43.455330000001,
+              "lon": -76.515393999999
+            },
+            {
+              "seq": 61,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45534,
+              "lon": -76.5154
+            },
+            {
+              "seq": 62,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45501,
+              "lon": -76.51649
+            },
+            {
+              "seq": 63,
+              "typ": "S",
+              "stpid": "3555",
+              "stpnm": "W Bridge St & W 6th St",
+              "pdist": 12563.0,
+              "lat": 43.455014000001,
+              "lon": -76.516471999999
+            },
+            {
+              "seq": 64,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4547,
+              "lon": -76.51753
+            },
+            {
+              "seq": 65,
+              "typ": "S",
+              "stpid": "3557",
+              "stpnm": "W Bridge St & W 7th St",
+              "pdist": 12861.0,
+              "lat": 43.454707000001,
+              "lon": -76.517514000001
+            },
+            {
+              "seq": 66,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45444,
+              "lon": -76.51841
+            },
+            {
+              "seq": 67,
+              "typ": "S",
+              "stpid": "3550",
+              "stpnm": "W Bridge St & W 8th St",
+              "pdist": 13113.0,
+              "lat": 43.454492999999,
+              "lon": -76.51844
+            },
+            {
+              "seq": 68,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45444,
+              "lon": -76.51841
+            },
+            {
+              "seq": 69,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45423,
+              "lon": -76.51917
+            },
+            {
+              "seq": 70,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45423,
+              "lon": -76.51925
+            },
+            {
+              "seq": 71,
+              "typ": "S",
+              "stpid": "3537",
+              "stpnm": "W Bridge St & Liberty St",
+              "pdist": 14219.0,
+              "lat": 43.454070000001,
+              "lon": -76.522539000002
+            },
+            {
+              "seq": 72,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45401,
+              "lon": -76.52382
+            },
+            {
+              "seq": 73,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45401,
+              "lon": -76.52387
+            },
+            {
+              "seq": 74,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.454,
+              "lon": -76.52406
+            },
+            {
+              "seq": 75,
+              "typ": "S",
+              "stpid": "3518",
+              "stpnm": "W Bridge St & John St",
+              "pdist": 14623.0,
+              "lat": 43.454094999999,
+              "lon": -76.524067
+            },
+            {
+              "seq": 76,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.454,
+              "lon": -76.52406
+            },
+            {
+              "seq": 77,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.454,
+              "lon": -76.52411
+            },
+            {
+              "seq": 78,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45394,
+              "lon": -76.52565
+            },
+            {
+              "seq": 79,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45394,
+              "lon": -76.52578
+            },
+            {
+              "seq": 80,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45393,
+              "lon": -76.52587
+            },
+            {
+              "seq": 81,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45397,
+              "lon": -76.52601
+            },
+            {
+              "seq": 82,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45395,
+              "lon": -76.52652
+            },
+            {
+              "seq": 83,
+              "typ": "S",
+              "stpid": "3510",
+              "stpnm": "W Bridge St & W Seneca St",
+              "pdist": 15277.0,
+              "lat": 43.454015,
+              "lon": -76.526474999999
+            },
+            {
+              "seq": 84,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45395,
+              "lon": -76.52652
+            },
+            {
+              "seq": 85,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45382,
+              "lon": -76.52996
+            },
+            {
+              "seq": 86,
+              "typ": "S",
+              "stpid": "16013",
+              "stpnm": "Washington Blvd & 3rd Ave",
+              "pdist": 16192.0,
+              "lat": 43.453864999999,
+              "lon": -76.529962999999
+            },
+            {
+              "seq": 87,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45382,
+              "lon": -76.52996
+            },
+            {
+              "seq": 88,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45382,
+              "lon": -76.53012
+            },
+            {
+              "seq": 89,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45367,
+              "lon": -76.53478
+            },
+            {
+              "seq": 90,
+              "typ": "S",
+              "stpid": "16016",
+              "stpnm": "Washington Blvd & Sheldon Ave",
+              "pdist": 17471.0,
+              "lat": 43.453668000001,
+              "lon": -76.534751999999
+            },
+            {
+              "seq": 91,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45367,
+              "lon": -76.53478
+            },
+            {
+              "seq": 92,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45359,
+              "lon": -76.53703
+            },
+            {
+              "seq": 93,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45359,
+              "lon": -76.53717
+            },
+            {
+              "seq": 94,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45357,
+              "lon": -76.53759
+            },
+            {
+              "seq": 95,
+              "typ": "S",
+              "stpid": "16019",
+              "stpnm": "Washington Blvd & Baylis St",
+              "pdist": 18213.0,
+              "lat": 43.453642000001,
+              "lon": -76.537593000001
+            },
+            {
+              "seq": 96,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45357,
+              "lon": -76.53759
+            },
+            {
+              "seq": 97,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45357,
+              "lon": -76.53768
+            },
+            {
+              "seq": 98,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45353,
+              "lon": -76.53865
+            },
+            {
+              "seq": 99,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45353,
+              "lon": -76.53888
+            },
+            {
+              "seq": 100,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45351,
+              "lon": -76.5395
+            },
+            {
+              "seq": 101,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45384,
+              "lon": -76.53958
+            },
+            {
+              "seq": 102,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45393,
+              "lon": -76.53983
+            },
+            {
+              "seq": 103,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45395,
+              "lon": -76.54018
+            },
+            {
+              "seq": 104,
+              "typ": "S",
+              "stpid": "15521",
+              "stpnm": "SUNY OSWEGO CAMPUS CENTER",
+              "pdist": 19036.0,
+              "lat": 43.453952,
+              "lon": -76.540263
+            }
+          ]
+        },
         {
           "pid": 9775,
           "rtdir": "EASTBOUND",
@@ -16839,85 +18563,25 @@
         {
           "id": "FROM DOWNTOWN",
           "stopCount": 33,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": [
             {
-              "id": "18253",
-              "name": "E Cayuga St & E 3rd St",
-              "lat": 43.459164999999,
-              "lng": -76.506098000001
+              "id": "15520",
+              "name": "BRANDONWOOD APARTMENTS OSWEGO",
+              "lat": 43.454477000001,
+              "lng": -76.472822
             },
             {
-              "id": "9696",
-              "name": "E Bridge St & E 4th St",
-              "lat": 43.458466999999,
-              "lng": -76.504658000001
+              "id": "16004",
+              "name": "Beech Dr & Birch Ln",
+              "lat": 43.456090000001,
+              "lng": -76.471167999998
             },
             {
-              "id": "9697",
-              "name": "E 4th St & E Oneida St",
-              "lat": 43.457288,
-              "lng": -76.503894000001
-            },
-            {
-              "id": "9698",
-              "name": "E 4th St & E Mohawk St",
-              "lat": 43.456026,
-              "lng": -76.503193999998
-            },
-            {
-              "id": "9699",
-              "name": "E 4th St & E Utica St",
-              "lat": 43.455024000001,
-              "lng": -76.502643999998
-            },
-            {
-              "id": "9700",
-              "name": "E Utica St & E 5th St",
-              "lat": 43.454963,
-              "lng": -76.501625999999
-            },
-            {
-              "id": "9701",
-              "name": "E Utica St & E 6th St",
-              "lat": 43.455261000001,
-              "lng": -76.500609000001
-            },
-            {
-              "id": "9702",
-              "name": "E Utica St & E 7th St",
-              "lat": 43.455605000001,
-              "lng": -76.499438000001
-            },
-            {
-              "id": "9703",
-              "name": "E 7th St & E Albany St",
-              "lat": 43.454517,
-              "lng": -76.498667000001
-            },
-            {
-              "id": "9704",
-              "name": "E 7th St & Lawrence St",
-              "lat": 43.453187,
-              "lng": -76.498018999998
-            },
-            {
-              "id": "9705",
-              "name": "E 7th St & Church St",
-              "lat": 43.451907,
-              "lng": -76.497418999999
-            },
-            {
-              "id": "9706",
-              "name": "E 7th St & Hamilton St",
-              "lat": 43.450555999999,
-              "lng": -76.496743000001
-            },
-            {
-              "id": "9707",
-              "name": "E 7th St & Bunner St",
-              "lat": 43.449025,
-              "lng": -76.496006000002
+              "id": "9712",
+              "name": "Bunner St & Cherry St",
+              "lat": 43.450337,
+              "lng": -76.491053
             },
             {
               "id": "9708",
@@ -16932,22 +18596,16 @@
               "lng": -76.493958999998
             },
             {
+              "id": "9713",
+              "name": "Bunner St & Maple St",
+              "lat": 43.451537000001,
+              "lng": -76.48793
+            },
+            {
               "id": "9710",
               "name": "Bunner St & Robinson St",
               "lat": 43.449756999999,
               "lng": -76.492868
-            },
-            {
-              "id": "9712",
-              "name": "Bunner St & Cherry St",
-              "lat": 43.450337,
-              "lng": -76.491053
-            },
-            {
-              "id": "9612",
-              "name": "OSWEGO COUNTY OFFICE COMPLEX",
-              "lat": 43.449024,
-              "lng": -76.489820999999
             },
             {
               "id": "15893",
@@ -16956,58 +18614,10 @@
               "lng": -76.488974999998
             },
             {
-              "id": "9713",
-              "name": "Bunner St & Maple St",
-              "lat": 43.451537000001,
-              "lng": -76.48793
-            },
-            {
-              "id": "15987",
-              "name": "East Ave & Magnolia Rd",
-              "lat": 43.451281999999,
-              "lng": -76.483867999998
-            },
-            {
-              "id": "15988",
-              "name": "East Ave & Christopher Circle",
-              "lat": 43.450932000001,
-              "lng": -76.482239999999
-            },
-            {
-              "id": "15989",
-              "name": "East Ave & Talisman Ter",
-              "lat": 43.450582999999,
-              "lng": -76.480642000002
-            },
-            {
-              "id": "15990",
-              "name": "East Ave & City Line Rd",
-              "lat": 43.449897999999,
-              "lng": -76.477687000001
-            },
-            {
-              "id": "15991",
-              "name": "City Line Rd & Skyline Dr",
-              "lat": 43.451971999999,
-              "lng": -76.476553
-            },
-            {
               "id": "15992",
               "name": "City Line Rd & Birch Ln",
               "lat": 43.454823000001,
               "lng": -76.475184
-            },
-            {
-              "id": "16004",
-              "name": "Beech Dr & Birch Ln",
-              "lat": 43.456090000001,
-              "lng": -76.471167999998
-            },
-            {
-              "id": "15520",
-              "name": "BRANDONWOOD APARTMENTS OSWEGO",
-              "lat": 43.454477000001,
-              "lng": -76.472822
             },
             {
               "id": "18357",
@@ -17034,6 +18644,120 @@
               "lng": -76.471523000002
             },
             {
+              "id": "15991",
+              "name": "City Line Rd & Skyline Dr",
+              "lat": 43.451971999999,
+              "lng": -76.476553
+            },
+            {
+              "id": "9698",
+              "name": "E 4th St & E Mohawk St",
+              "lat": 43.456026,
+              "lng": -76.503193999998
+            },
+            {
+              "id": "9697",
+              "name": "E 4th St & E Oneida St",
+              "lat": 43.457288,
+              "lng": -76.503894000001
+            },
+            {
+              "id": "9699",
+              "name": "E 4th St & E Utica St",
+              "lat": 43.455024000001,
+              "lng": -76.502643999998
+            },
+            {
+              "id": "9707",
+              "name": "E 7th St & Bunner St",
+              "lat": 43.449025,
+              "lng": -76.496006000002
+            },
+            {
+              "id": "9705",
+              "name": "E 7th St & Church St",
+              "lat": 43.451907,
+              "lng": -76.497418999999
+            },
+            {
+              "id": "9703",
+              "name": "E 7th St & E Albany St",
+              "lat": 43.454517,
+              "lng": -76.498667000001
+            },
+            {
+              "id": "9706",
+              "name": "E 7th St & Hamilton St",
+              "lat": 43.450555999999,
+              "lng": -76.496743000001
+            },
+            {
+              "id": "9704",
+              "name": "E 7th St & Lawrence St",
+              "lat": 43.453187,
+              "lng": -76.498018999998
+            },
+            {
+              "id": "9696",
+              "name": "E Bridge St & E 4th St",
+              "lat": 43.458466999999,
+              "lng": -76.504658000001
+            },
+            {
+              "id": "18253",
+              "name": "E Cayuga St & E 3rd St",
+              "lat": 43.459164999999,
+              "lng": -76.506098000001
+            },
+            {
+              "id": "9700",
+              "name": "E Utica St & E 5th St",
+              "lat": 43.454963,
+              "lng": -76.501625999999
+            },
+            {
+              "id": "9701",
+              "name": "E Utica St & E 6th St",
+              "lat": 43.455261000001,
+              "lng": -76.500609000001
+            },
+            {
+              "id": "9702",
+              "name": "E Utica St & E 7th St",
+              "lat": 43.455605000001,
+              "lng": -76.499438000001
+            },
+            {
+              "id": "15988",
+              "name": "East Ave & Christopher Circle",
+              "lat": 43.450932000001,
+              "lng": -76.482239999999
+            },
+            {
+              "id": "15990",
+              "name": "East Ave & City Line Rd",
+              "lat": 43.449897999999,
+              "lng": -76.477687000001
+            },
+            {
+              "id": "15987",
+              "name": "East Ave & Magnolia Rd",
+              "lat": 43.451281999999,
+              "lng": -76.483867999998
+            },
+            {
+              "id": "15989",
+              "name": "East Ave & Talisman Ter",
+              "lat": 43.450582999999,
+              "lng": -76.480642000002
+            },
+            {
+              "id": "9612",
+              "name": "OSWEGO COUNTY OFFICE COMPLEX",
+              "lat": 43.449024,
+              "lng": -76.489820999999
+            },
+            {
               "id": "9614",
               "name": "Walmart - Oswego",
               "lat": 43.464189000001,
@@ -17044,55 +18768,13 @@
         {
           "id": "TO DOWNTOWN",
           "stopCount": 36,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": [
             {
-              "id": "15520",
-              "name": "BRANDONWOOD APARTMENTS OSWEGO",
-              "lat": 43.454477000001,
-              "lng": -76.472822
-            },
-            {
-              "id": "16004",
-              "name": "Beech Dr & Birch Ln",
-              "lat": 43.456090000001,
-              "lng": -76.471167999998
-            },
-            {
-              "id": "16005",
-              "name": "Birch Ln & City Line Rd",
-              "lat": 43.454877,
-              "lng": -76.475171999998
-            },
-            {
-              "id": "15910",
-              "name": "Bunner St & E 7th St",
-              "lat": 43.449079999999,
-              "lng": -76.495908000002
-            },
-            {
-              "id": "15909",
-              "name": "Bunner St & E 8th St",
-              "lat": 43.449323000001,
-              "lng": -76.494864999999
-            },
-            {
-              "id": "15908",
-              "name": "Bunner St & E 9th St",
-              "lat": 43.449576,
-              "lng": -76.493749
-            },
-            {
-              "id": "15907",
-              "name": "Bunner St & Robinson St",
-              "lat": 43.449847000001,
-              "lng": -76.492693999999
-            },
-            {
-              "id": "16012",
-              "name": "Bunner St & Walnut St",
-              "lat": 43.451340999999,
-              "lng": -76.488591000002
+              "id": "9614",
+              "name": "Walmart - Oswego",
+              "lat": 43.464189000001,
+              "lng": -76.477947
             },
             {
               "id": "15518",
@@ -17101,16 +18783,22 @@
               "lng": -76.483184999999
             },
             {
-              "id": "18363",
-              "name": "City Line Rd & Butternut Dr",
-              "lat": 43.457601999999,
-              "lng": -76.474002000002
+              "id": "15515",
+              "name": "OCO MEDICAL CENTER",
+              "lat": 43.466722999999,
+              "lng": -76.485076999999
             },
             {
-              "id": "18362",
-              "name": "City Line Rd & Carson Dr",
-              "lat": 43.458866999999,
-              "lng": -76.473447000002
+              "id": "9737",
+              "name": "Route 104 & George St",
+              "lat": 43.460922000001,
+              "lng": -76.484702
+            },
+            {
+              "id": "9739",
+              "name": "Route 104 & City Line Rd",
+              "lat": 43.462845,
+              "lng": -76.471797000001
             },
             {
               "id": "18361",
@@ -17119,10 +18807,34 @@
               "lng": -76.472559999998
             },
             {
-              "id": "16007",
-              "name": "City Line Rd & East Ave",
-              "lat": 43.449964,
-              "lng": -76.477576000001
+              "id": "18362",
+              "name": "City Line Rd & Carson Dr",
+              "lat": 43.458866999999,
+              "lng": -76.473447000002
+            },
+            {
+              "id": "18363",
+              "name": "City Line Rd & Butternut Dr",
+              "lat": 43.457601999999,
+              "lng": -76.474002000002
+            },
+            {
+              "id": "16004",
+              "name": "Beech Dr & Birch Ln",
+              "lat": 43.456090000001,
+              "lng": -76.471167999998
+            },
+            {
+              "id": "15520",
+              "name": "BRANDONWOOD APARTMENTS OSWEGO",
+              "lat": 43.454477000001,
+              "lng": -76.472822
+            },
+            {
+              "id": "16005",
+              "name": "Birch Ln & City Line Rd",
+              "lat": 43.454877,
+              "lng": -76.475171999998
             },
             {
               "id": "16006",
@@ -17131,76 +18843,16 @@
               "lng": -76.476565000002
             },
             {
-              "id": "15921",
-              "name": "E 4th St & E Bridge St",
-              "lat": 43.458435000001,
-              "lng": -76.504468
+              "id": "16007",
+              "name": "City Line Rd & East Ave",
+              "lat": 43.449964,
+              "lng": -76.477576000001
             },
             {
-              "id": "15919",
-              "name": "E 4th St & E Mohawk St",
-              "lat": 43.455923000001,
-              "lng": -76.503133
-            },
-            {
-              "id": "15920",
-              "name": "E 4th St & E Oneida St",
-              "lat": 43.457218,
-              "lng": -76.503825000001
-            },
-            {
-              "id": "15912",
-              "name": "E 7th St & Church St",
-              "lat": 43.451608000001,
-              "lng": -76.497282999999
-            },
-            {
-              "id": "15914",
-              "name": "E 7th St & E Albany St",
-              "lat": 43.454389999999,
-              "lng": -76.498611999999
-            },
-            {
-              "id": "15915",
-              "name": "E 7th St & E Utica St",
-              "lat": 43.455622,
-              "lng": -76.499278000001
-            },
-            {
-              "id": "15911",
-              "name": "E 7th St & Hamilton St",
-              "lat": 43.450412999999,
-              "lng": -76.496619
-            },
-            {
-              "id": "15913",
-              "name": "E 7th St & Lawrence St",
-              "lat": 43.453061999999,
-              "lng": -76.497906999999
-            },
-            {
-              "id": "18253",
-              "name": "E Cayuga St & E 3rd St",
-              "lat": 43.459164999999,
-              "lng": -76.506098000001
-            },
-            {
-              "id": "15918",
-              "name": "E Utica St & E 4th St",
-              "lat": 43.454841999999,
-              "lng": -76.502355
-            },
-            {
-              "id": "15917",
-              "name": "E Utica St & E 5th St",
-              "lat": 43.455124999999,
-              "lng": -76.501278999999
-            },
-            {
-              "id": "15916",
-              "name": "E Utica St & E 6th St",
-              "lat": 43.455450000001,
-              "lng": -76.500187
+              "id": "16008",
+              "name": "East Ave & Talisman Ter",
+              "lat": 43.450621000001,
+              "lng": -76.480545000002
             },
             {
               "id": "16009",
@@ -17215,10 +18867,16 @@
               "lng": -76.483853000001
             },
             {
-              "id": "16008",
-              "name": "East Ave & Talisman Ter",
-              "lat": 43.450621000001,
-              "lng": -76.480545000002
+              "id": "17962",
+              "name": "Maple St & Bunner St",
+              "lat": 43.45168,
+              "lng": -76.487850000001
+            },
+            {
+              "id": "16012",
+              "name": "Bunner St & Walnut St",
+              "lat": 43.451340999999,
+              "lng": -76.488591000002
             },
             {
               "id": "15905",
@@ -17227,45 +18885,1720 @@
               "lng": -76.490847
             },
             {
-              "id": "17962",
-              "name": "Maple St & Bunner St",
-              "lat": 43.45168,
-              "lng": -76.487850000001
-            },
-            {
-              "id": "15515",
-              "name": "OCO MEDICAL CENTER",
-              "lat": 43.466722999999,
-              "lng": -76.485076999999
-            },
-            {
               "id": "9612",
               "name": "OSWEGO COUNTY OFFICE COMPLEX",
               "lat": 43.449024,
               "lng": -76.489820999999
             },
             {
-              "id": "9739",
-              "name": "Route 104 & City Line Rd",
-              "lat": 43.462845,
-              "lng": -76.471797000001
+              "id": "15907",
+              "name": "Bunner St & Robinson St",
+              "lat": 43.449847000001,
+              "lng": -76.492693999999
             },
             {
-              "id": "9737",
-              "name": "Route 104 & George St",
-              "lat": 43.460922000001,
-              "lng": -76.484702
+              "id": "15908",
+              "name": "Bunner St & E 9th St",
+              "lat": 43.449576,
+              "lng": -76.493749
             },
             {
-              "id": "9614",
-              "name": "Walmart - Oswego",
-              "lat": 43.464189000001,
-              "lng": -76.477947
+              "id": "15909",
+              "name": "Bunner St & E 8th St",
+              "lat": 43.449323000001,
+              "lng": -76.494864999999
+            },
+            {
+              "id": "15910",
+              "name": "Bunner St & E 7th St",
+              "lat": 43.449079999999,
+              "lng": -76.495908000002
+            },
+            {
+              "id": "15911",
+              "name": "E 7th St & Hamilton St",
+              "lat": 43.450412999999,
+              "lng": -76.496619
+            },
+            {
+              "id": "15912",
+              "name": "E 7th St & Church St",
+              "lat": 43.451608000001,
+              "lng": -76.497282999999
+            },
+            {
+              "id": "15913",
+              "name": "E 7th St & Lawrence St",
+              "lat": 43.453061999999,
+              "lng": -76.497906999999
+            },
+            {
+              "id": "15914",
+              "name": "E 7th St & E Albany St",
+              "lat": 43.454389999999,
+              "lng": -76.498611999999
+            },
+            {
+              "id": "15915",
+              "name": "E 7th St & E Utica St",
+              "lat": 43.455622,
+              "lng": -76.499278000001
+            },
+            {
+              "id": "15916",
+              "name": "E Utica St & E 6th St",
+              "lat": 43.455450000001,
+              "lng": -76.500187
+            },
+            {
+              "id": "15917",
+              "name": "E Utica St & E 5th St",
+              "lat": 43.455124999999,
+              "lng": -76.501278999999
+            },
+            {
+              "id": "15918",
+              "name": "E Utica St & E 4th St",
+              "lat": 43.454841999999,
+              "lng": -76.502355
+            },
+            {
+              "id": "15919",
+              "name": "E 4th St & E Mohawk St",
+              "lat": 43.455923000001,
+              "lng": -76.503133
+            },
+            {
+              "id": "15920",
+              "name": "E 4th St & E Oneida St",
+              "lat": 43.457218,
+              "lng": -76.503825000001
+            },
+            {
+              "id": "15921",
+              "name": "E 4th St & E Bridge St",
+              "lat": 43.458435000001,
+              "lng": -76.504468
+            },
+            {
+              "id": "18253",
+              "name": "E Cayuga St & E 3rd St",
+              "lat": 43.459164999999,
+              "lng": -76.506098000001
             }
           ]
         }
       ],
       "patterns": [
+        {
+          "pid": 9766,
+          "rtdir": "TO DOWNTOWN",
+          "ln": 33521.0,
+          "pt": [
+            {
+              "seq": 1,
+              "typ": "S",
+              "stpid": "9614",
+              "stpnm": "Walmart - Oswego",
+              "pdist": 0.0,
+              "lat": 43.464189000001,
+              "lon": -76.477947
+            },
+            {
+              "seq": 2,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46416,
+              "lon": -76.47793
+            },
+            {
+              "seq": 3,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.463508,
+              "lon": -76.479495
+            },
+            {
+              "seq": 4,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.462792,
+              "lon": -76.478974
+            },
+            {
+              "seq": 5,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.462714,
+              "lon": -76.479007
+            },
+            {
+              "seq": 6,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46247,
+              "lon": -76.47964
+            },
+            {
+              "seq": 7,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46177,
+              "lon": -76.47919
+            },
+            {
+              "seq": 8,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46181,
+              "lon": -76.4792
+            },
+            {
+              "seq": 9,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46103,
+              "lon": -76.48434
+            },
+            {
+              "seq": 10,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46097,
+              "lon": -76.48504
+            },
+            {
+              "seq": 11,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46398,
+              "lon": -76.48565
+            },
+            {
+              "seq": 12,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4642,
+              "lon": -76.48569
+            },
+            {
+              "seq": 13,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46472,
+              "lon": -76.48565
+            },
+            {
+              "seq": 14,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46503,
+              "lon": -76.48555
+            },
+            {
+              "seq": 15,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46575,
+              "lon": -76.48513
+            },
+            {
+              "seq": 16,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46612,
+              "lon": -76.48501
+            },
+            {
+              "seq": 17,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46646,
+              "lon": -76.48502
+            },
+            {
+              "seq": 18,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46716,
+              "lon": -76.48526
+            },
+            {
+              "seq": 19,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46743,
+              "lon": -76.48432
+            },
+            {
+              "seq": 20,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46771,
+              "lon": -76.4836
+            },
+            {
+              "seq": 21,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46761,
+              "lon": -76.48348
+            },
+            {
+              "seq": 22,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46775,
+              "lon": -76.48315
+            },
+            {
+              "seq": 23,
+              "typ": "S",
+              "stpid": "15518",
+              "stpnm": "CENTRO GARAGE OSWEGO",
+              "pdist": 5821.0,
+              "lat": 43.467787999999,
+              "lon": -76.483184999999
+            },
+            {
+              "seq": 24,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46775,
+              "lon": -76.48315
+            },
+            {
+              "seq": 25,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46775,
+              "lon": -76.48316
+            },
+            {
+              "seq": 26,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46791,
+              "lon": -76.48284
+            },
+            {
+              "seq": 27,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46805,
+              "lon": -76.48297
+            },
+            {
+              "seq": 28,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4677,
+              "lon": -76.48362
+            },
+            {
+              "seq": 29,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46743,
+              "lon": -76.48432
+            },
+            {
+              "seq": 30,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46743,
+              "lon": -76.48434
+            },
+            {
+              "seq": 31,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46716,
+              "lon": -76.48526
+            },
+            {
+              "seq": 32,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46672,
+              "lon": -76.48509
+            },
+            {
+              "seq": 33,
+              "typ": "S",
+              "stpid": "15515",
+              "stpnm": "OCO MEDICAL CENTER",
+              "pdist": 6846.0,
+              "lat": 43.466722999999,
+              "lon": -76.485076999999
+            },
+            {
+              "seq": 34,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46672,
+              "lon": -76.48509
+            },
+            {
+              "seq": 35,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46638,
+              "lon": -76.48501
+            },
+            {
+              "seq": 36,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46612,
+              "lon": -76.48501
+            },
+            {
+              "seq": 37,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46583,
+              "lon": -76.48509
+            },
+            {
+              "seq": 38,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46516,
+              "lon": -76.48549
+            },
+            {
+              "seq": 39,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46479,
+              "lon": -76.48563
+            },
+            {
+              "seq": 40,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46441,
+              "lon": -76.48569
+            },
+            {
+              "seq": 41,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46398,
+              "lon": -76.48565
+            },
+            {
+              "seq": 42,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46092,
+              "lon": -76.48502
+            },
+            {
+              "seq": 43,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46094,
+              "lon": -76.48503
+            },
+            {
+              "seq": 44,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46098,
+              "lon": -76.48472
+            },
+            {
+              "seq": 45,
+              "typ": "S",
+              "stpid": "9737",
+              "stpnm": "Route 104 & George St",
+              "pdist": 9105.0,
+              "lat": 43.460922000001,
+              "lon": -76.484702
+            },
+            {
+              "seq": 46,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46098,
+              "lon": -76.48472
+            },
+            {
+              "seq": 47,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46269,
+              "lon": -76.47344
+            },
+            {
+              "seq": 48,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46287,
+              "lon": -76.4718
+            },
+            {
+              "seq": 49,
+              "typ": "S",
+              "stpid": "9739",
+              "stpnm": "Route 104 & City Line Rd",
+              "pdist": 12599.0,
+              "lat": 43.462845,
+              "lon": -76.471797000001
+            },
+            {
+              "seq": 50,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46287,
+              "lon": -76.4718
+            },
+            {
+              "seq": 51,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46288,
+              "lon": -76.47155
+            },
+            {
+              "seq": 52,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4627,
+              "lon": -76.47157
+            },
+            {
+              "seq": 53,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46082,
+              "lon": -76.47247
+            },
+            {
+              "seq": 54,
+              "typ": "S",
+              "stpid": "18361",
+              "stpnm": "City Line Rd & Champlain Commons",
+              "pdist": 13458.0,
+              "lat": 43.460839,
+              "lon": -76.472559999998
+            },
+            {
+              "seq": 55,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.46082,
+              "lon": -76.47247
+            },
+            {
+              "seq": 56,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45885,
+              "lon": -76.47337
+            },
+            {
+              "seq": 57,
+              "typ": "S",
+              "stpid": "18362",
+              "stpnm": "City Line Rd & Carson Dr",
+              "pdist": 14214.0,
+              "lat": 43.458866999999,
+              "lon": -76.473447000002
+            },
+            {
+              "seq": 58,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45885,
+              "lon": -76.47337
+            },
+            {
+              "seq": 59,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45759,
+              "lon": -76.47397
+            },
+            {
+              "seq": 60,
+              "typ": "S",
+              "stpid": "18363",
+              "stpnm": "City Line Rd & Butternut Dr",
+              "pdist": 14698.0,
+              "lat": 43.457601999999,
+              "lon": -76.474002000002
+            },
+            {
+              "seq": 61,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45759,
+              "lon": -76.47397
+            },
+            {
+              "seq": 62,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45689,
+              "lon": -76.47429
+            },
+            {
+              "seq": 63,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45617,
+              "lon": -76.47127
+            },
+            {
+              "seq": 64,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45607,
+              "lon": -76.47109
+            },
+            {
+              "seq": 65,
+              "typ": "S",
+              "stpid": "16004",
+              "stpnm": "Beech Dr & Birch Ln",
+              "pdist": 15866.0,
+              "lat": 43.456090000001,
+              "lon": -76.471167999998
+            },
+            {
+              "seq": 66,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45607,
+              "lon": -76.47109
+            },
+            {
+              "seq": 67,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4551,
+              "lon": -76.4715
+            },
+            {
+              "seq": 68,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45461,
+              "lon": -76.47175
+            },
+            {
+              "seq": 69,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45442,
+              "lon": -76.47207
+            },
+            {
+              "seq": 70,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45438,
+              "lon": -76.47228
+            },
+            {
+              "seq": 71,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45447,
+              "lon": -76.47282
+            },
+            {
+              "seq": 72,
+              "typ": "S",
+              "stpid": "15520",
+              "stpnm": "BRANDONWOOD APARTMENTS OSWEGO",
+              "pdist": 16739.0,
+              "lat": 43.454477000001,
+              "lon": -76.472822
+            },
+            {
+              "seq": 73,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45447,
+              "lon": -76.47282
+            },
+            {
+              "seq": 74,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45448,
+              "lon": -76.47289
+            },
+            {
+              "seq": 75,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45446,
+              "lon": -76.47313
+            },
+            {
+              "seq": 76,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45427,
+              "lon": -76.47377
+            },
+            {
+              "seq": 77,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45429,
+              "lon": -76.47399
+            },
+            {
+              "seq": 78,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45473,
+              "lon": -76.47481
+            },
+            {
+              "seq": 79,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45487,
+              "lon": -76.4752
+            },
+            {
+              "seq": 80,
+              "typ": "S",
+              "stpid": "16005",
+              "stpnm": "Birch Ln & City Line Rd",
+              "pdist": 17450.0,
+              "lat": 43.454877,
+              "lon": -76.475171999998
+            },
+            {
+              "seq": 81,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45487,
+              "lon": -76.4752
+            },
+            {
+              "seq": 82,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45203,
+              "lon": -76.47656
+            },
+            {
+              "seq": 83,
+              "typ": "S",
+              "stpid": "16006",
+              "stpnm": "City Line Rd & Skyline Dr",
+              "pdist": 18551.0,
+              "lat": 43.45206,
+              "lon": -76.476565000002
+            },
+            {
+              "seq": 84,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44994,
+              "lon": -76.47759
+            },
+            {
+              "seq": 85,
+              "typ": "S",
+              "stpid": "16007",
+              "stpnm": "City Line Rd & East Ave",
+              "pdist": 19366.0,
+              "lat": 43.449964,
+              "lon": -76.477576000001
+            },
+            {
+              "seq": 86,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44994,
+              "lon": -76.47759
+            },
+            {
+              "seq": 87,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45062,
+              "lon": -76.48055
+            },
+            {
+              "seq": 88,
+              "typ": "S",
+              "stpid": "16008",
+              "stpnm": "East Ave & Talisman Ter",
+              "pdist": 20193.0,
+              "lat": 43.450621000001,
+              "lon": -76.480545000002
+            },
+            {
+              "seq": 89,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45062,
+              "lon": -76.48055
+            },
+            {
+              "seq": 90,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45098,
+              "lon": -76.48223
+            },
+            {
+              "seq": 91,
+              "typ": "S",
+              "stpid": "16009",
+              "stpnm": "East Ave & Christopher Cir",
+              "pdist": 20658.0,
+              "lat": 43.450977000001,
+              "lon": -76.482233999999
+            },
+            {
+              "seq": 92,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45098,
+              "lon": -76.48223
+            },
+            {
+              "seq": 93,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45133,
+              "lon": -76.48385
+            },
+            {
+              "seq": 94,
+              "typ": "S",
+              "stpid": "16010",
+              "stpnm": "East Ave & Magnolia Rd",
+              "pdist": 21104.0,
+              "lat": 43.451313000001,
+              "lon": -76.483853000001
+            },
+            {
+              "seq": 95,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45133,
+              "lon": -76.48385
+            },
+            {
+              "seq": 96,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45222,
+              "lon": -76.48816
+            },
+            {
+              "seq": 97,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45169,
+              "lon": -76.48783
+            },
+            {
+              "seq": 98,
+              "typ": "S",
+              "stpid": "17962",
+              "stpnm": "Maple St & Bunner St",
+              "pdist": 22505.0,
+              "lat": 43.45168,
+              "lon": -76.487850000001
+            },
+            {
+              "seq": 99,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45169,
+              "lon": -76.48783
+            },
+            {
+              "seq": 100,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45161,
+              "lon": -76.48778
+            },
+            {
+              "seq": 101,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45131,
+              "lon": -76.48857
+            },
+            {
+              "seq": 102,
+              "typ": "S",
+              "stpid": "16012",
+              "stpnm": "Bunner St & Walnut St",
+              "pdist": 22773.0,
+              "lat": 43.451340999999,
+              "lon": -76.488591000002
+            },
+            {
+              "seq": 103,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45131,
+              "lon": -76.48857
+            },
+            {
+              "seq": 104,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45045,
+              "lon": -76.49084
+            },
+            {
+              "seq": 105,
+              "typ": "S",
+              "stpid": "15905",
+              "stpnm": "HAMILTON HOMES",
+              "pdist": 23452.0,
+              "lat": 43.450468,
+              "lon": -76.490847
+            },
+            {
+              "seq": 106,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45045,
+              "lon": -76.49084
+            },
+            {
+              "seq": 107,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45041,
+              "lon": -76.49095
+            },
+            {
+              "seq": 108,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44901,
+              "lon": -76.48998
+            },
+            {
+              "seq": 109,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44892,
+              "lon": -76.49022
+            },
+            {
+              "seq": 110,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44881,
+              "lon": -76.49036
+            },
+            {
+              "seq": 111,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4486,
+              "lon": -76.49042
+            },
+            {
+              "seq": 112,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44826,
+              "lon": -76.49037
+            },
+            {
+              "seq": 113,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44805,
+              "lon": -76.49026
+            },
+            {
+              "seq": 114,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44795,
+              "lon": -76.49016
+            },
+            {
+              "seq": 115,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44788,
+              "lon": -76.49001
+            },
+            {
+              "seq": 116,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44785,
+              "lon": -76.48982
+            },
+            {
+              "seq": 117,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44813,
+              "lon": -76.48862
+            },
+            {
+              "seq": 118,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44827,
+              "lon": -76.4885
+            },
+            {
+              "seq": 119,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44857,
+              "lon": -76.48845
+            },
+            {
+              "seq": 120,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44888,
+              "lon": -76.48845
+            },
+            {
+              "seq": 121,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44898,
+              "lon": -76.4885
+            },
+            {
+              "seq": 122,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.449,
+              "lon": -76.48982
+            },
+            {
+              "seq": 123,
+              "typ": "S",
+              "stpid": "9612",
+              "stpnm": "OSWEGO COUNTY OFFICE COMPLEX",
+              "pdist": 25622.0,
+              "lat": 43.449024,
+              "lon": -76.489820999999
+            },
+            {
+              "seq": 124,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.449,
+              "lon": -76.48982
+            },
+            {
+              "seq": 125,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44903,
+              "lon": -76.49
+            },
+            {
+              "seq": 126,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45041,
+              "lon": -76.49095
+            },
+            {
+              "seq": 127,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44983,
+              "lon": -76.49269
+            },
+            {
+              "seq": 128,
+              "typ": "S",
+              "stpid": "15907",
+              "stpnm": "Bunner St & Robinson St",
+              "pdist": 26743.0,
+              "lat": 43.449847000001,
+              "lon": -76.492693999999
+            },
+            {
+              "seq": 129,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44983,
+              "lon": -76.49269
+            },
+            {
+              "seq": 130,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44956,
+              "lon": -76.49374
+            },
+            {
+              "seq": 131,
+              "typ": "S",
+              "stpid": "15908",
+              "stpnm": "Bunner St & E 9th St",
+              "pdist": 27038.0,
+              "lat": 43.449576,
+              "lon": -76.493749
+            },
+            {
+              "seq": 132,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44956,
+              "lon": -76.49374
+            },
+            {
+              "seq": 133,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44929,
+              "lon": -76.49485
+            },
+            {
+              "seq": 134,
+              "typ": "S",
+              "stpid": "15909",
+              "stpnm": "Bunner St & E 8th St",
+              "pdist": 27346.0,
+              "lat": 43.449323000001,
+              "lon": -76.494864999999
+            },
+            {
+              "seq": 135,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44929,
+              "lon": -76.49485
+            },
+            {
+              "seq": 136,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44909,
+              "lon": -76.495635
+            },
+            {
+              "seq": 137,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44906,
+              "lon": -76.496
+            },
+            {
+              "seq": 138,
+              "typ": "S",
+              "stpid": "15910",
+              "stpnm": "Bunner St & E 7th St",
+              "pdist": 27664.0,
+              "lat": 43.449079999999,
+              "lon": -76.495908000002
+            },
+            {
+              "seq": 139,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.44906,
+              "lon": -76.496
+            },
+            {
+              "seq": 140,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4504,
+              "lon": -76.49666
+            },
+            {
+              "seq": 141,
+              "typ": "S",
+              "stpid": "15911",
+              "stpnm": "E 7th St & Hamilton St",
+              "pdist": 28183.0,
+              "lat": 43.450412999999,
+              "lon": -76.496619
+            },
+            {
+              "seq": 142,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4504,
+              "lon": -76.49666
+            },
+            {
+              "seq": 143,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45162,
+              "lon": -76.49725
+            },
+            {
+              "seq": 144,
+              "typ": "S",
+              "stpid": "15912",
+              "stpnm": "E 7th St & Church St",
+              "pdist": 28654.0,
+              "lat": 43.451608000001,
+              "lon": -76.497282999999
+            },
+            {
+              "seq": 145,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45162,
+              "lon": -76.49725
+            },
+            {
+              "seq": 146,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45305,
+              "lon": -76.49795
+            },
+            {
+              "seq": 147,
+              "typ": "S",
+              "stpid": "15913",
+              "stpnm": "E 7th St & Lawrence St",
+              "pdist": 29210.0,
+              "lat": 43.453061999999,
+              "lon": -76.497906999999
+            },
+            {
+              "seq": 148,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45305,
+              "lon": -76.49795
+            },
+            {
+              "seq": 149,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45442,
+              "lon": -76.4986
+            },
+            {
+              "seq": 150,
+              "typ": "S",
+              "stpid": "15914",
+              "stpnm": "E 7th St & E Albany St",
+              "pdist": 29738.0,
+              "lat": 43.454389999999,
+              "lon": -76.498611999999
+            },
+            {
+              "seq": 151,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45442,
+              "lon": -76.4986
+            },
+            {
+              "seq": 152,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45562,
+              "lon": -76.49928
+            },
+            {
+              "seq": 153,
+              "typ": "S",
+              "stpid": "15915",
+              "stpnm": "E 7th St & E Utica St",
+              "pdist": 30210.0,
+              "lat": 43.455622,
+              "lon": -76.499278000001
+            },
+            {
+              "seq": 154,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45562,
+              "lon": -76.49928
+            },
+            {
+              "seq": 155,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45568,
+              "lon": -76.49932
+            },
+            {
+              "seq": 156,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45542,
+              "lon": -76.50017
+            },
+            {
+              "seq": 157,
+              "typ": "S",
+              "stpid": "15916",
+              "stpnm": "E Utica St & E 6th St",
+              "pdist": 30479.0,
+              "lat": 43.455450000001,
+              "lon": -76.500187
+            },
+            {
+              "seq": 158,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45542,
+              "lon": -76.50017
+            },
+            {
+              "seq": 159,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4551,
+              "lon": -76.50126
+            },
+            {
+              "seq": 160,
+              "typ": "S",
+              "stpid": "15917",
+              "stpnm": "E Utica St & E 5th St",
+              "pdist": 30790.0,
+              "lat": 43.455124999999,
+              "lon": -76.501278999999
+            },
+            {
+              "seq": 161,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4551,
+              "lon": -76.50126
+            },
+            {
+              "seq": 162,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45479,
+              "lon": -76.50233
+            },
+            {
+              "seq": 163,
+              "typ": "S",
+              "stpid": "15918",
+              "stpnm": "E Utica St & E 4th St",
+              "pdist": 31094.0,
+              "lat": 43.454841999999,
+              "lon": -76.502355
+            },
+            {
+              "seq": 164,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45479,
+              "lon": -76.50233
+            },
+            {
+              "seq": 165,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45475,
+              "lon": -76.50245
+            },
+            {
+              "seq": 166,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45593,
+              "lon": -76.50311
+            },
+            {
+              "seq": 167,
+              "typ": "S",
+              "stpid": "15919",
+              "stpnm": "E 4th St & E Mohawk St",
+              "pdist": 31591.0,
+              "lat": 43.455923000001,
+              "lon": -76.503133
+            },
+            {
+              "seq": 168,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45593,
+              "lon": -76.50311
+            },
+            {
+              "seq": 169,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45721,
+              "lon": -76.50384
+            },
+            {
+              "seq": 170,
+              "typ": "S",
+              "stpid": "15920",
+              "stpnm": "E 4th St & E Oneida St",
+              "pdist": 32096.0,
+              "lat": 43.457218,
+              "lon": -76.503825000001
+            },
+            {
+              "seq": 171,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45721,
+              "lon": -76.50384
+            },
+            {
+              "seq": 172,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45842,
+              "lon": -76.5045
+            },
+            {
+              "seq": 173,
+              "typ": "S",
+              "stpid": "15921",
+              "stpnm": "E 4th St & E Bridge St",
+              "pdist": 32570.0,
+              "lat": 43.458435000001,
+              "lon": -76.504468
+            },
+            {
+              "seq": 174,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45842,
+              "lon": -76.5045
+            },
+            {
+              "seq": 175,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45978,
+              "lon": -76.50527
+            },
+            {
+              "seq": 176,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.4595,
+              "lon": -76.50627
+            },
+            {
+              "seq": 177,
+              "typ": "W",
+              "stpid": null,
+              "stpnm": null,
+              "pdist": 0.0,
+              "lat": 43.45933,
+              "lon": -76.50617
+            },
+            {
+              "seq": 178,
+              "typ": "S",
+              "stpid": "18253",
+              "stpnm": "E Cayuga St & E 3rd St",
+              "pdist": 33521.0,
+              "lat": 43.459164999999,
+              "lon": -76.506098000001
+            }
+          ]
+        },
         {
           "pid": 9753,
           "rtdir": "FROM DOWNTOWN",
@@ -35674,13 +39007,13 @@
         {
           "id": "FROM HUB",
           "stopCount": 20,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         },
         {
           "id": "TO HUB",
           "stopCount": 16,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         }
       ],
@@ -35697,13 +39030,13 @@
         {
           "id": "FROM HUB",
           "stopCount": 25,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         },
         {
           "id": "TO HUB",
           "stopCount": 26,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         }
       ],
@@ -35720,13 +39053,13 @@
         {
           "id": "FROM HUB",
           "stopCount": 29,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         },
         {
           "id": "TO HUB",
           "stopCount": 17,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         }
       ],
@@ -35950,13 +39283,13 @@
         {
           "id": "FROM HUB",
           "stopCount": 65,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         },
         {
           "id": "TO HUB",
           "stopCount": 61,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         }
       ],
@@ -36019,13 +39352,13 @@
         {
           "id": "FROM HUB",
           "stopCount": 83,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         },
         {
           "id": "TO HUB",
           "stopCount": 86,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         }
       ],
@@ -36065,13 +39398,13 @@
         {
           "id": "FROM HUB",
           "stopCount": 80,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         },
         {
           "id": "TO HUB",
           "stopCount": 89,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         }
       ],
@@ -40578,13 +43911,13 @@
         {
           "id": "FROM HUB",
           "stopCount": 47,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         },
         {
           "id": "TO HUB",
           "stopCount": 52,
-          "stopOrder": "alphabetical",
+          "stopOrder": "route",
           "stops": null
         }
       ],
@@ -40670,7 +44003,7 @@
         {
           "id": "FROM HUB",
           "stopCount": 53,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         },
         {
@@ -40756,7 +44089,7 @@
         {
           "id": "FROM HUB",
           "stopCount": 58,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         },
         {
@@ -41353,7 +44686,7 @@
         {
           "id": "FROM HUB",
           "stopCount": 33,
-          "stopOrder": "route",
+          "stopOrder": "alphabetical",
           "stops": null
         },
         {
