@@ -134,8 +134,9 @@ function ActivePage() {
               <span
                 className="route-pill"
                 style={{ '--route-color': groups[routeId][0].color }}
+                data-long={(groups[routeId][0].shortName || routeId).length > 2 || undefined}
               >
-                {routeId.replace('OSW', '')}
+                {groups[routeId][0].shortName || routeId}
               </span>
               <div>
                 <strong>{groups[routeId][0].destination || routeId}</strong>

@@ -6,6 +6,8 @@ import {
   FiRefreshCw,
   FiRadio,
   FiArrowRight,
+  FiArrowUpRight,
+  FiMoon,
 } from 'react-icons/fi';
 
 const formatTime = (value) => {
@@ -34,7 +36,7 @@ const countdownLabel = (prediction) => {
   return formatTime(prediction.predictedAt);
 };
 
-function EmptyPanel({ icon: Icon = FiClock, title, children }) {
+function EmptyPanel({ icon: Icon = FiClock, title, children, action }) {
   return (
     <div className="arrival-empty">
       <span className="arrival-empty__icon">
@@ -42,7 +44,25 @@ function EmptyPanel({ icon: Icon = FiClock, title, children }) {
       </span>
       <h3>{title}</h3>
       <p>{children}</p>
+      {action}
     </div>
+  );
+}
+
+// Centro only predicts about 45 minutes ahead, so an empty list can mean
+// "bus is coming later" (beyond_window) or "nothing is running" (no_service).
+const EMPTY_STATES = {
+  beyond_window: { icon: FiClock, title: 'Bus on the route, no time yet' },
+  no_service: { icon: FiMoon, title: 'No bus running right now' },
+};
+
+function ScheduleLink({ url }) {
+  if (!url) return null;
+  return (
+    <a className="text-link" href={url} target="_blank" rel="noreferrer">
+      Check the official schedule
+      <FiArrowUpRight aria-hidden="true" />
+    </a>
   );
 }
 
@@ -106,7 +126,11 @@ function NextBusCard({
             {error}
           </EmptyPanel>
         ) : predictions.length === 0 ? (
-          <EmptyPanel icon={FiClock} title="No upcoming prediction">
+          <EmptyPanel
+            icon={EMPTY_STATES[payload?.status]?.icon || FiClock}
+            title={EMPTY_STATES[payload?.status]?.title || 'No upcoming prediction'}
+            action={<ScheduleLink url={route?.scheduleUrl} />}
+          >
             {payload?.message ||
               'Centro is not reporting an upcoming bus for this stop.'}
           </EmptyPanel>

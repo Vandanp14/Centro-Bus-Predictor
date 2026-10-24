@@ -193,7 +193,7 @@ function RouteDetail() {
         style={{ '--route-color': route.color }}
       >
         <div className="route-title">
-          <span className="route-pill route-pill--large">{route.shortName}</span>
+          <span className="route-pill route-pill--large" data-long={route.shortName.length > 2 || undefined}>{route.shortName}</span>
           <div>
             <p className="eyebrow">{route.category}</p>
             <h1>{route.name}</h1>

@@ -7,6 +7,7 @@ const route = {
   id: 'OSW10',
   name: 'SUNY Oswego Blue Route',
   color: '#78C7F0',
+  scheduleUrl: 'https://www.centro.org/Route-Time-Tables/osw-10',
 };
 
 const render = (ui) => renderUI(ui, { wrapper: MemoryRouter });
@@ -115,3 +116,24 @@ test('renders an honest no-service state', () => {
   expect(screen.getByText('No service scheduled')).toBeInTheDocument();
 });
 
+
+test('says a bus is coming when it is beyond the prediction window', () => {
+  render(<NextBusCard {...cardProps} payload={{
+    predictions: [],
+    status: 'beyond_window',
+    message: 'A bus is running on this route, but it is more than about 45 minutes from this stop.',
+  }} />);
+  expect(screen.getByText('Bus on the route, no time yet')).toBeInTheDocument();
+  expect(screen.queryByText('No upcoming prediction')).not.toBeInTheDocument();
+  expect(screen.getByRole('link', { name: /official schedule/i })).toHaveAttribute('href', route.scheduleUrl);
+});
+
+test('says no bus is running when the route has no live vehicles', () => {
+  render(<NextBusCard {...cardProps} payload={{
+    predictions: [],
+    status: 'no_service',
+    message: 'No bus is running on this route right now.',
+  }} />);
+  expect(screen.getByText('No bus running right now')).toBeInTheDocument();
+  expect(screen.getByText('No bus is running on this route right now.')).toBeInTheDocument();
+});

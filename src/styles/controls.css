@@ -31,6 +31,8 @@
 .status-banner--error { border-color: #dab5af; color: var(--danger); background: #fcf0ec; }
 .route-pill { width: 40px; height: 40px; display: inline-grid; flex: 0 0 auto; place-items: center; border-radius: 7px; background: var(--route-color, var(--selected)); color: var(--text); font-size: 20px; font-weight: 750; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
 .route-pill--large { width: 54px; height: 54px; border-radius: 9px; font-size: 30px; }
+.route-pill[data-long] { font-size: 13px; letter-spacing: -.02em; }
+.route-pill--large[data-long] { font-size: 18px; }
 .live-dot { display: inline-block; width: 6px; height: 6px; flex: 0 0 auto; background: var(--success); border-radius: 50%; }
 .live-dot--muted { background: var(--text-muted); }
 .icon-button { width: 44px; min-width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); cursor: pointer; }

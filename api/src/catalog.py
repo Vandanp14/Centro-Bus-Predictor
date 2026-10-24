@@ -1,5 +1,6 @@
 OSWEGO_ROUTE_IDS = (
     "OSW09", "OSW10", "OSW11", "OSW17", "OSW18", "OSW19", "OSW46",
+    "MEX16", "FUL14", "FUL15", "SY46",
 )
 
 ROUTE_METADATA = {
@@ -51,6 +52,34 @@ ROUTE_METADATA = {
         "color": "#D98963",
         "category": "Regional service",
         "scheduleUrl": "https://www.centro.org/Route-Time-Tables/osw-46",
+    },
+    "MEX16": {
+        "shortName": "16",
+        "fallbackName": "Mexico – Fulton",
+        "color": "#8FB8DE",
+        "category": "Oswego County",
+        "scheduleUrl": "https://www.centro.org/Route-Time-Tables/mex-3",
+    },
+    "FUL14": {
+        "shortName": "14",
+        "fallbackName": "Fulton – East",
+        "color": "#9CC9A8",
+        "category": "Fulton",
+        "scheduleUrl": "https://www.centro.org/Route-Time-Tables/ful-4",
+    },
+    "FUL15": {
+        "shortName": "15",
+        "fallbackName": "Fulton – West",
+        "color": "#D4A5C9",
+        "category": "Fulton",
+        "scheduleUrl": "https://www.centro.org/Route-Time-Tables/ful-5",
+    },
+    "SY46": {
+        "shortName": "SY46",
+        "fallbackName": "Liverpool – Route 57",
+        "color": "#CC9999",
+        "category": "Syracuse connection",
+        "scheduleUrl": "https://www.centro.org/Route-Time-Tables/sy-46",
     },
 }
 

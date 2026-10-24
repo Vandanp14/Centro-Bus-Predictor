@@ -4,7 +4,7 @@ from flask import Blueprint, jsonify, request
 
 from flask import current_app
 
-from ..services.centro_client import get_client
+from ..services.centro_client import CentroAPIError, get_client
 from ..utils import (
     first_upstream_message,
     meta,
@@ -15,6 +15,12 @@ from ..utils import (
 from ..middleware.request_id import json_error
 
 blueprint = Blueprint("predictions", __name__)
+
+BEYOND_WINDOW_MESSAGE = (
+    "A bus is running on this route, but it is more than about 45 minutes "
+    "from this stop. Centro posts times once the bus is within 45 minutes."
+)
+NO_SERVICE_MESSAGE = "No bus is running on this route right now."
 
 
 def _resolve_client():
@@ -82,12 +88,32 @@ def predictions():
     )
     stale = bool(newest_observation and now - newest_observation > timedelta(minutes=3))
 
+    # Centro says "No service scheduled" both when nothing runs and when the
+    # bus is beyond its ~45 minute prediction window, so check live vehicles.
+    active_vehicles = None
+    if result:
+        status, message = "live", None
+    else:
+        try:
+            vehicles_body = client.vehicles(route_id)
+            active_vehicles = len(vehicles_body.get("vehicle") or vehicles_body.get("vehicles") or [])
+        except CentroAPIError:
+            active_vehicles = None
+        if active_vehicles:
+            status, message = "beyond_window", BEYOND_WINDOW_MESSAGE
+        elif active_vehicles == 0:
+            status, message = "no_service", NO_SERVICE_MESSAGE
+        else:
+            status, message = "unknown", first_upstream_message(body, "No upcoming predictions.")
+
     return jsonify({
         "routeId": route_id,
         "stopId": stop_id,
         "direction": direction,
         "predictions": result,
-        "message": None if result else first_upstream_message(body, "No upcoming predictions."),
+        "status": status,
+        "activeVehicles": active_vehicles,
+        "message": message,
         "meta": meta(
             live=True,
             stale=stale,

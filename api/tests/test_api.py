@@ -14,9 +14,17 @@ class TestRoutes:
         response = client.get("/api/v1/routes")
         assert response.status_code == 200
         payload = response.get_json()
-        assert len(payload["routes"]) == 7
+        assert len(payload["routes"]) == 11
         assert payload["routes"][1]["id"] == "OSW10"
         assert payload["routes"][1]["name"] == "SUNY Oswego Blue Route"
+
+    def test_routes_include_student_connections(self, client):
+        ids = [route["id"] for route in client.get("/api/v1/routes").get_json()["routes"]]
+        assert ids[-4:] == ["MEX16", "FUL14", "FUL15", "SY46"]
+
+    def test_connection_routes_are_supported(self, client):
+        response = client.get("/api/v1/routes/MEX16/directions")
+        assert response.status_code == 200
 
     def test_directions(self, client):
         response = client.get("/api/v1/routes/OSW10/directions")
@@ -35,6 +43,43 @@ class TestRoutes:
         assert response.get_json()["stops"][0]["id"] == "15521"
         assert isinstance(response.get_json()["stops"][0]["lat"], float)
 
+    def test_stops_follow_route_sequence(self, client, centro):
+        centro.stops_body = {"stops": [
+            {"stpid": "1", "stpnm": "Alpha"},
+            {"stpid": "2", "stpnm": "Bravo"},
+            {"stpid": "3", "stpnm": "Charlie"},
+        ]}
+        centro.patterns_body = {"ptr": [
+            {"pid": 1, "rtdir": "FROM CAMPUS", "pt": [
+                {"seq": 2, "lat": 1, "lon": 1, "typ": "S", "stpid": "1"},
+                {"seq": 1, "lat": 1, "lon": 1, "typ": "S", "stpid": "3"},
+            ]},
+            {"pid": 2, "rtdir": "TO CAMPUS", "pt": [
+                {"seq": 1, "lat": 1, "lon": 1, "typ": "S", "stpid": "2"},
+            ]},
+        ]}
+        payload = client.get("/api/v1/routes/OSW10/stops?direction=FROM%20CAMPUS").get_json()
+        assert [stop["id"] for stop in payload["stops"]] == ["3", "1", "2"]
+        assert payload["stopOrder"] == "route"
+
+    def test_stops_keep_upstream_order_without_pattern(self, client, centro):
+        centro.stops_body = {"stops": [
+            {"stpid": "1", "stpnm": "Alpha"},
+            {"stpid": "2", "stpnm": "Bravo"},
+        ]}
+        centro.patterns_body = {"ptr": []}
+        payload = client.get("/api/v1/routes/OSW10/stops?direction=TO%20CAMPUS").get_json()
+        assert [stop["id"] for stop in payload["stops"]] == ["1", "2"]
+        assert payload["stopOrder"] == "alphabetical"
+
+    def test_stops_survive_pattern_failure(self, client, centro):
+        from api.src.services.centro_client import CentroAPIError
+        centro.patterns_error = CentroAPIError("down")
+        response = client.get("/api/v1/routes/OSW10/stops?direction=FROM%20CAMPUS")
+        assert response.status_code == 200
+        assert response.get_json()["stops"][0]["id"] == "15521"
+        assert response.get_json()["stopOrder"] == "alphabetical"
+
     def test_stops_missing_direction(self, client):
         response = client.get("/api/v1/routes/OSW10/stops")
         assert response.status_code == 400
@@ -50,14 +95,27 @@ class TestPredictions:
         assert payload["predictions"][0]["due"] is True
         assert payload["predictions"][0]["minutes"] == 0
         assert payload["predictions"][1]["delayed"] is True
+        assert payload["status"] == "live"
 
-    def test_no_service_is_empty_state(self, client, centro):
+    def test_bus_beyond_prediction_window_is_not_no_service(self, client, centro):
+        # Centro answers "No service scheduled" both when no bus runs and when
+        # the bus is more than ~45 minutes away; live vehicles tell them apart.
         centro.prediction_body = {"error": [{"msg": "No service scheduled", "rt": "OSW10"}]}
         response = client.get("/api/v1/predictions?route=OSW10&stop=15521")
         assert response.status_code == 200
         payload = response.get_json()
         assert payload["predictions"] == []
-        assert payload["message"] == "No service scheduled"
+        assert payload["status"] == "beyond_window"
+        assert payload["activeVehicles"] == 1
+        assert "45 minutes" in payload["message"]
+
+    def test_no_bus_on_route_is_no_service(self, client, centro):
+        centro.prediction_body = {"error": [{"msg": "No service scheduled", "rt": "OSW10"}]}
+        centro.vehicles_body = {"error": [{"rt": "OSW10", "msg": "No data found for parameter"}]}
+        payload = client.get("/api/v1/predictions?route=OSW10&stop=15521").get_json()
+        assert payload["status"] == "no_service"
+        assert payload["activeVehicles"] == 0
+        assert payload["message"] == "No bus is running on this route right now."
 
 
 class TestVehicles:

@@ -22,9 +22,14 @@ const groups = [
     routeIds: ['OSW09', 'OSW17', 'OSW18', 'OSW19'],
   },
   {
+    title: 'Oswego County',
+    description: 'Mexico and Fulton service, with transfers to Oswego routes.',
+    routeIds: ['MEX16', 'FUL14', 'FUL15'],
+  },
+  {
     title: 'Regional',
     description: 'Connections between Oswego and Syracuse.',
-    routeIds: ['OSW46'],
+    routeIds: ['OSW46', 'SY46'],
   },
 ];
 
@@ -92,7 +97,7 @@ function Schedule() {
                       key={route.id}
                       style={{ '--route-color': route.color }}
                     >
-                      <span className="route-pill">{route.shortName}</span>
+                      <span className="route-pill" data-long={route.shortName.length > 2 || undefined}>{route.shortName}</span>
                       <span>
                         <strong>{route.name}</strong>
                         <small>View times, map, and active service alerts</small>

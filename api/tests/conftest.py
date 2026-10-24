@@ -1,7 +1,7 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
 import pytest
 
@@ -10,6 +10,16 @@ class FakeCentroClient:
     configured = True
 
     def __init__(self):
+        self.vehicles_body = {
+            "vehicle": [{"vid": "2212", "tmstmp": "20260725 20:10", "lat": "43.453952", "lon": "-76.540263", "hdg": "262", "des": "Campus loop", "rtdir": "FROM CAMPUS", "dly": False}]
+        }
+        self.stops_body = {
+            "stops": [{"stpid": "15521", "stpnm": "SUNY OSWEGO CAMPUS CENTER", "lat": 43.453952, "lon": -76.540263}]
+        }
+        self.patterns_body = {
+            "ptr": [{"pid": 2722, "ln": 10358.0, "rtdir": "FROM CAMPUS", "pt": [{"seq": 1, "lat": 43.453952, "lon": -76.540263, "typ": "S", "stpid": "15521", "stpnm": "SUNY OSWEGO CAMPUS CENTER"}, {"seq": 2, "lat": 43.454, "lon": -76.54, "typ": "W"}]}]
+        }
+        self.patterns_error = None
         self.prediction_body = {
             "prd": [
                 {
@@ -58,22 +68,18 @@ class FakeCentroClient:
         }
 
     def stops(self, route_id, direction):
-        return {
-            "stops": [{"stpid": "15521", "stpnm": "SUNY OSWEGO CAMPUS CENTER", "lat": 43.453952, "lon": -76.540263}]
-        }
+        return self.stops_body
 
     def predictions(self, route_id, stop_id, direction=None):
         return self.prediction_body
 
     def vehicles(self, route_id):
-        return {
-            "vehicle": [{"vid": "2212", "tmstmp": "20260725 20:10", "lat": "43.453952", "lon": "-76.540263", "hdg": "262", "des": "Campus loop", "rtdir": "FROM CAMPUS", "dly": False}]
-        }
+        return self.vehicles_body
 
     def patterns(self, route_id):
-        return {
-            "ptr": [{"pid": 2722, "ln": 10358.0, "rtdir": "FROM CAMPUS", "pt": [{"seq": 1, "lat": 43.453952, "lon": -76.540263, "typ": "S", "stpid": "15521", "stpnm": "SUNY OSWEGO CAMPUS CENTER"}, {"seq": 2, "lat": 43.454, "lon": -76.54, "typ": "W"}]}]
-        }
+        if self.patterns_error:
+            raise self.patterns_error
+        return self.patterns_body
 
 
 @pytest.fixture
@@ -83,7 +89,7 @@ def centro():
 
 @pytest.fixture
 def client(centro, monkeypatch):
-    from app import create_app
+    from api.src.app import create_app
     flask_app = create_app(testing=True)
     flask_app.config["CENTRO_CLIENT"] = centro
     return flask_app.test_client()

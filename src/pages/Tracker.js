@@ -243,7 +243,7 @@ function Tracker() {
       >
         <div className="map-stage__topline">
           <div className="route-title route-title--compact">
-            <span className="route-pill">{route.shortName}</span>
+            <span className="route-pill" data-long={route.shortName.length > 2 || undefined}>{route.shortName}</span>
             <div>
               <strong>{route.name}</strong>
               <span>{direction || 'Choose a direction'}</span>
