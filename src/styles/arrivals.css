@@ -6,8 +6,11 @@
 .route-header-actions .button { font-size: 12px; }
 .route-workspace { display: grid; grid-template-columns: minmax(270px, .8fr) minmax(0, 1.2fr); align-items: start; gap: 32px; padding-top: 26px; }
 .stop-selector { padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-.stop-selector > header { margin-bottom: 20px; }
-.stop-selector h2 { font-size: 16px; line-height: 1.4; margin: 0; letter-spacing: -.02em; }
+.stop-selector summary { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 44px; margin: -10px; padding: 10px; font-size: 14px; font-weight: 600; list-style: none; cursor: pointer; }
+.stop-selector summary::-webkit-details-marker { display: none; }
+.stop-selector summary svg { width: 16px; height: 16px; flex: 0 0 auto; color: var(--text-muted); }
+.stop-selector[open] summary { margin-bottom: 8px; }
+.stop-selector[open] summary svg { transform: rotate(180deg); }
 .stop-selector .field { margin-top: 18px; }
 .stop-selector .selector-note { margin-top: 16px; }
 .arrival-board { min-width: 0; }
@@ -51,8 +54,6 @@
   .route-header-actions .button--ghost { margin-left: auto; }
   .route-workspace { grid-template-columns: 1fr; gap: 25px; padding-top: 20px; }
   .stop-selector { padding: 16px; }
-  .stop-selector > header { margin-bottom: 14px; }
-  .stop-selector h2 { font-size: 14px; }
   .next-arrival { padding: 21px; }
   .next-arrival__countdown strong { font-size: 100px; }
   .next-arrival__countdown--time strong { font-size: 46px; }

@@ -36,7 +36,7 @@
 @media (max-width: 55.999rem) {
   .app-shell { padding-bottom: var(--nav-height); }
   .main-nav, .live-source { display: none; }
-  .mobile-help { display: inline-grid; border-radius: 50%; }
+  .topbar .mobile-help { display: inline-grid; border-radius: 50%; }
   .mobile-nav { display: block; position: fixed; z-index: 1200; inset: auto 0 0; min-height: var(--nav-height); padding: 7px max(8px, env(safe-area-inset-right)) calc(12px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left)); border-top: 1px solid var(--line); background: var(--surface); }
   .mobile-nav ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; }
   .mobile-nav__link { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 58px; padding: 6px 1px; gap: 5px; border-radius: 9px; color: var(--text-muted); font-size: 10px; font-weight: 600; }
