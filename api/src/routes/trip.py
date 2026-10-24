@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from flask import Blueprint, current_app, jsonify, request
 
-from ..arrival_status import classify_empty
+from ..arrival_status import LAST_STOP_MESSAGE, classify_empty, count_vehicles
 from ..middleware.request_id import json_error
 from ..services import trip as trip_math
 from ..services.centro_client import CentroAPIError, get_client
@@ -46,6 +46,15 @@ def _sorted_predictions(predictions):
     return sorted(predictions, key=order)
 
 
+def _is_last_stop(board, stop_id):
+    # Centro never predicts a trip's final stop. A loop that also starts at
+    # the stop is a boarding point, not only a last stop.
+    if board is None:
+        return False
+    ids = [point["stpid"] for point in trip_math.stop_points(board)]
+    return bool(ids) and ids[-1] == stop_id and ids.count(stop_id) == 1
+
+
 def _list_position(bus, bus_pattern, board, bus_after, direction):
     """Where the stop list may draw the bus; "unknown" draws it nowhere."""
     if bus_after:
@@ -83,7 +92,7 @@ def trip():
     try:
         vehicles_body = client.vehicles(route_id)
         vehicles = vehicles_body.get("vehicle") or vehicles_body.get("vehicles") or []
-        active_vehicles = len(vehicles)
+        active_vehicles = count_vehicles(vehicles_body)
     except CentroAPIError:
         vehicles, active_vehicles = [], None
 
@@ -127,6 +136,8 @@ def trip():
         status, message = "live", None
     else:
         status, message = classify_empty(active_vehicles, stop_body)
+        if status == "beyond_window" and _is_last_stop(board, stop_id):
+            message = LAST_STOP_MESSAGE
 
     bus_payload = None
     if bus:

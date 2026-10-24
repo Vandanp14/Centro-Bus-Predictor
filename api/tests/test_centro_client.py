@@ -61,6 +61,15 @@ def test_vehicles_cache_is_15_seconds():
     assert len(session.calls) == 2
 
 
+def test_route_patterns_cache_is_5_minutes():
+    # getpatterns only lists currently-active patterns, so a direction that
+    # becomes active must show up within minutes, not an hour.
+    client, _ = make_client({"ptr": []})
+    client.patterns("OSW17")
+    (entry,) = client._cache.values()
+    assert entry.expires_at - datetime.now(timezone.utc) <= timedelta(minutes=5)
+
+
 def test_classify_empty():
     upstream = {"error": [{"msg": "No service scheduled"}]}
     assert arrival_status.classify_empty(2, upstream) == (
@@ -75,3 +84,5 @@ def test_classify_empty():
 def test_count_vehicles():
     assert arrival_status.count_vehicles({"vehicle": [{}, {}]}) == 2
     assert arrival_status.count_vehicles({"error": [{"msg": "No data found for parameter"}]}) == 0
+    # Any other Centro error (e.g. a rate limit) says nothing about service.
+    assert arrival_status.count_vehicles({"error": [{"msg": "Transaction limit for current day has been exceeded."}]}) is None

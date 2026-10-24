@@ -9,8 +9,28 @@ BEYOND_WINDOW_MESSAGE = (
 NO_SERVICE_MESSAGE = "No bus is running on this route right now."
 
 
-def count_vehicles(body: dict) -> int:
-    return len(body.get("vehicle") or body.get("vehicles") or [])
+LAST_STOP_MESSAGE = (
+    "Centro doesn't post arrival times for the last stop of a trip. "
+    "If you're boarding here, choose the other direction."
+)
+
+NO_VEHICLES_MESSAGE = "no data found for parameter"
+
+
+def count_vehicles(body: dict) -> int | None:
+    """Live buses on the route, or None when Centro's answer says nothing.
+
+    Centro reports "No data found for parameter" when no bus is reporting;
+    any other error (rate limit, outage) must not read as "no service".
+    """
+    vehicles = body.get("vehicle") or body.get("vehicles") or []
+    if vehicles:
+        return len(vehicles)
+    errors = body.get("error") or []
+    messages = {str(e.get("msg") or "").strip().lower() for e in errors if isinstance(e, dict)}
+    if messages - {NO_VEHICLES_MESSAGE}:
+        return None
+    return 0
 
 
 def classify_empty(active_vehicles: int | None, upstream_body: dict) -> tuple[str, str]:

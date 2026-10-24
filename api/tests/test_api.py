@@ -133,6 +133,14 @@ class TestPredictions:
         assert payload["message"] == "No bus is running on this route right now."
 
 
+    def test_vehicle_error_is_not_no_service(self, client, centro):
+        centro.prediction_body = {"error": [{"msg": "No service scheduled", "rt": "OSW10"}]}
+        centro.vehicles_body = {"error": [{"rt": "OSW10", "msg": "Transaction limit for current day has been exceeded."}]}
+        payload = client.get("/api/v1/predictions?route=OSW10&stop=15521").get_json()
+        assert payload["status"] == "unknown"
+        assert payload["activeVehicles"] is None
+
+
 class TestVehicles:
     def test_vehicle_payload(self, client):
         response = client.get("/api/v1/routes/OSW10/vehicles").get_json()

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from api.src.arrival_status import BEYOND_WINDOW_MESSAGE
+from api.src.arrival_status import BEYOND_WINDOW_MESSAGE, LAST_STOP_MESSAGE
 from api.src.services.centro_client import CentroAPIError
 from api.src.utils import SERVICE_TZ
 
@@ -143,3 +143,10 @@ def test_trip_bus_on_other_direction_is_before_start(client, centro):
     payload = client.get(URL).get_json()
     assert payload["bus"]["id"] == "2213"
     assert payload["bus"]["listPosition"] == "before_start"
+
+
+def test_trip_last_stop_says_times_are_not_posted(client, centro):
+    live(centro, prediction_body={"error": [{"msg": "No service scheduled"}]}, vehicle_predictions_body={"prd": []})
+    payload = client.get("/api/v1/trip?route=OSW17&direction=WESTBOUND&stop=15521").get_json()
+    assert payload["status"] == "beyond_window"
+    assert payload["message"] == LAST_STOP_MESSAGE

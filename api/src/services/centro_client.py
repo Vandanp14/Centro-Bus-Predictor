@@ -127,7 +127,9 @@ class CentroClient:
         return self.request("getvehicles", **kwargs, cache_seconds=15)
 
     def patterns(self, route_id: str) -> dict[str, Any]:
-        return self.request("getpatterns", rt=route_id, cache_seconds=3600)
+        # Short: Centro only lists currently-active patterns, so a direction
+        # that becomes active should be picked up within minutes.
+        return self.request("getpatterns", rt=route_id, cache_seconds=300)
 
 
 def get_client() -> CentroClient:

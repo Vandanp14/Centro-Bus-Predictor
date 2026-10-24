@@ -21,6 +21,19 @@ project root, port 5001). It reads `CENTRO_API_KEY` from the environment,
 `api/.env`, or `backend/.env`, in that order. `backend/src/main/app.py` is the
 legacy server and is no longer started.
 
+Before deploying, refresh the route reference so the server starts with both
+directions' route patterns:
+
+```bash
+python3 scripts/export_centro_routes.py
+```
+
+Centro only lists the patterns that are active at that moment, and the script
+merges each run with the previous file. Run it at two or three different times
+of day, then commit `docs/centro-routes.json` and `docs/centro-routes.md`. The
+server seeds its pattern store from that file at startup and learns any missing
+patterns from live buses afterwards.
+
 ## What the app provides
 
 - The current Oswego route catalog from Centro BusTime
