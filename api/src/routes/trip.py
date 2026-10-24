@@ -91,9 +91,10 @@ def trip():
             bus_predictions = []
 
     bus_pattern = patterns_by_pid.get(str(bus.get("pid"))) if bus else None
-    board = trip_math.boarding_pattern(
+    candidates = trip_math.candidate_boarding_patterns(
         stop_id, direction, list(patterns_by_pid.values()), bus, bus_predictions,
     )
+    board = candidates[0] if candidates else None
     stops, bus_after = (
         trip_math.stop_timeline(stop_id, direction, bus, bus_pattern, board, bus_predictions)
         if board else ([], None)
@@ -124,8 +125,8 @@ def trip():
             "destination": bus.get("des") or (tracked_prediction or {}).get("des"),
             "delayed": bool(bus.get("dly") or (tracked_prediction or {}).get("dly")),
             **_arrival(tracked_prediction),
-            "stopsAway": trip_math.stops_away(
-                stop_id, direction, bus, bus_pattern, board, bus_predictions,
+            "stopsAway": trip_math.agreed_stops_away(
+                stop_id, direction, bus, bus_pattern, candidates, bus_predictions,
             ),
             "onBoardingDirection": bool(bus_pattern and bus_pattern.get("rtdir") == direction),
         }

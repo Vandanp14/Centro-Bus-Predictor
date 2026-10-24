@@ -1,5 +1,7 @@
 from api.src.services.trip import (
+    agreed_stops_away,
     boarding_pattern,
+    candidate_boarding_patterns,
     pick_tracked_bus,
     stop_points,
     stop_timeline,
@@ -165,3 +167,42 @@ def test_timeline_without_bus_lists_pattern_in_order():
     stops, bus_after = stop_timeline(BOARDING, "WESTBOUND", None, None, P9757, [])
     assert [s["id"] for s in stops][0] == "9614"
     assert len(stops) == 9 and bus_after is None
+
+
+def test_turnaround_onto_short_variant_counts_its_stops():
+    # The bus's next trip is the direct westbound variant (9757): its
+    # predictions name George and 13th but not the garage or OCO stops that
+    # only the longer 9768 variant serves. Counting on 9768 would add 2.
+    bus = vehicle("2213", 9775, 6000, tatripid="T1")
+    predictions = [
+        prediction("9614", "EASTBOUND", "2", tatripid="T1"),
+        # Centro lists the next trip's departure from Walmart in its direction.
+        prediction("9614", "WESTBOUND", "8", tatripid="T2"),
+        prediction("17808", "WESTBOUND", "10", tatripid="T2"),
+        prediction("15873", "WESTBOUND", "11", tatripid="T2"),
+    ]
+    board = boarding_pattern(BOARDING, "WESTBOUND", OSW17_PATTERNS, bus, predictions)
+    assert board["pid"] == 9757
+    candidates = candidate_boarding_patterns(BOARDING, "WESTBOUND", OSW17_PATTERNS, bus, predictions)
+    # Walmart (counted once), George, 13th, 9th, Cayuga, 1st
+    assert agreed_stops_away(BOARDING, "WESTBOUND", bus, P9775, candidates, predictions) == 6
+
+
+def test_ambiguous_variants_give_no_count():
+    # Without the departure row both variants fit the predicted stretch and
+    # they disagree on the count, so no count is shown.
+    bus = vehicle("2213", 9775, 6000, tatripid="T1")
+    predictions = [
+        prediction("17808", "WESTBOUND", "10", tatripid="T2"),
+        prediction("15873", "WESTBOUND", "11", tatripid="T2"),
+    ]
+    candidates = candidate_boarding_patterns(BOARDING, "WESTBOUND", OSW17_PATTERNS, bus, predictions)
+    assert {p["pid"] for p in candidates} == {9757, 9768}
+    assert agreed_stops_away(BOARDING, "WESTBOUND", bus, P9775, candidates, predictions) is None
+
+
+def test_same_direction_bus_has_single_candidate():
+    bus = vehicle("2215", 9768, 2500)
+    candidates = candidate_boarding_patterns(BOARDING, "WESTBOUND", OSW17_PATTERNS, bus, [])
+    assert [p["pid"] for p in candidates] == [9768]
+    assert agreed_stops_away(BOARDING, "WESTBOUND", bus, P9768, candidates, []) == 5

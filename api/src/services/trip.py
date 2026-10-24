@@ -87,26 +87,25 @@ def pick_tracked_bus(
     return None
 
 
-def boarding_pattern(
+def candidate_boarding_patterns(
     stop_id: str,
     direction: str,
     patterns: list[dict],
     bus: dict | None,
     bus_predictions: list[dict],
-) -> dict | None:
+) -> list[dict]:
+    """Variants of the student's direction the bus may use to reach the stop, best first."""
     candidates = [
         p for p in patterns
         if _direction(p) == direction and any(pt["stpid"] == stop_id for pt in stop_points(p))
     ]
-    if not candidates:
-        return None
     if bus:
         for pattern in candidates:
             if str(pattern.get("pid")) == str(bus.get("pid")):
-                return pattern
+                return [pattern]
 
-    def size(pattern):
-        return len(stop_points(pattern))
+    def by_size(items):
+        return sorted(items, key=lambda p: len(stop_points(p)), reverse=True)
 
     wanted = {str(p.get("stpid")) for p in bus_predictions if p.get("rtdir") == direction}
     if wanted:
@@ -114,9 +113,34 @@ def boarding_pattern(
             p for p in candidates
             if wanted <= {pt["stpid"] for pt in stop_points(p)}
         ]
+        # A longer variant always contains a shorter one's stops, so prefer
+        # variants with no unpredicted stops inside the predicted stretch:
+        # a stop the bus will visit within that stretch would be predicted.
+        tight = [p for p in matching if _covers_contiguously(p, wanted)]
+        if tight:
+            return by_size(tight)
         if matching:
-            return max(matching, key=size)
-    return max(candidates, key=size)
+            return by_size(matching)
+    return by_size(candidates)
+
+
+def boarding_pattern(
+    stop_id: str,
+    direction: str,
+    patterns: list[dict],
+    bus: dict | None,
+    bus_predictions: list[dict],
+) -> dict | None:
+    candidates = candidate_boarding_patterns(stop_id, direction, patterns, bus, bus_predictions)
+    return candidates[0] if candidates else None
+
+
+def _covers_contiguously(pattern: dict, wanted: set[str]) -> bool:
+    ids = [pt["stpid"] for pt in stop_points(pattern)]
+    positions = [index for index, stop_id in enumerate(ids) if stop_id in wanted]
+    if not positions:
+        return False
+    return all(stop_id in wanted for stop_id in ids[positions[0]: positions[-1] + 1])
 
 
 def turnaround_confirmed(bus: dict, direction: str, bus_predictions: list[dict]) -> bool:
@@ -159,6 +183,23 @@ def stops_away(
     if remaining and next_leg and remaining[-1]["stpid"] == next_leg[0]["stpid"]:
         next_leg = next_leg[1:]
     return len(remaining) + len(next_leg)
+
+
+def agreed_stops_away(
+    stop_id: str,
+    direction: str,
+    bus: dict,
+    bus_pattern: dict | None,
+    candidates: list[dict],
+    bus_predictions: list[dict],
+) -> int | None:
+    # When Centro's data fits more than one variant and they disagree, a
+    # count would be a guess.
+    counts = {
+        stops_away(stop_id, direction, bus, bus_pattern, candidate, bus_predictions)
+        for candidate in candidates
+    } or {None}
+    return counts.pop() if len(counts) == 1 else None
 
 
 def stop_timeline(
