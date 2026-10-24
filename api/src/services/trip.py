@@ -37,7 +37,7 @@ def _direction(pattern: dict) -> str:
     return str(pattern.get("rtdir") or "")
 
 
-def _countdown(prediction: dict) -> tuple[int | None, bool]:
+def parse_countdown(prediction: dict) -> tuple[int | None, bool]:
     raw = str(prediction.get("prdctdn", "")).strip().upper()
     if raw == "DUE":
         return 0, True
@@ -56,7 +56,7 @@ def pick_tracked_bus(
 ) -> dict | None:
     if stop_predictions:
         def order(p):
-            minutes, _ = _countdown(p)
+            minutes, _ = parse_countdown(p)
             return (p.get("prdtm") or "~", minutes if minutes is not None else 10_000)
 
         vehicle_id = str(min(stop_predictions, key=order).get("vid") or "")
@@ -193,7 +193,7 @@ def stop_timeline(
         passed = bus_pdist is not None and point["pdist"] < bus_pdist
         minutes, due, predicted_at = None, False, None
         if not passed and point["stpid"] in times:
-            minutes, due = _countdown(times[point["stpid"]])
+            minutes, due = parse_countdown(times[point["stpid"]])
             parsed = parse_bustime(times[point["stpid"]].get("prdtm"))
             predicted_at = parsed.isoformat(timespec="seconds") if parsed else None
         if passed:

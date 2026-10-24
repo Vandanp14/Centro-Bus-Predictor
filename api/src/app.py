@@ -8,7 +8,7 @@ from flask_cors import CORS
 
 from .config import allowed_cors_origins, load_local_environment
 from .middleware.request_id import assign_request_id, json_error
-from .routes import health, predictions, routes, vehicles, patterns, spa
+from .routes import health, predictions, routes, vehicles, patterns, spa, trip
 
 LOGGER = logging.getLogger(__name__)
 
@@ -66,6 +66,7 @@ def create_app(*, testing=False):
     app.register_blueprint(predictions.blueprint)
     app.register_blueprint(vehicles.blueprint)
     app.register_blueprint(patterns.blueprint)
+    app.register_blueprint(trip.blueprint)
     app.register_blueprint(spa.blueprint)
 
     return app
