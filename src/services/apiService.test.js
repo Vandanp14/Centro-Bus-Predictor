@@ -1,4 +1,4 @@
-import { getPredictions, getStops } from './apiService';
+import { getPredictions, getStops, getTrip } from './apiService';
 
 const jsonResponse = (payload, ok = true, status = 200) =>
   Promise.resolve({
@@ -30,6 +30,14 @@ describe('Centro API service', () => {
     expect(payload.message).toBe('No service scheduled');
     expect(global.fetch.mock.calls[0][0]).toContain(
       '/api/v1/predictions?route=OSW10&stop=15521&direction=FROM+CAMPUS'
+    );
+  });
+
+  test('encodes trip requests', async () => {
+    global.fetch.mockReturnValue(jsonResponse({ status: 'live' }));
+    await getTrip('OSW17', '15888', 'WESTBOUND');
+    expect(global.fetch.mock.calls[0][0]).toContain(
+      '/api/v1/trip?route=OSW17&stop=15888&direction=WESTBOUND'
     );
   });
 
