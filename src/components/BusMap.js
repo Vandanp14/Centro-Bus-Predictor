@@ -1,42 +1,29 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import {
   CircleMarker,
   MapContainer,
   Polyline,
   Popup,
-  TileLayer,
-  useMap,
 } from 'react-leaflet';
 import { Link } from 'react-router-dom';
-import L from 'leaflet';
 import { FiArrowRight } from 'react-icons/fi';
 import AnimatedVehicleMarker, { createVehicleIcon } from './AnimatedVehicleMarker';
+import { FitPositions, MapTiles } from './MapBase';
 
 const OSWEGO_CENTER = [43.4553, -76.51];
 
 function FitMap({ patterns, stops, vehicles }) {
-  const map = useMap();
-
-  useEffect(() => {
-    const positions = [
-      ...patterns.flatMap((pattern) =>
-        pattern.points.map((point) => [point.lat, point.lng])
-      ),
-      ...stops.map((stop) => [stop.lat, stop.lng]),
-      ...vehicles.map((vehicle) => [vehicle.lat, vehicle.lng]),
-    ].filter(([lat, lng]) => Number.isFinite(lat) && Number.isFinite(lng));
-
-    if (positions.length > 1) {
-      map.fitBounds(L.latLngBounds(positions), {
-        padding: [42, 42],
-        maxZoom: 15,
-      });
-    } else if (positions.length === 1) {
-      map.setView(positions[0], 15);
-    }
-  }, [map, patterns, stops, vehicles]);
-
-  return null;
+  return (
+    <FitPositions
+      positions={[
+        ...patterns.flatMap((pattern) =>
+          pattern.points.map((point) => [point.lat, point.lng])
+        ),
+        ...stops.map((stop) => [stop.lat, stop.lng]),
+        ...vehicles.map((vehicle) => [vehicle.lat, vehicle.lng]),
+      ]}
+    />
+  );
 }
 
 function BusMap({ route, direction, patterns, stops, vehicles }) {
@@ -63,11 +50,7 @@ function BusMap({ route, direction, patterns, stops, vehicles }) {
         zoomControl
         scrollWheelZoom
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-          maxZoom={19}
-        />
+        <MapTiles />
 
         {patterns.map((pattern) => (
           <Polyline
