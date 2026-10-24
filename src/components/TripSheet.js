@@ -130,7 +130,9 @@ function StopList({ trip, boardingRef }) {
   if (!stops.length) return null;
 
   const rows = [];
-  if (bus && !busAfterStopId) rows.push(<BusRow key="bus" bus={bus} />);
+  // Draw the bus only where the server placed it; an unknown position is
+  // left out rather than shown at the start of the route.
+  if (bus && bus.listPosition === 'before_start') rows.push(<BusRow key="bus" bus={bus} />);
   stops.forEach((stop, index) => {
     const time = stopTime(stop);
     rows.push(

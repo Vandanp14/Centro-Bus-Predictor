@@ -46,6 +46,7 @@ def test_trip_live_payload(client, centro):
     assert payload["bus"]["minutes"] == 21
     assert payload["bus"]["stopsAway"] == 5
     assert payload["bus"]["onBoardingDirection"] is True
+    assert payload["bus"]["listPosition"] == "after_stop"
     assert {s["state"] for s in payload["stops"]} <= {"passed", "upcoming"}
     assert sum(s["isBoarding"] for s in payload["stops"]) == 1
     assert payload["pattern"]["id"] == "9768" and payload["pattern"]["points"]
@@ -116,6 +117,8 @@ def test_trip_vehicle_without_position(client, centro):
     assert payload["bus"]["id"] == "2215"
     assert payload["bus"]["lat"] is None
     assert payload["bus"]["minutes"] == 21
+    # Without its pattern position the list must not draw the bus anywhere.
+    assert payload["bus"]["listPosition"] == "unknown"
 
 
 def test_trip_stale_feed(client, centro):
@@ -133,3 +136,10 @@ def test_trip_validation(client):
     no_direction = client.get("/api/v1/trip?route=OSW17&stop=15888")
     assert no_direction.status_code == 400
     assert no_direction.get_json()["error"]["code"] == "MISSING_DIRECTION"
+
+
+def test_trip_bus_on_other_direction_is_before_start(client, centro):
+    live(centro, prediction_body={"prd": []}, vehicles_body={"vehicle": [vehicle("2213", 9775, 6000, tmstmp=stamp())]})
+    payload = client.get(URL).get_json()
+    assert payload["bus"]["id"] == "2213"
+    assert payload["bus"]["listPosition"] == "before_start"

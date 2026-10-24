@@ -29,6 +29,7 @@ const liveTrip = (overrides = {}, busOverrides = {}) => ({
     delayed: false,
     destination: '17 Bridge St to Campus',
     onBoardingDirection: false,
+    listPosition: 'after_stop',
     ...busOverrides,
   },
   stops: [
@@ -113,10 +114,15 @@ test('bus marker row sits after busAfterStopId', () => {
 });
 
 test('bus marker precedes the first stop when the bus is not on this direction yet', () => {
-  render({ trip: liveTrip({ busAfterStopId: null }), expanded: true });
+  render({ trip: liveTrip({ busAfterStopId: null }, { listPosition: 'before_start' }), expanded: true });
   const list = screen.getByRole('list', { name: 'Stops in riding order' });
   expect(list.children[0]).toHaveTextContent('Bus 2213');
   expect(list.children[0]).toHaveTextContent('17 Bridge St to Campus');
+});
+
+test('no bus row when its position on the route is unknown', () => {
+  render({ trip: liveTrip({ busAfterStopId: null }, { listPosition: 'unknown' }), expanded: true });
+  expect(screen.queryByText(/is here/)).not.toBeInTheDocument();
 });
 
 test('beyond window with count', () => {

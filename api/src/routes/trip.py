@@ -46,6 +46,19 @@ def _sorted_predictions(predictions):
     return sorted(predictions, key=order)
 
 
+def _list_position(bus, bus_pattern, board, bus_after, direction):
+    """Where the stop list may draw the bus; "unknown" draws it nowhere."""
+    if bus_after:
+        return "after_stop"
+    if bus_pattern is None or bus.get("pdist") is None:
+        return "unknown"
+    if bus_pattern.get("rtdir") != direction:
+        return "before_start"
+    if board is not None and str(board.get("pid")) == str(bus_pattern.get("pid")):
+        return "before_start"
+    return "unknown"
+
+
 @blueprint.get("/api/v1/trip")
 def trip():
     route_id = validate_route(request.args.get("route"))
@@ -129,6 +142,7 @@ def trip():
                 stop_id, direction, bus, bus_pattern, candidates, bus_predictions,
             ),
             "onBoardingDirection": bool(bus_pattern and bus_pattern.get("rtdir") == direction),
+            "listPosition": _list_position(bus, bus_pattern, board, bus_after, direction),
         }
 
     other_vehicles = [
