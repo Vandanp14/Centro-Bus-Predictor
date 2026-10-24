@@ -20,6 +20,9 @@ class FakeCentroClient:
             "ptr": [{"pid": 2722, "ln": 10358.0, "rtdir": "FROM CAMPUS", "pt": [{"seq": 1, "lat": 43.453952, "lon": -76.540263, "typ": "S", "stpid": "15521", "stpnm": "SUNY OSWEGO CAMPUS CENTER"}, {"seq": 2, "lat": 43.454, "lon": -76.54, "typ": "W"}]}]
         }
         self.patterns_error = None
+        self.vehicle_predictions_body = {"prd": []}
+        self.pattern_bodies = {}
+        self.calls = []
         self.prediction_body = {
             "prd": [
                 {
@@ -77,9 +80,18 @@ class FakeCentroClient:
         return self.vehicles_body
 
     def patterns(self, route_id):
+        self.calls.append(("patterns", (route_id,)))
         if self.patterns_error:
             raise self.patterns_error
         return self.patterns_body
+
+    def predictions_for_vehicle(self, vehicle_id):
+        self.calls.append(("predictions_for_vehicle", (vehicle_id,)))
+        return self.vehicle_predictions_body
+
+    def pattern(self, pattern_id):
+        self.calls.append(("pattern", (pattern_id,)))
+        return self.pattern_bodies.get(str(pattern_id), {"ptr": []})
 
 
 @pytest.fixture

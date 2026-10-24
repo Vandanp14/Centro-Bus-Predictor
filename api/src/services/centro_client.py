@@ -116,9 +116,15 @@ class CentroClient:
     def predictions(self, route_id: str, stop_id: str, direction: str | None = None) -> dict[str, Any]:
         return self.request("getpredictions", rt=route_id, stpid=stop_id, cache_seconds=12)
 
+    def predictions_for_vehicle(self, vehicle_id: str) -> dict[str, Any]:
+        return self.request("getpredictions", vid=vehicle_id, cache_seconds=12)
+
+    def pattern(self, pattern_id: str) -> dict[str, Any]:
+        return self.request("getpatterns", pid=pattern_id, cache_seconds=3600)
+
     def vehicles(self, route_id: str | None = None) -> dict[str, Any]:
         kwargs = {"rt": route_id} if route_id else {}
-        return self.request("getvehicles", **kwargs, cache_seconds=60)
+        return self.request("getvehicles", **kwargs, cache_seconds=15)
 
     def patterns(self, route_id: str) -> dict[str, Any]:
         return self.request("getpatterns", rt=route_id, cache_seconds=3600)
