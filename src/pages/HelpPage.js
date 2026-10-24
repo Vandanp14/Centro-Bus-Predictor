@@ -50,10 +50,10 @@ function HelpPage() {
           <FiHelpCircle aria-hidden="true" />
           Rider guide
         </p>
-        <h1>Read the signal.</h1>
+        <h1>Rider guide</h1>
         <p>
-          The app separates live estimates, vehicle locations, and official
-          schedules so you always know what the data means.
+          How to read Centro’s arrival estimates, vehicle locations, and
+          official schedules.
         </p>
       </header>
 

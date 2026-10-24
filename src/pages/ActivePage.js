@@ -155,7 +155,7 @@ function ActivePage() {
 
           <div className="active-vehicle-list">
             {groups[routeId].map((vehicle) => (
-              <div className="active-vehicle" key={vehicle.id}>
+              <article className="active-vehicle" key={vehicle.id} aria-label={`Bus ${vehicle.id}`}>
                 <div className="active-vehicle__head">
                   <span className="active-vehicle__id">Bus {vehicle.id}</span>
                   <span className={`active-vehicle__status ${vehicle.delayed ? 'is-delayed' : 'is-ontime'}`}>
@@ -187,7 +187,7 @@ function ActivePage() {
                   Show on map
                   <FiArrowRight aria-hidden="true" />
                 </Link>
-              </div>
+              </article>
             ))}
           </div>
         </section>
